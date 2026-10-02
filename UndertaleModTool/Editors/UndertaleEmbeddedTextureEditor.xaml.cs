@@ -42,12 +42,12 @@ namespace UndertaleModTool
 
             var newTabItem = new MenuItem()
             {
-                Header = "Open in new tab"
+                Header = "在新标签页中打开"
             };
             newTabItem.Click += OpenInNewTabItem_Click;
             var referencesItem = new MenuItem()
             {
-                Header = "Find all references to this page item"
+                Header = "查找此纹理页项的所有引用"
             };
             referencesItem.Click += FindAllItemReferencesItem_Click;
             pageContextMenu.Items.Add(newTabItem);
@@ -137,8 +137,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {
@@ -203,7 +203,7 @@ namespace UndertaleModTool
             OpenFileDialog dlg = new OpenFileDialog();
 
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -234,7 +234,7 @@ namespace UndertaleModTool
                     uint width = (uint)image.Width, height = (uint)image.Height;
                     if ((width & (width - 1)) != 0 || (height & (height - 1)) != 0)
                     {
-                        mainWindow.ShowWarning("WARNING: Texture page dimensions are not powers of 2. Sprite blurring is very likely in-game.", "Unexpected texture dimensions");
+                        mainWindow.ShowWarning("警告：纹理页的尺寸不是 2 的幂。游戏中精灵很可能会出现模糊。", "意外的纹理尺寸");
                     }
 
                     var previousFormat = target.TextureData.Image?.Format;
@@ -247,7 +247,7 @@ namespace UndertaleModTool
                     // If texture was DDS, warn user that texture has been converted to PNG
                     if (previousFormat == GMImage.ImageFormat.Dds && currentFormat == GMImage.ImageFormat.Png)
                     {
-                        mainWindow.ShowMessage($"{target} was converted into PNG format since we don't support converting images into DDS format. This might have performance issues in the game.");
+                        mainWindow.ShowMessage($"由于不支持将图像转换为 DDS 格式，{target} 已被转换为 PNG 格式。这可能会在游戏中造成性能问题。");
                     }
 
                     // Update width/height properties in the UI
@@ -256,7 +256,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to import file: " + ex.Message, "Failed to import file");
+                    mainWindow.ShowError("导入文件失败：" + ex.Message, "导入文件失败");
                 }
             }
         }
@@ -268,7 +268,7 @@ namespace UndertaleModTool
             SaveFileDialog dlg = new SaveFileDialog();
 
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -279,7 +279,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                    mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                 }
             }
         }

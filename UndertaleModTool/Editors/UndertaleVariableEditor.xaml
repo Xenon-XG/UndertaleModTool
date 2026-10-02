@@ -28,16 +28,16 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Instance type</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">实例类型</TextBlock>
         <local:ComboBoxDark Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource InstanceType}}" SelectedItem="{Binding InstanceType}" />
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">VarID</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">变量 ID</TextBlock>
         <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding VarID}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Name string ID</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">名称字符串 ID</TextBlock>
         <local:TextBoxDark Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding NameStringID}"/>
     </Grid>
 </local:DataUserControl>

@@ -8,7 +8,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="Edit Tile Data"
+        Title="编辑图块数据"
         Height="400" Width="800" MinHeight="300" MinWidth="300"
         WindowStartupLocation="CenterOwner"
 >
@@ -78,45 +78,45 @@
                         Margin="3,1" Padding="3,2" VerticalAlignment="Center"
                         Content="🡘" Click="Command_Mirror"
                         Width="22"
-                        ToolTip="Mirror the brush around the X axis (X)"
+                        ToolTip="沿 X 轴镜像画笔 (X)"
                     ></local:ButtonDark>
                     <local:ButtonDark
                         Margin="3,1" Padding="3,2" VerticalAlignment="Center"
                         Width="22"
                         Content="🡙" Click="Command_Flip"
-                        ToolTip="Flip the brush around the Y axis (Y/Z)"
+                        ToolTip="沿 Y 轴翻转画笔 (Y/Z)"
                     ></local:ButtonDark>
                     <local:ButtonDark
                         Margin="3,1" Padding="3,2" VerticalAlignment="Center"
                         Content="⟳" Click="Command_RotateCW"
                         Width="22"
-                        ToolTip="Rotate the brush 90 degrees (Q, R)"
+                        ToolTip="将画笔旋转 90 度 (Q, R)"
                     ></local:ButtonDark>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <CheckBox 
-                        ToolTip="Show the rest of the room behind the tilemap (P)"
+                        ToolTip="在图块地图后方显示房间的其余部分 (P)"
                         Margin="9,3,3,3" IsChecked="{Binding settings.RoomPreviewBool}"
                     />
-                    <TextBlock Margin="3">Preview</TextBlock>
+                    <TextBlock Margin="3">预览</TextBlock>
                     <CheckBox 
-                        ToolTip="Enable the &quot;tiling&quot; behavior when using multi-tile brushes (B)"
+                        ToolTip="使用多图块画笔时启用“平铺”行为 (B)"
                         Margin="9,3,3,3" IsChecked="{Binding settings.BrushTiling}"
                     />
-                    <TextBlock Margin="3">Brush Tiling</TextBlock>
-                    <CheckBox ToolTip="Show the tile grid (G)" Margin="9,3,3,3" IsChecked="{Binding settings.ShowGridBool}"/>
-                    <TextBlock Margin="3">Grid</TextBlock>
+                    <TextBlock Margin="3">画笔平铺</TextBlock>
+                    <CheckBox ToolTip="显示图块网格 (G)" Margin="9,3,3,3" IsChecked="{Binding settings.ShowGridBool}"/>
+                    <TextBlock Margin="3">网格</TextBlock>
                     <local:ButtonDark
                         Margin="3,1" Padding="3,2" VerticalAlignment="Center"
                         Content="↩" Click="Command_Undo"
                         Width="22"
-                        ToolTip="Undo (Ctrl+Z)" IsEnabled="{Binding UndoEnabled, Mode=OneWay}"
+                        ToolTip="撤销 (Ctrl+Z)" IsEnabled="{Binding UndoEnabled, Mode=OneWay}"
                     ></local:ButtonDark>
                     <local:ButtonDark
                         Margin="3,1" Padding="3,2" VerticalAlignment="Center"
                         Content="↪" Click="Command_Redo"
                         Width="22"
-                        ToolTip="Redo (Ctrl+Y, Ctrl+Shift+Z)" IsEnabled="{Binding RedoEnabled, Mode=OneWay}"
+                        ToolTip="重做 (Ctrl+Y, Ctrl+Shift+Z)" IsEnabled="{Binding RedoEnabled, Mode=OneWay}"
                     ></local:ButtonDark>
                 </StackPanel>
             </Grid>
@@ -256,10 +256,10 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="96"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Margin="3" TextAlignment="Right">Tileset columns</TextBlock>
+                <TextBlock Grid.Column="0" Margin="3" TextAlignment="Right">图块集列数</TextBlock>
                 <local:TextBoxDark Grid.Column="1" Margin="3,1" Padding="0,2" Text="{Binding PaletteColumns}" 
-                        ToolTip="Number of columns to use for the tile palette. Adjust if the tileset looks broken.
-Persists when the tile editor is closed, but not when the file is saved and reopened."/>
+                        ToolTip="图块调色板所使用的列数。如果图块集显示异常，请调整此值。
+关闭图块编辑器后此设置会保留，但保存并重新打开文件后不会保留。"/>
             </Grid>
 
             <ScrollViewer
@@ -379,18 +379,18 @@ Persists when the tile editor is closed, but not when the file is saved and reop
                 ></TextBlock>
                 <TextBlock
                     Grid.Row="1" VerticalAlignment="Center"
-                    Text="Ctrl+LMB: Fill (+Shift: Global)    Alt+LMB: Pick    MMB: Scroll/Pick"
+                    Text="Ctrl+左键：填充（+Shift：全局）    Alt+左键：拾取    中键：滚动/拾取"
                 ></TextBlock>
             </Grid>
             <local:ButtonDark
                 x:Name="CancelButton"
                 Grid.Column="1" Margin="3,3" Padding="5,3"
-                VerticalAlignment="Center" Content="Cancel" Click="CancelButton_Click"
+                VerticalAlignment="Center" Content="取消" Click="CancelButton_Click"
             ></local:ButtonDark>
             <local:ButtonDark
                 x:Name="ApplyButton"
                 Grid.Column="2" Margin="3,3" Padding="5,3"
-                VerticalAlignment="Center" Content="Apply" Click="ApplyButton_Click"
+                VerticalAlignment="Center" Content="应用" Click="ApplyButton_Click"
             ></local:ButtonDark>
         </Grid>
 

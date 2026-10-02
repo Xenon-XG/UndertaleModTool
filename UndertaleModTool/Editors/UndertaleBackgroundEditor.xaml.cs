@@ -25,7 +25,7 @@ namespace UndertaleModTool
 
             var item = new MenuItem()
             {
-                Header = "Find all references of this tile"
+                Header = "查找此图块的所有引用"
             };
             item.Click += FindAllTileReferencesItem_Click;
             tileContextMenu.Items.Add(item);
@@ -122,8 +122,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                    $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口发生错误。\n" +
+                                    $"请在 GitHub 上报告此问题。\n\n{ex}");
                 dialog?.Close();
             }
         }
@@ -146,7 +146,7 @@ namespace UndertaleModTool
             ScrollViewer tileListViewer = MainWindow.FindVisualChild<ScrollViewer>(TileIdList);
             if (tileListViewer is null)
             {
-                mainWindow.ShowError("Cannot find the tile ID list scroll viewer.");
+                mainWindow.ShowError("找不到图块 ID 列表的滚动视图。");
                 return false;
             }
             tileListViewer.ScrollToVerticalOffset(tileIndex + 1 - (tileListViewer.ViewportHeight / 2)); // DataGrid offset is logical

@@ -42,7 +42,7 @@ namespace UndertaleModTool
             foreach (var glyph in copy)
                 font.Glyphs.Add(glyph);
 
-            mainWindow.ShowMessage("The glyphs were sorted successfully.");
+            mainWindow.ShowMessage("字形已成功排序。");
         }
         private void Button_UpdateRange_Click(object sender, RoutedEventArgs e)
         {
@@ -53,7 +53,7 @@ namespace UndertaleModTool
             font.RangeStart = characters.Min();
             font.RangeEnd = characters.Max();
 
-            mainWindow.ShowMessage("The range was updated successfully.");
+            mainWindow.ShowMessage("范围已成功更新。");
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -91,7 +91,7 @@ namespace UndertaleModTool
             ScrollViewer glyphListViewer = MainWindow.FindVisualChild<ScrollViewer>(GlyphsGrid);
             if (glyphListViewer is null)
             {
-                mainWindow.ShowError("Cannot find the glyphs table scroll viewer.");
+                mainWindow.ShowError("找不到字形表的滚动视图。");
                 return;
             }
             glyphListViewer.ScrollToVerticalOffset(glyphIndex + 1 - (glyphListViewer.ViewportHeight / 2)); // DataGrid offset is logical
@@ -111,13 +111,13 @@ namespace UndertaleModTool
         {
             if (GlyphsGrid.SelectedItem is not UndertaleFont.Glyph glyph)
             {
-                mainWindow.ShowError("No glyph selected.");
+                mainWindow.ShowError("未选择字形。");
                 return;
             }
 
             if (DataContext is UndertaleFont font && font.Texture is null)
             {
-                mainWindow.ShowError("The font has no texture.");
+                mainWindow.ShowError("该字体没有纹理。");
                 return;
             }
 
@@ -133,8 +133,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the glyph rectangle editor window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("字形矩形编辑器窗口发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {
@@ -152,8 +152,8 @@ namespace UndertaleModTool
                 if (font.Glyphs[index].SourceWidth == 0
                 || font.Glyphs[index].SourceHeight == 0)
                 {
-                    mainWindow.ShowWarning("The last glyph has zero size.\n" +
-                                           "You can use the button on the left to fix that.");
+                    mainWindow.ShowWarning("最后一个字形的大小为零。\n" +
+                                           "你可以使用左侧的按钮来修复它。");
                     return;
                 }
             }
@@ -180,7 +180,7 @@ namespace UndertaleModTool
 
             char? ch = (char?)CharConverter.Instance.Convert(glyph.Character, null, null, null);
             ch ??= default;
-            GlyphsLabel.Text = $"Kerning of glyph '{ch}' (code - {glyph.Character}):";
+            GlyphsLabel.Text = $"字形 '{ch}'（编码 {glyph.Character}）的字距：";
         }
 
         private void KerningBackButton_Click(object sender, RoutedEventArgs e)
@@ -192,7 +192,7 @@ namespace UndertaleModTool
             GlyphsGrid.Visibility = Visibility.Visible;
             GlyphsGrid.IsEnabled = true;
 
-            GlyphsLabel.Text = "Glyphs:";
+            GlyphsLabel.Text = "字形：";
         }
         private void Command_GoBack(object sender, ExecutedRoutedEventArgs e)
         {
@@ -211,7 +211,7 @@ namespace UndertaleModTool
             if (value is not ushort charNum)
             {
                 if (value is not short charNum1)
-                    return "(error)";
+                    return "(错误)";
 
                 try
                 {
@@ -219,7 +219,7 @@ namespace UndertaleModTool
                 }
                 catch
                 {
-                    return "(error)";
+                    return "(错误)";
                 }
             }
 
@@ -236,7 +236,7 @@ namespace UndertaleModTool
             uint charNum = charStr[0];
             if (charNum > ushort.MaxValue)
             {
-                mainWindow.ShowError("The character code is greater than the maximum (65535)");
+                mainWindow.ShowError("字符编码超过了最大值 (65535)");
                 return new ValidationResult(false, null);
             }
 

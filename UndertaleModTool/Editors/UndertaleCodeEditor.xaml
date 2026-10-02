@@ -31,23 +31,23 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Locals count</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">局部变量数量</TextBlock>
         <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding LocalsCount}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Arguments count</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">参数数量</TextBlock>
         <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding ArgumentsCount}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Offset</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">偏移</TextBlock>
         <local:TextBoxDark Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding Offset}"/>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Visibility="{Binding ParentEntry, Converter={StaticResource VisibleIfNotNull}}">Parent entry</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Visibility="{Binding ParentEntry, Converter={StaticResource VisibleIfNotNull}}">父条目</TextBlock>
         <local:UndertaleObjectReference Grid.Row="4" Grid.Column="1" Margin="3" Visibility="{Binding ParentEntry, Converter={StaticResource VisibleIfNotNull}}" ObjectReference="{Binding ParentEntry}" ObjectType="{x:Type undertale:UndertaleCode}" CanRemove="False" CanChange="False"/>
 
         <TabControl x:Name="CodeModeTabs" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Decompiled" Name="DecompiledTab">
+            <TabItem Header="反编译" Name="DecompiledTab">
                 <Grid PreviewMouseWheel="Grid_PreviewMouseWheel" PreviewKeyDown="Grid_PreviewKeyDown">
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
@@ -65,7 +65,7 @@
                         Padding="4"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Disassembly" Name="DisassemblyTab">
+            <TabItem Header="反汇编" Name="DisassemblyTab">
                 <Grid PreviewMouseWheel="Grid_PreviewMouseWheel" PreviewKeyDown="Grid_PreviewKeyDown">
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"

@@ -47,7 +47,7 @@ namespace UndertaleModTool
                 typeof(UndertaleRoomEditor),
                 new FrameworkPropertyMetadata(null));
 
-        public static RoutedUICommand PasteShiftCommand = new("Alternate paste command", "PasteShift", typeof(UndertaleRoomEditor));
+        public static RoutedUICommand PasteShiftCommand = new("替代粘贴命令", "PasteShift", typeof(UndertaleRoomEditor));
 
         public static readonly PropertyInfo visualOffProp = typeof(Canvas).GetProperty("VisualOffset", BindingFlags.NonPublic | BindingFlags.Instance);
         private static readonly MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
@@ -161,7 +161,7 @@ namespace UndertaleModTool
 
             dlg.FileName = (DataContext as UndertaleRoom).Name.Content + ".png";
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -174,7 +174,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                    mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                 }
             }
         }
@@ -226,8 +226,8 @@ namespace UndertaleModTool
             if (DataContext is UndertaleRoom room)
             {
                 GameObjItems.Header = (room.Flags.HasFlag(RoomEntryFlags.IsGMS2) || room.Flags.HasFlag(RoomEntryFlags.IsGM2024_13))
-                                      ? "Game objects (from all layers)"
-                                      : "Game objects";
+                                      ? "游戏对象（来自所有图层）"
+                                      : "游戏对象";
                 SetupRoomWithGrids(room);
                 GenerateSpriteCache(DataContext as UndertaleRoom);
 
@@ -263,7 +263,7 @@ namespace UndertaleModTool
                             {
                                 _ = mainWindow.Dispatcher.InvokeAsync(() =>
                                 {
-                                    mainWindow.ShowWarning($"The instances list of layer \"{layer.LayerName.Content}\" is empty, but the layer has the instances ID.");
+                                    mainWindow.ShowWarning($"图层“{layer.LayerName.Content}”的实例列表为空，但该图层含有实例 ID。");
                                 }, DispatcherPriority.ContextIdle);
                             }
 
@@ -607,7 +607,7 @@ namespace UndertaleModTool
             {
                 if (layer != null && layer.AssetsData == null)
                 {
-                    mainWindow.ShowError("Please select an assets layer.");
+                    mainWindow.ShowError("请选择一个资源图层。");
                     return null;
                 }
 
@@ -651,7 +651,7 @@ namespace UndertaleModTool
             {
                 if (layer != null && layer.InstancesData == null)
                 {
-                    mainWindow.ShowError("Please select an instance layer.");
+                    mainWindow.ShowError("请选择一个实例图层。");
                     return null;
                 }
 
@@ -686,7 +686,7 @@ namespace UndertaleModTool
             {
                 if (layer != null && layer.AssetsData == null)
                 {
-                    mainWindow.ShowError("Please select an assets layer.");
+                    mainWindow.ShowError("请选择一个资源图层。");
                     return null;
                 }
 
@@ -718,7 +718,7 @@ namespace UndertaleModTool
             {
                 if (layer != null && layer.AssetsData == null)
                 {
-                    mainWindow.ShowError("Please select an assets layer.");
+                    mainWindow.ShowError("请选择一个资源图层。");
                     return null;
                 }
 
@@ -1263,7 +1263,7 @@ namespace UndertaleModTool
                         SelectObject(firstBG);
                     }
                     else
-                        mainWindow.ShowError("No empty room backgrounds.");
+                        mainWindow.ShowError("没有空闲的房间背景。");
                 }
                 else if (sourceItem is UndertaleGameObject droppedObj)
                 {
@@ -1324,12 +1324,12 @@ namespace UndertaleModTool
 
                     if (mainWindow.IsGMS2 == Visibility.Visible && layer == null)
                     {
-                        mainWindow.ShowError("Please select a layer.");
+                        mainWindow.ShowError("请选择一个图层。");
                         return;
                     }
                     if (layer != null && layer.AssetsData == null)
                     {
-                        mainWindow.ShowError("Please select an assets layer.");
+                        mainWindow.ShowError("请选择一个资源图层。");
                         return;
                     }
 
@@ -1522,7 +1522,7 @@ namespace UndertaleModTool
 
                 if (mainWindow.IsGMS2 == Visibility.Visible && layer == null)
                 {
-                    mainWindow.ShowError("Please select a layer.");
+                    mainWindow.ShowError("请选择一个图层。");
                     return;
                 }
 
@@ -1550,7 +1550,7 @@ namespace UndertaleModTool
             if (room is null)
             {
                 // (not sure if it's possible)
-                mainWindow.ShowError("Room is null.");
+                mainWindow.ShowError("房间为空（null）。");
                 return null;
             }
 
@@ -1583,7 +1583,7 @@ namespace UndertaleModTool
                     if (layerDepth + 1 > Int32.MaxValue)
                     {
                         layerDepth -= 1;
-                        mainWindow.ShowWarning("Warning - the maximum layer depth is reached.\nYou probably should change the depth of the new layer.");
+                        mainWindow.ShowWarning("警告：已达到图层深度的最大值。\n你可能需要修改新图层的深度。");
                     }
                     else
                         layerDepth += 1;
@@ -1855,17 +1855,17 @@ namespace UndertaleModTool
         {
             if (obj is Layer)
             {
-                mainWindow.ShowError("Layers don't support this feature currently, change the layer depths instead.");
+                mainWindow.ShowError("图层目前不支持此功能，请改为修改图层深度。");
                 return;
             }
             if (obj is View)
             {
-                mainWindow.ShowError("Views don't support this feature.");
+                mainWindow.ShowError("视图不支持此功能。");
                 return;
             }
             if (obj is Background)
             {
-                mainWindow.ShowError("Backgrounds don't support this feature.");
+                mainWindow.ShowError("背景不支持此功能。");
                 return;
             }
 
@@ -1909,7 +1909,7 @@ namespace UndertaleModTool
             };
             if (list is null)
             {
-                mainWindow.ShowError("Can't change the object position - no list for the selected object was found.");
+                mainWindow.ShowError("无法更改对象位置：未找到所选对象所属的列表。");
                 return;
             }
 
@@ -2124,7 +2124,7 @@ namespace UndertaleModTool
 
             if (layer.TilesData.TileData.Length == 0)
             {
-                mainWindow.ShowError("Tile data is empty.");
+                mainWindow.ShowError("图块数据为空。");
                 return;
             }
 
@@ -2141,11 +2141,11 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError($"Error while saving the file - \"{ex.Message}\".");
+                mainWindow.ShowError($"保存文件时出错：“{ex.Message}”。");
                 return;
             }
 
-            mainWindow.ShowMessage("Exported file path: " + filePath);
+            mainWindow.ShowMessage("已导出文件路径：" + filePath);
         }
         private void TileDataImport_Click(object sender, RoutedEventArgs e)
         {
@@ -2154,14 +2154,14 @@ namespace UndertaleModTool
 
             if (layer.TilesData.TilesX == 0 || layer.TilesData.TilesY == 0)
             {
-                mainWindow.ShowError("Tile data size can't be zero.");
+                mainWindow.ShowError("图块数据尺寸不能为零。");
                 return;
             }
 
             OpenFileDialog dlg = new()
             {
                 DefaultExt = "csv",
-                Filter = "CSV table|*.csv|All files|*"
+                Filter = "CSV 表格|*.csv|所有文件|*"
             };
 
             if (dlg.ShowDialog() == true)
@@ -2174,13 +2174,13 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError($"Error while opening file - \"{ex.Message}\".");
+                    mainWindow.ShowError($"打开文件时出错：“{ex.Message}”。");
                     return;
                 }
 
                 if (tileDataLines?.Length != tileDataNew.Length)
                 {
-                    mainWindow.ShowError("Error - selected file line count doesn't match tile layer height.");
+                    mainWindow.ShowError("错误：所选文件的行数与图块图层高度不匹配。");
                     return;
                 }
 
@@ -2188,7 +2188,7 @@ namespace UndertaleModTool
                 Func<string, uint> numParseFunc = (x) => UInt32.Parse(x);
                 if (tileDataLines[0].Count(x => x == ',') > 1)
                 {
-                    var res = mainWindow.ShowQuestion("Was the data exported from \"Tiled\"?");
+                    var res = mainWindow.ShowQuestion("该数据是否从“Tiled”导出？");
                     if (res == MessageBoxResult.Yes)
                     {
                         delimChar = ',';
@@ -2211,7 +2211,7 @@ namespace UndertaleModTool
                                 3758096384 => 5, // Rotate270FlipY
                                 536870912 => 6,  // Rotate90FlipY
                                 1610612736 => 7, // Rotate270FlipNone
-                                _ => throw new InvalidDataException($"{flags} is not a valid tile flag value.")
+                                _ => throw new InvalidDataException($"{flags} 不是有效的图块标志值。")
                             };
                             flags <<= 28;
 
@@ -2220,7 +2220,7 @@ namespace UndertaleModTool
                     }
                     else
                     {
-                        mainWindow.ShowError("The file has invalid data.");
+                        mainWindow.ShowError("文件包含无效数据。");
                         return;
                     }
                 }
@@ -2234,13 +2234,13 @@ namespace UndertaleModTool
                     }
                     catch (Exception ex)
                     {
-                        mainWindow.ShowError($"Error while parsing line {i + 1} - \"{ex.Message}\".");
+                        mainWindow.ShowError($"解析第 {i + 1} 行时出错：“{ex.Message}”。");
                         return;
                     }
 
                     if (dataRow.Length != layer.TilesData.TilesX)
                     {
-                        mainWindow.ShowError($"Length of line {i + 1} is not equal to the tile data width.");
+                        mainWindow.ShowError($"第 {i + 1} 行的长度与图块数据宽度不相等。");
                         return;
                     }
 
@@ -2249,7 +2249,7 @@ namespace UndertaleModTool
 
                 layer.TilesData.TileData = tileDataNew;
 
-                mainWindow.ShowMessage("Imported successfully.");
+                mainWindow.ShowMessage("导入成功。");
             }
         }
 
@@ -2308,21 +2308,21 @@ namespace UndertaleModTool
 
                 if (data.Background is null)
                 {
-                    mainWindow.ShowMessage("The layer must have a tileset set!");
+                    mainWindow.ShowMessage("该图层必须设置图块集！");
                     return;
                 }
                 if (data.TilesX <= 0 && data.TilesY <= 0)
                 {
-                    mainWindow.ShowMessage("The layer's horizontal and vertical size must be larger than 0 tiles!\n(Use the Auto button to set the tilemap size based on the room size.)");
+                    mainWindow.ShowMessage("该图层的水平与垂直尺寸必须大于 0 个图块！\n（可使用“自动”按钮根据房间尺寸设置图块地图的尺寸。）");
                     return;
                 }
                 else if (data.TilesX <= 0)
                 {
-                    mainWindow.ShowMessage("The layer's horizontal size must be larger than 0 tiles!\n(Use the Auto button to set the tilemap size based on the room size.)");
+                    mainWindow.ShowMessage("该图层的水平尺寸必须大于 0 个图块！\n（可使用“自动”按钮根据房间尺寸设置图块地图的尺寸。）");
                     return;
                 } else if (data.TilesY <= 0)
                 {
-                    mainWindow.ShowMessage("The layer's vertical size must be larger than 0 tiles!\n(Use the Auto button to set the tilemap size based on the room size.)");
+                    mainWindow.ShowMessage("该图层的垂直尺寸必须大于 0 个图块！\n（可使用“自动”按钮根据房间尺寸设置图块地图的尺寸。）");
                     return;
                 }
 
@@ -2340,7 +2340,7 @@ namespace UndertaleModTool
 
                 if (data.Background is null)
                 {
-                    mainWindow.ShowMessage("The layer must have a tileset set!");
+                    mainWindow.ShowMessage("该图层必须设置图块集！");
                     return;
                 }
                 data.TilesX = (uint)Math.Ceiling(
@@ -2722,7 +2722,7 @@ namespace UndertaleModTool
                             {
                                 try
                                 {
-                                    mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError("Room flags of GM 2024.13+ games must contain the \"IsGM2024_13\" flag, otherwise the game will crash when loading that room."));
+                                    mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError("GM 2024.13+ 游戏的房间标志必须包含“IsGM2024_13”标志，否则游戏在加载该房间时会崩溃。"));
                                 }
                                 catch { }
                             }
@@ -2735,7 +2735,7 @@ namespace UndertaleModTool
                             {
                                 try
                                 {
-                                    mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError("Room flags of GMS 2+ games must contain the \"IsGMS2\" flag, otherwise the game will crash when loading that room."));
+                                    mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError("GMS 2+ 游戏的房间标志必须包含“IsGMS2”标志，否则游戏在加载该房间时会崩溃。"));
                                 }
                                 catch { }
                             }
@@ -3135,7 +3135,7 @@ namespace UndertaleModTool
                     Window mainWindow = Application.Current?.MainWindow;
                     try
                     {
-                        mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError($"An error occurred while generating \"Rectangles\" for tile layer {tilesData.ParentLayer.LayerName}.\n\n{ex}"));
+                        mainWindow.Dispatcher.BeginInvoke(() => mainWindow.ShowError($"为图块图层 {tilesData.ParentLayer.LayerName} 生成“Rectangles”时发生错误。\n\n{ex}"));
                     }
                     catch { }
                     return null;

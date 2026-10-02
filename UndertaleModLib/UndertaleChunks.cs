@@ -1123,8 +1123,7 @@ namespace UndertaleModLib
                                 kerningLength = reader.ReadUInt16();
                                 pointerAfterKerningList = reader.AbsPosition + 4 * kerningLength;
                                 if (pointerAfterKerningList != pointerNextGlyph)
-                                    reader.SubmitWarning("There appears to be more/less values than UnknownAlwaysZero before " +
-                                                            "the kerning list in a UTFont.Glyph - potential data loss");
+                                    reader.SubmitWarning("UTFont.Glyph 中字距列表之前的 UnknownAlwaysZero 值数量与预期不符，可能丢失数据");
                                 GMS2024_11 = true;
                             }
                             else
@@ -1676,7 +1675,7 @@ namespace UndertaleModLib
                 {
                     if (reader.ReadByte() != 0)
                     {
-                        reader.SubmitWarning("Missing expected TPAG padding");
+                        reader.SubmitWarning("缺少预期的 TPAG 填充数据");
                         reader.Position--;
                         break;
                     }

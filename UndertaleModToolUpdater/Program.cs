@@ -10,7 +10,7 @@ namespace UndertaleModToolUpdater
     {
         static void Main(string[] args)
         {
-            Console.Title = "UndertaleModTool updater";
+            Console.Title = "UndertaleModTool 更新程序";
 
             // Get all processes named UndertaleModTool
             Process[] utmtInstances = Process.GetProcessesByName("UndertaleModTool");
@@ -18,7 +18,7 @@ namespace UndertaleModToolUpdater
             if (utmtInstances.Length > 0)
             {
                 // Found some! Wait for all of them to close
-                Console.WriteLine("Waiting for UndertaleModTool to close...");
+                Console.WriteLine("正在等待 UndertaleModTool 关闭...");
                 foreach (var instance in utmtInstances)
                 {
                     instance.WaitForExit();
@@ -30,8 +30,8 @@ namespace UndertaleModToolUpdater
 
             // Check if Update.zip actually exists
             if (!File.Exists(basePath + "Update.zip")) {
-                Console.WriteLine("Update.zip is missing! This program is not meant to be ran by itself, please update through UndertaleModTool.");
-                Console.WriteLine("Press any key to exit...");
+                Console.WriteLine("缺少 Update.zip！本程序不应单独运行，请通过 UndertaleModTool 进行更新。");
+                Console.WriteLine("按任意键退出...");
                 Console.Read();
                 Environment.Exit(1);
             }
@@ -39,14 +39,14 @@ namespace UndertaleModToolUpdater
             // If this exists from a failed update or something, then remove it
             if (Directory.Exists(basePath + "Update"))
             {
-                Console.WriteLine("Removing Update folder...");
+                Console.WriteLine("正在移除 Update 文件夹...");
                 Directory.Delete(basePath + "Update", true);
             }
 
             if (!File.Exists("actualAppFolder"))
             {
-                Console.WriteLine("\"actualAppFolder\" file is missing!");
-                Console.WriteLine("Press any key to exit...");
+                Console.WriteLine("缺少 \"actualAppFolder\" 文件！");
+                Console.WriteLine("按任意键退出...");
                 Console.Read();
                 Environment.Exit(1);
             }
@@ -57,15 +57,15 @@ namespace UndertaleModToolUpdater
             }
 
             // Extract the update ZIP
-            Console.WriteLine("Extracting Update.zip...");
+            Console.WriteLine("正在解压 Update.zip...");
             ZipFile.ExtractToDirectory(basePath + "Update.zip", basePath + "Update", true);
-            Console.WriteLine("Deleting Update.zip...");
+            Console.WriteLine("正在删除 Update.zip...");
             File.Delete(basePath + "Update.zip");
 
-            Console.WriteLine("Replacing files with update...");
+            Console.WriteLine("正在用更新文件替换原有文件...");
             MoveDirectory(basePath + "Update", appPath);
 
-            Console.WriteLine("Finished updating, launching UTMT...");
+            Console.WriteLine("更新完成，正在启动 UTMT...");
 
             Process.Start(new ProcessStartInfo(Path.Join(appPath, "UndertaleModTool.exe"))
             {

@@ -11,7 +11,7 @@ namespace UndertaleModTool
         {
             if (values[0] is not GameObject gameObject)
             {
-                return "(null)";
+                return "(空)";
             }
             return gameObject.ToString();
         }

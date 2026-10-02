@@ -20,7 +20,7 @@
 
     <StackPanel>
         <StackPanel Visibility="{Binding GeneralInfo, Converter={StaticResource NotNullToVisibilityConverter}}">
-            <TextBlock Text="General info" FontWeight="Bold"/>
+            <TextBlock Text="常规信息" FontWeight="Bold"/>
             <Separator/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -53,35 +53,35 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3" Foreground="DarkRed">Disable GMS debugger</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3" Foreground="DarkRed">禁用 GMS 调试器</TextBlock>
                 <CheckBox Grid.Row="0" Grid.Column="1" Margin="3" IsChecked="{Binding GeneralInfo.IsDebuggerDisabled}"
                           PreviewMouseLeftButtonDown="DebuggerCheckBox_PreviewMouseLeftButtonDown"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Bytecode version</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">字节码版本</TextBlock>
                 <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.BytecodeVersion}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">FileName</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">文件名</TextBlock>
                 <local:UndertaleStringReference Grid.Row="2" Grid.Column="1" Margin="3" ObjectReference="{Binding GeneralInfo.FileName}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Config</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">配置</TextBlock>
                 <local:UndertaleStringReference Grid.Row="3" Grid.Column="1" Margin="3" ObjectReference="{Binding GeneralInfo.Config}"/>
 
-                <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Last object ID</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">最后对象 ID</TextBlock>
                 <local:TextBoxDark Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.LastObj}"/>
 
-                <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Last tile ID</TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">最后图块 ID</TextBlock>
                 <local:TextBoxDark Grid.Row="5" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.LastTile}"/>
 
-                <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Game ID</TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">游戏 ID</TextBlock>
                 <local:TextBoxDark Grid.Row="6" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.GameID}"/>
 
                 <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">DirectPlay GUID</TextBlock>
                 <local:TextBoxDark Grid.Row="7" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.DirectPlayGuid}"/>
 
-                <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Name</TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">名称</TextBlock>
                 <local:UndertaleStringReference Grid.Row="8" Grid.Column="1" Margin="3" ObjectReference="{Binding GeneralInfo.Name}"/>
 
-                <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">Version</TextBlock>
+                <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">版本</TextBlock>
                 <Grid Grid.Row="9" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -101,7 +101,7 @@
                     <local:TextBoxDark Grid.Column="6" Margin="3" Text="{Binding GeneralInfo.Build}"/>
                 </Grid>
 
-                <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">Default window size</TextBlock>
+                <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">默认窗口大小</TextBlock>
                 <Grid Grid.Row="10" Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -113,16 +113,16 @@
                     <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding GeneralInfo.DefaultWindowHeight}"/>
                 </Grid>
 
-                <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">Flags</TextBlock>
+                <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">标志</TextBlock>
                 <local:FlagsBox Grid.Row="11" Grid.Column="1" Margin="3" Value="{Binding GeneralInfo.Info}" />
 
-                <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">License MD5</TextBlock>
+                <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">许可证 MD5</TextBlock>
                 <local:TextBoxDark Grid.Row="12" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.LicenseMD5, Mode=TwoWay, Converter={StaticResource byteArrayConverter}}"/>
 
-                <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">License CRC32</TextBlock>
+                <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">许可证 CRC32</TextBlock>
                 <local:TextBoxDark Grid.Row="13" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.LicenseCRC32, StringFormat={}{0:X8}}"/>
 
-                <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">Timestamp</TextBlock>
+                <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">时间戳</TextBlock>
                 <local:TextBoxDark Grid.Row="14" Grid.Column="1" Margin="3" IsReadOnly="True"
                          Text="{Binding GeneralInfo.Timestamp, Mode=OneWay, Converter={StaticResource TimestampDateTimeConverter}}"
                          ToolTip="{Binding GeneralInfo.Timestamp, Mode=OneWay, Converter={StaticResource TimestampDateTimeConverter}, ConverterParameter=GMT}"
@@ -130,30 +130,30 @@
                     <TextBox.Background>
                         <VisualBrush AlignmentX="Right" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="(local time, hover to see GMT+0)"
+                                <Label Content="（本地时间，悬停查看 GMT+0）"
                                        Foreground="Gray" FontStyle="Italic" Margin="0,0,5,0"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </TextBox.Background>
                 </local:TextBoxDark>
 
-                <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">Display name</TextBlock>
+                <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">显示名称</TextBlock>
                 <local:UndertaleStringReference Grid.Row="15" Grid.Column="1" Margin="3" ObjectReference="{Binding GeneralInfo.DisplayName}"/>
 
-                <TextBlock Grid.Row="16" Grid.Column="0" Margin="3">Active targets</TextBlock>
+                <TextBlock Grid.Row="16" Grid.Column="0" Margin="3">活动目标</TextBlock>
                 <local:TextBoxDark Grid.Row="16" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.ActiveTargets}"/>
 
-                <TextBlock Grid.Row="17" Grid.Column="0" Margin="3">Function classifications</TextBlock>
+                <TextBlock Grid.Row="17" Grid.Column="0" Margin="3">函数分类</TextBlock>
                 <local:FlagsBox Grid.Row="17" Grid.Column="1" Margin="3" Value="{Binding GeneralInfo.FunctionClassifications}"/>
 
                 <TextBlock Grid.Row="18" Grid.Column="0" Margin="3">Steam AppID</TextBlock>
                 <local:TextBoxDark Grid.Row="18" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.SteamAppID}"/>
 
-                <TextBlock Grid.Row="19" Grid.Column="0" Margin="3">Debugger port</TextBlock>
+                <TextBlock Grid.Row="19" Grid.Column="0" Margin="3">调试器端口</TextBlock>
                 <local:TextBoxDark Grid.Row="19" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.DebuggerPort}"/>
 
-                <TextBlock Grid.Row="20" Grid.Column="0" Margin="3">Room order</TextBlock>
-                <Expander Grid.Row="20" Grid.Column="1" Margin="3" Header="List" Name="RoomListExpander">
+                <TextBlock Grid.Row="20" Grid.Column="0" Margin="3">房间顺序</TextBlock>
+                <Expander Grid.Row="20" Grid.Column="1" Margin="3" Header="列表" Name="RoomListExpander">
                     <local:DataGridDark ItemsSource="{Binding GeneralInfo.RoomOrder}" MaxHeight="369" x:Name="RoomListGrid"
                                         AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                         ScrollViewer.CanContentScroll="True"
@@ -176,7 +176,7 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                                    <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -196,7 +196,7 @@
                     </local:DataGridDark>
                 </Expander>
 
-                <local:ButtonDark Grid.Row="21" Grid.Column="1" Margin="3" Content="Sync with room list" Click="SyncRoomList_Click"/>
+                <local:ButtonDark Grid.Row="21" Grid.Column="1" Margin="3" Content="与房间列表同步" Click="SyncRoomList_Click"/>
 
                 <Grid Grid.Row="22" Grid.ColumnSpan="2" Margin="0" Visibility="{Binding DataContext.IsGMS2, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}">
                     <Grid.ColumnDefinitions>
@@ -213,17 +213,17 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">FPS</TextBlock>
                     <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.GMS2FPS}"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Allow statistics</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">允许统计</TextBlock>
                     <CheckBox Grid.Row="2" Grid.Column="1" Margin="3" IsChecked="{Binding GeneralInfo.GMS2AllowStatistics}"/>
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Game GUID</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">游戏 GUID</TextBlock>
                     <local:TextBoxDark Grid.Row="13" Grid.Column="1" Margin="3" Text="{Binding GeneralInfo.GMS2GameGUID, Mode=TwoWay, Converter={StaticResource byteGUIDArrayConverter}}"/>
                 </Grid>
             </Grid>
         </StackPanel>
 
         <StackPanel Visibility="{Binding Options, Converter={StaticResource NotNullToVisibilityConverter}}">
-            <TextBlock Text="Options" FontWeight="Bold"/>
+            <TextBlock Text="选项" FontWeight="Bold"/>
             <Separator/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -249,49 +249,49 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Shader Extension Flag</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">着色器扩展标志</TextBlock>
                 <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding Options.ShaderExtensionFlag}" />
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Shader Extension Version</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">着色器扩展版本</TextBlock>
                 <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding Options.ShaderExtensionVersion}" />
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Flags</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">标志</TextBlock>
                 <local:FlagsBox Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Options.Info}" />
 
-                <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Scale</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">缩放</TextBlock>
                 <local:TextBoxDark Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding Options.Scale}"/>
 
-                <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Window color</TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">窗口颜色</TextBlock>
                 <local:ColorPicker Grid.Row="5" Grid.Column="1" Margin="3" Color="{Binding Options.WindowColor}"/>
 
-                <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Color depth</TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">色深</TextBlock>
                 <local:TextBoxDark Grid.Row="6" Grid.Column="1" Margin="3" Text="{Binding Options.ColorDepth}"/>
 
-                <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Resolution</TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">分辨率</TextBlock>
                 <local:TextBoxDark Grid.Row="7" Grid.Column="1" Margin="3" Text="{Binding Options.Resolution}"/>
 
-                <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Frequency</TextBlock>
+                <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">频率</TextBlock>
                 <local:TextBoxDark Grid.Row="8" Grid.Column="1" Margin="3" Text="{Binding Options.Frequency}"/>
 
-                <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">Vertex sync</TextBlock>
+                <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">垂直同步</TextBlock>
                 <local:TextBoxDark Grid.Row="9" Grid.Column="1" Margin="3" Text="{Binding Options.VertexSync}"/>
 
-                <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">Priority</TextBlock>
+                <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">优先级</TextBlock>
                 <local:TextBoxDark Grid.Row="10" Grid.Column="1" Margin="3" Text="{Binding Options.Priority}"/>
 
-                <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">Back image</TextBlock>
+                <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">背景图像</TextBlock>
                 <local:UndertaleObjectReference Grid.Row="11" Grid.Column="1" Margin="3" ObjectReference="{Binding Options.BackImage.Texture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ObjectType="{x:Type undertaleModels:UndertaleTexturePageItem}"/>
 
-                <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">Front image</TextBlock>
+                <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">前景图像</TextBlock>
                 <local:UndertaleObjectReference Grid.Row="12" Grid.Column="1" Margin="3" ObjectReference="{Binding Options.FrontImage.Texture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ObjectType="{x:Type undertaleModels:UndertaleTexturePageItem}"/>
 
-                <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">Load image</TextBlock>
+                <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">加载图像</TextBlock>
                 <local:UndertaleObjectReference Grid.Row="13" Grid.Column="1" Margin="3" ObjectReference="{Binding Options.LoadImage.Texture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ObjectType="{x:Type undertaleModels:UndertaleTexturePageItem}"/>
 
-                <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">Load alpha</TextBlock>
+                <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">加载透明度</TextBlock>
                 <local:TextBoxDark Grid.Row="14" Grid.Column="1" Margin="3" Text="{Binding Options.LoadAlpha}"/>
 
-                <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">Constants</TextBlock>
+                <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">常量</TextBlock>
                 <local:DataGridDark Grid.Row="15" Grid.Column="1" Margin="3" ItemsSource="{Binding Options.Constants}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="Column" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF26A0DA"/>
@@ -310,7 +310,7 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -319,14 +319,14 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Width="*" Header="Name">
+                        <DataGridTemplateColumn Width="*" Header="名称">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <local:UndertaleStringReference Margin="20,0,0,0" ObjectReference="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*" Header="Value">
+                        <DataGridTemplateColumn Width="*" Header="值">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <local:UndertaleStringReference ObjectReference="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -340,7 +340,7 @@
 
 
         <StackPanel Visibility="{Binding Language, Converter={StaticResource NotNullToVisibilityConverter}}">
-            <TextBlock Text="Language (?)" FontWeight="Bold"/>
+            <TextBlock Text="语言（？）" FontWeight="Bold"/>
             <Separator/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -354,17 +354,17 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Unknown</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">未知</TextBlock>
                 <local:TextBoxDark Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding Language.Unknown1}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Language count</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">语言数量</TextBlock>
                 <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding Language.LanguageCount}"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Entry count</TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">条目数量</TextBlock>
                 <local:TextBoxDark Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding Language.EntryCount}"/>
 
                 <Border Grid.Row="3" Grid.Column="1" Margin="20" Background="LightPink" BorderBrush="Red" BorderThickness="3">
-                    <TextBlock TextWrapping="Wrap" Margin="3" Foreground="Red">Note: the languages currently don't seem used, and so the editor for them has not yet been made.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="3" Foreground="Red">注意：语言数据目前似乎并未被使用，因此尚未制作对应的编辑器。</TextBlock>
                 </Border>
             </Grid>
         </StackPanel>

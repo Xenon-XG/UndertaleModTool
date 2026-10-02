@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Content</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">内容</TextBlock>
         <local:TextBoxDark Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding Content}"/>
     </Grid>
 </local:DataUserControl>

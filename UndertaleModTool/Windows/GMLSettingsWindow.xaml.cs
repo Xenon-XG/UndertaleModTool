@@ -57,9 +57,9 @@ namespace UndertaleModTool
             }
             return kind switch
             {
-                DecompilerSettings.IndentStyleKind.FourSpaces => "4 spaces",
-                DecompilerSettings.IndentStyleKind.TwoSpaces => "2 spaces",
-                DecompilerSettings.IndentStyleKind.Tabs => "Tabs",
+                DecompilerSettings.IndentStyleKind.FourSpaces => "4 个空格",
+                DecompilerSettings.IndentStyleKind.TwoSpaces => "2 个空格",
+                DecompilerSettings.IndentStyleKind.Tabs => "制表符",
                 _ => throw new Exception("Unknown indent style kind")
             };
         }

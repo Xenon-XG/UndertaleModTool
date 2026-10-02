@@ -75,13 +75,13 @@ namespace UndertaleModTool.Windows
 
             if (mainWindow.Data == null)
             {
-                this.ShowError("No data.win loaded.");
+                this.ShowError("未加载 data.win。");
                 return;
             }
 
             if (mainWindow.Data.IsYYC())
             {
-                this.ShowError("Can't search code in YYC game, there's no code to search.");
+                this.ShowError("无法在 YYC 游戏中搜索代码，因为没有可搜索的代码。");
                 return;
             }
 
@@ -92,7 +92,7 @@ namespace UndertaleModTool.Windows
 
             if (isSearchInProgress)
             {
-                this.ShowError("Can't search while another search is in progress.");
+                this.ShowError("另一个搜索正在进行中，无法开始新的搜索。");
                 return;
             }
 
@@ -124,7 +124,7 @@ namespace UndertaleModTool.Windows
                 }
                 catch (ArgumentException e)
                 {
-                    this.ShowError($"Invalid Regex: {e.Message}");
+                    this.ShowError($"无效的正则表达式：{e.Message}");
                     return;
                 }
             }
@@ -148,7 +148,7 @@ namespace UndertaleModTool.Windows
                         }
                         catch (ArgumentException e)
                         {
-                            this.ShowError($"Invalid name Regex: {e.Message}");
+                            this.ShowError($"无效的名称正则表达式：{e.Message}");
                             filterByName = false;
                         }
                     }
@@ -164,7 +164,7 @@ namespace UndertaleModTool.Windows
 
             if (codeEntriesToSearch.Count == 0)
             {
-                this.ShowMessage("There are no code entries that match the name filter.");
+                this.ShowMessage("没有与名称筛选条件匹配的代码条目。");
                 return;
             }
 
@@ -173,7 +173,7 @@ namespace UndertaleModTool.Windows
 
             isSearchInProgress = true;
 
-            loaderDialog = new("Searching...", null);
+            loaderDialog = new("正在搜索...", null);
             loaderDialog.Owner = this;
             loaderDialog.PreventClose = true;
             loaderDialog.Show();
@@ -192,14 +192,14 @@ namespace UndertaleModTool.Windows
                 decompileContext = new GlobalDecompileContext(mainWindow.Data);
             }
 
-            loaderDialog.SavedStatusText = "Code entries";
-            loaderDialog.Update(null, "Code entries", 0, codeEntriesToSearch.Count);
+            loaderDialog.SavedStatusText = "代码条目";
+            loaderDialog.Update(null, "代码条目", 0, codeEntriesToSearch.Count);
 
             await Task.Run(() => Parallel.ForEach(codeEntriesToSearch, SearchInUndertaleCode));
             await Task.Run(SortResults);
 
             loaderDialog.Maximum = null;
-            loaderDialog.Update("Generating result list...");
+            loaderDialog.Update("正在生成结果列表...");
 
             editorTab = isInAssembly ? UndertaleCodeEditor.CodeEditorTab.Disassembly : UndertaleCodeEditor.CodeEditorTab.Decompiled;
 
@@ -328,14 +328,6 @@ namespace UndertaleModTool.Windows
 
         public void ShowResults()
         {
-            static string GetWordEnding(int quantity, bool isResults)
-            {
-                if (isResults)
-                    return quantity != 1 ? "s" : "";
-                
-                return quantity != 1 ? "ies" : "y";
-            }
-
             var resultsSorted = resultsDictSorted.ToArray();
             var failedSorted = failedListSorted.ToArray();
             foreach (var result in resultsSorted)
@@ -347,10 +339,10 @@ namespace UndertaleModTool.Windows
                 }
             }
 
-            string str = $"{resultCount} result{GetWordEnding(resultCount, true)} found in {resultsSorted.Length} code entr{GetWordEnding(resultsSorted.Length, false)}.";
+            string str = $"在 {resultsSorted.Length} 个代码条目中找到 {resultCount} 个结果。";
             if (failedSorted.Length > 0)
             {
-                str += $" {failedSorted.Length} code entr{GetWordEnding(failedSorted.Length, false)} with an error.";
+                str += $" {failedSorted.Length} 个代码条目出错。";
             }
             StatusBarTextBlock.Text = str;
         }
@@ -359,7 +351,7 @@ namespace UndertaleModTool.Windows
         {
             if (isSearchInProgress)
             {
-                this.ShowError("Can't open results while a search is in progress.");
+                this.ShowError("搜索正在进行中，无法打开结果。");
                 return;
             }
 
@@ -396,8 +388,8 @@ namespace UndertaleModTool.Windows
             }
             catch (Exception ex)
             {
-                this.ShowError("Can't copy the item name to clipboard due to this error:\n" +
-                               ex.Message + ".\nYou probably should try again.");
+                this.ShowError("由于以下错误，无法复制到剪贴板：\n" +
+                               ex.Message + "。\n请重试。");
             }
         }
 

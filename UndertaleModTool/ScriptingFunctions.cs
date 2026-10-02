@@ -27,19 +27,19 @@ namespace UndertaleModTool
             // By Grossley
             if (!File.Exists(path))
             {
-                ScriptError(path + " does not exist!");
+                ScriptError(path + " 不存在！");
                 return false;
             }
             RunScript(path).GetAwaiter().GetResult();
             if (!ScriptExecutionSuccess)
-                ScriptError("An error of type \"" + ScriptErrorType + "\" occurred. The error is:\n\n" + ScriptErrorMessage, ScriptErrorType);
+                ScriptError("发生了类型为 \"" + ScriptErrorType + "\" 的错误。错误信息：\n\n" + ScriptErrorMessage, ScriptErrorType);
             return ScriptExecutionSuccess;
         }
         public void InitializeScriptDialog()
         {
             if (scriptDialog == null)
             {
-                scriptDialog = new LoaderDialog("Script in progress...", "Please wait...");
+                scriptDialog = new LoaderDialog("脚本运行中...", "请稍候...");
                 scriptDialog.Owner = this;
                 scriptDialog.PreventClose = true;
             }
@@ -49,7 +49,7 @@ namespace UndertaleModTool
             // By Grossley
             if (!File.Exists(path))
             {
-                ScriptError(path + " does not exist!");
+                ScriptError(path + " 不存在！");
                 return false;
             }
             try
@@ -60,7 +60,7 @@ namespace UndertaleModTool
             }
             catch (CompilationErrorException exc)
             {
-                ScriptError(exc.Message, "Script compile error");
+                ScriptError(exc.Message, "脚本编译错误");
                 ScriptExecutionSuccess = false;
                 ScriptErrorMessage = exc.Message;
                 ScriptErrorType = "CompilationErrorException";

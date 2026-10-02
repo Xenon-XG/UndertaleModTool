@@ -41,6 +41,7 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
             <local:EventNameConverter x:Key="EventNameConverter"/>
+            <local:EventTypeDisplayNameConverter x:Key="EventTypeDisplayNameConverter"/>
             <local:GameObjectByIdConverter x:Key="GameObjectByIdConverter"/>
             <local:IsGMS2Converter x:Key="IsGMS2Converter" />
             <ResourceDictionary.MergedDictionaries>
@@ -85,10 +86,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
             <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Sprite</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">精灵</TextBlock>
             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="1" Margin="3" ObjectReference="{Binding Sprite}" ObjectType="{x:Type undertale:UndertaleSprite}"/>
 
             <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Sprite.Textures, Mode=OneWay}" Background="Transparent" BorderThickness="0">
@@ -109,68 +110,68 @@
             </ListView>
 
 
-            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Visible</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">可见</TextBlock>
             <CheckBox Grid.Row="3" Grid.Column="1" Margin="3" IsChecked="{Binding Visible}"/>
 
-            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Solid</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">实体</TextBlock>
             <CheckBox Grid.Row="4" Grid.Column="1" Margin="3" IsChecked="{Binding Solid}"/>
 
-            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding DataContext.IsGMS2, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}, Converter={StaticResource IsGMS2Converter}}">Depth</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding DataContext.IsGMS2, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}, Converter={StaticResource IsGMS2Converter}}">深度</TextBlock>
             <local:TextBoxDark Grid.Row="5" Grid.Column="1" Margin="3" Visibility="{Binding DataContext.IsGMS2, Mode=OneTime, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}, Converter={StaticResource IsGMS2Converter}}" Text="{Binding Depth}"/>
 
-            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Persistent</TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">持久</TextBlock>
             <CheckBox Grid.Row="6" Grid.Column="1" Margin="3" IsChecked="{Binding Persistent}"/>
 
-            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Parent</TextBlock>
+            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">父对象</TextBlock>
             <local:UndertaleObjectReference Grid.Row="7" Grid.Column="1" Margin="3" ObjectReference="{Binding ParentId}" ObjectType="{x:Type undertale:UndertaleGameObject}"/>
 
             <local:ButtonDark Grid.Row="8" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Center" Width="180"
-                              Content="Show children game objects" Click="ShowChildrenButton_Click" />
+                              Content="显示子游戏对象" Click="ShowChildrenButton_Click" />
 
-            <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">Texture mask id</TextBlock>
+            <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">纹理遮罩 ID</TextBlock>
             <local:UndertaleObjectReference Grid.Row="9" Grid.Column="1" Margin="3" ObjectReference="{Binding TextureMaskId}" ObjectType="{x:Type undertale:UndertaleSprite}"/>
 
-            <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">Uses physics</TextBlock>
+            <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">使用物理</TextBlock>
             <CheckBox Grid.Row="10" Grid.Column="1" Margin="3" IsChecked="{Binding UsesPhysics}"/>
 
-            <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">Is sensor</TextBlock>
+            <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">是否为传感器</TextBlock>
             <CheckBox Grid.Row="11" Grid.Column="1" Margin="3" IsChecked="{Binding IsSensor}"/>
 
-            <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">Collision shape</TextBlock>
+            <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">碰撞形状</TextBlock>
             <local:ComboBoxDark Grid.Row="12" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource CollisionShapeFlags}}" SelectedItem="{Binding Path=CollisionShape}" />
 
             <Separator Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"/>
 
-            <TextBlock Grid.Row="14" Grid.Column="0" Margin="3" FontWeight="Bold">Physics</TextBlock>
+            <TextBlock Grid.Row="14" Grid.Column="0" Margin="3" FontWeight="Bold">物理</TextBlock>
 
-            <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">Density</TextBlock>
+            <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">密度</TextBlock>
             <local:TextBoxDark Grid.Row="15" Grid.Column="1" Margin="3" Text="{Binding Density}"/>
 
-            <TextBlock Grid.Row="16" Grid.Column="0" Margin="3">Restitution</TextBlock>
+            <TextBlock Grid.Row="16" Grid.Column="0" Margin="3">恢复系数</TextBlock>
             <local:TextBoxDark Grid.Row="16" Grid.Column="1" Margin="3" Text="{Binding Restitution}"/>
 
-            <TextBlock Grid.Row="17" Grid.Column="0" Margin="3">Group</TextBlock>
+            <TextBlock Grid.Row="17" Grid.Column="0" Margin="3">组</TextBlock>
             <local:TextBoxDark Grid.Row="17" Grid.Column="1" Margin="3" Text="{Binding Group}"/>
 
-            <TextBlock Grid.Row="18" Grid.Column="0" Margin="3">Linear damping</TextBlock>
+            <TextBlock Grid.Row="18" Grid.Column="0" Margin="3">线性阻尼</TextBlock>
             <local:TextBoxDark Grid.Row="18" Grid.Column="1" Margin="3" Text="{Binding LinearDamping}"/>
 
-            <TextBlock Grid.Row="19" Grid.Column="0" Margin="3">Angular damping</TextBlock>
+            <TextBlock Grid.Row="19" Grid.Column="0" Margin="3">角阻尼</TextBlock>
             <local:TextBoxDark Grid.Row="19" Grid.Column="1" Margin="3" Text="{Binding AngularDamping}"/>
 
             <!--TextBlock Grid.Row="20" Grid.Column="0" Margin="3">Physics shape vertex count</>
             <local:TextBoxDark Grid.Row="20" Grid.Column="1" Margin="3" Text="{Binding PhysicsShapeVertexCount}"/-->
 
-            <TextBlock Grid.Row="20" Grid.Column="0" Margin="3">Friction</TextBlock>
+            <TextBlock Grid.Row="20" Grid.Column="0" Margin="3">摩擦力</TextBlock>
             <local:TextBoxDark Grid.Row="20" Grid.Column="1" Margin="3" Text="{Binding Friction}"/>
 
-            <TextBlock Grid.Row="21" Grid.Column="0" Margin="3">Is awake</TextBlock>
+            <TextBlock Grid.Row="21" Grid.Column="0" Margin="3">是否唤醒</TextBlock>
             <CheckBox Grid.Row="21" Grid.Column="1" Margin="3" IsChecked="{Binding Awake}"/>
 
-            <TextBlock Grid.Row="22" Grid.Column="0" Margin="3">Is kinematic</TextBlock>
+            <TextBlock Grid.Row="22" Grid.Column="0" Margin="3">是否为运动学物体</TextBlock>
             <CheckBox Grid.Row="22" Grid.Column="1" Margin="3" IsChecked="{Binding Kinematic}"/>
 
-            <TextBlock Grid.Row="23" Grid.Column="0" Margin="3">Physics shape vertices</TextBlock>
+            <TextBlock Grid.Row="23" Grid.Column="0" Margin="3">物理形状顶点</TextBlock>
             <local:DataGridDark Grid.Row="23" Grid.Column="1" Margin="3" ItemsSource="{Binding PhysicsVertices, Mode=OneWay}"
                                 AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
                                 HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
@@ -193,7 +194,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                            <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -222,14 +223,16 @@
             <Separator Grid.Row="24" Grid.Column="0" Grid.ColumnSpan="2"/>
         </Grid>
 
-        <TextBlock Margin="3" FontWeight="Bold">Events</TextBlock>
+        <TextBlock Margin="3" FontWeight="Bold">事件</TextBlock>
 
         <!-- hacks https://stackoverflow.com/questions/22378456/how-to-get-the-index-of-the-current-itemscontrol-item -->
         <ItemsControl ItemsSource="{Binding Events, Mode=OneWay}" AlternationCount="9999">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Margin="3" Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EventNameConverter}}" Name="EventTypeName"/>
+                        <!-- 该 TextBlock 保存英文枚举名供下方触发器与转换器使用，不直接显示 -->
+                        <TextBlock Visibility="Collapsed" Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EventNameConverter}}" Name="EventTypeName"/>
+                        <TextBlock Margin="3" Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EventTypeDisplayNameConverter}}"/>
                         <local:DataGridDark ItemsSource="{Binding .}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
                                             HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
                                             AddingNewItem="DataGrid_AddingNewItem" Loaded="DataGrid_Loaded" Unloaded="DataGrid_Unloaded"
@@ -253,7 +256,7 @@
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate>
-                                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                                     </ControlTemplate>
                                                 </Setter.Value>
                                             </Setter>
@@ -266,7 +269,7 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Subtype ID" Width="1*">
+                                <DataGridTemplateColumn Header="子类型 ID" Width="1*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Margin="3">
@@ -313,7 +316,7 @@
                                                                 <Setter Property="ContentTemplate">
                                                                     <Setter.Value>
                                                                         <DataTemplate>
-                                                                            <TextBlock TextAlignment="Center">n/a</TextBlock>
+                                                                            <TextBlock TextAlignment="Center">不适用</TextBlock>
                                                                         </DataTemplate>
                                                                     </Setter.Value>
                                                                 </Setter>
@@ -322,7 +325,7 @@
                                                                 <Setter Property="ContentTemplate">
                                                                     <Setter.Value>
                                                                         <DataTemplate>
-                                                                            <TextBlock TextAlignment="Center">n/a</TextBlock>
+                                                                            <TextBlock TextAlignment="Center">不适用</TextBlock>
                                                                         </DataTemplate>
                                                                     </Setter.Value>
                                                                 </Setter>
@@ -380,12 +383,12 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="Actions" Width="5*">
+                                <DataGridTemplateColumn Header="动作" Width="5*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <local:DataGridDark ItemsSource="{Binding Actions}" Loaded="DataGrid_Actions_Loaded" Unloaded="DataGrid_Actions_Unloaded" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow">
                                                 <DataGrid.Columns>
-                                                    <DataGridTemplateColumn Header="Code" Width="*">
+                                                    <DataGridTemplateColumn Header="代码" Width="*">
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
                                                                 <local:UndertaleObjectReference ObjectReference="{Binding CodeId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ObjectType="{x:Type undertale:UndertaleCode}"

@@ -73,7 +73,7 @@ namespace UndertaleModTool.Windows
 
                             var gameObjects = data.GameObjects.NotNullWhere(x => x.Sprite == obj);
                             if (gameObjects.Any())
-                                return new() { { "Game objects", checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray() } };
+                                return new() { { "游戏对象", checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray() } };
                             else
                                 return null;
                         }
@@ -108,7 +108,7 @@ namespace UndertaleModTool.Windows
 
                                 var tiles = GetTiles();
                                 if (tiles.Any())
-                                    outDict["Room tiles"] = checkOne ? tiles.ToEmptyArray() : tiles.ToArray();
+                                    outDict["房间图块"] = checkOne ? tiles.ToEmptyArray() : tiles.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleRoom.SpriteInstance)))
                             {
@@ -130,7 +130,7 @@ namespace UndertaleModTool.Windows
 
                                 var sprInstances = GetSprInstances();
                                 if (sprInstances.Any())
-                                    outDict["Room sprite instances"] = checkOne ? sprInstances.ToEmptyArray() : sprInstances.ToArray();
+                                    outDict["房间精灵实例"] = checkOne ? sprInstances.ToEmptyArray() : sprInstances.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleRoom.Layer)))
                             {
@@ -149,7 +149,7 @@ namespace UndertaleModTool.Windows
 
                                 var bgLayers = GetBgLayers();
                                 if (bgLayers.Any())
-                                    outDict["Room background layers"] = checkOne ? bgLayers.ToEmptyArray() : bgLayers.ToArray();
+                                    outDict["房间背景图层"] = checkOne ? bgLayers.ToEmptyArray() : bgLayers.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -171,7 +171,7 @@ namespace UndertaleModTool.Windows
                             var textGroups = data.TextureGroupInfo.NotNullWhere(x => x.Sprites.Any(s => s.Resource == obj)
                                                                                      || (x.SpineSprites?.Any(s => s.Resource == obj) == true));
                             if (textGroups.Any())
-                                return new() { { "Texture groups", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
+                                return new() { { "纹理组", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
                             else
                                 return null;
                         }
@@ -190,7 +190,7 @@ namespace UndertaleModTool.Windows
 
                             var partSysEmitters = data.ParticleSystemEmitters.NotNullWhere(x => x.Sprite == obj);
                             if (partSysEmitters.Any())
-                                return new() { { "Particle system emitters", checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray() } };
+                                return new() { { "粒子系统发射器", checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray() } };
                             else
                                 return null;
                         }
@@ -228,7 +228,7 @@ namespace UndertaleModTool.Windows
 
                                 var backgrounds = GetBackgrounds();
                                 if (backgrounds.Any())
-                                    outDict["Room backgrounds"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
+                                    outDict["房间背景"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleRoom.Tile)))
                             {
@@ -244,7 +244,7 @@ namespace UndertaleModTool.Windows
 
                                 var tiles = GetTiles();
                                 if (tiles.Any())
-                                    outDict["Room tiles"] = checkOne ? tiles.ToEmptyArray() : tiles.ToArray();
+                                    outDict["房间图块"] = checkOne ? tiles.ToEmptyArray() : tiles.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -279,7 +279,7 @@ namespace UndertaleModTool.Windows
 
                             var tileLayers = GetTileLayers();
                             if (tileLayers.Any())
-                                return new() { { "Room tile layers", checkOne ? tileLayers.ToEmptyArray() : tileLayers.ToArray() } };
+                                return new() { { "房间图块图层", checkOne ? tileLayers.ToEmptyArray() : tileLayers.ToArray() } };
                             else
                                 return null;
                         }
@@ -297,7 +297,7 @@ namespace UndertaleModTool.Windows
 
                             var textGroups = data.TextureGroupInfo.NotNullWhere(x => x.Tilesets.Any(s => s.Resource == obj));
                             if (textGroups.Any())
-                                return new() { { "Texture groups", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
+                                return new() { { "纹理组", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
                             else
                                 return null;
                         }
@@ -318,7 +318,7 @@ namespace UndertaleModTool.Windows
 
                             var pageItems = data.TexturePageItems.NotNullWhere(x => x.TexturePage == obj);
                             if (pageItems.Any())
-                                return new() { { "Texture page items", checkOne ? pageItems.ToEmptyArray() : pageItems.ToArray() } };
+                                return new() { { "纹理页项", checkOne ? pageItems.ToEmptyArray() : pageItems.ToArray() } };
                             else
                                 return null;
                         }
@@ -336,7 +336,7 @@ namespace UndertaleModTool.Windows
 
                             var textGroups = data.TextureGroupInfo.NotNullWhere(x => x.TexturePages.Any(s => s.Resource == obj));
                             if (textGroups.Any())
-                                return new() { { "Texture groups", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
+                                return new() { { "纹理组", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
                             else
                                 return null;
                         }
@@ -360,7 +360,7 @@ namespace UndertaleModTool.Windows
 
                             var textGroups = data.TextureGroupInfo.NotNullWhere(x => x.Fonts.Any(s => s.Resource == obj));
                             if (textGroups.Any())
-                                return new() { { "Texture groups", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
+                                return new() { { "纹理组", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
                             else
                                 return null;
                         }
@@ -385,21 +385,21 @@ namespace UndertaleModTool.Windows
                             {
                                 var sprites = data.Sprites.NotNullWhere(x => x.Textures.Any(t => t.Texture == obj));
                                 if (sprites.Any())
-                                    outDict["Sprites"] = checkOne ? sprites.ToEmptyArray() : sprites.ToArray();
+                                    outDict["精灵"] = checkOne ? sprites.ToEmptyArray() : sprites.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleBackground)))
                             {
                                 var backgrounds = data.Backgrounds.NotNullWhere(x => x.Texture == obj);
                                 if (backgrounds.Any())
-                                    outDict[data.IsGameMaker2() ? "Tile sets" : "Backgrounds"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
+                                    outDict[data.IsGameMaker2() ? "图块集" : "背景"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleFont)))
                             {
                                 var fonts = data.Fonts.NotNullWhere(x => x.Texture == obj);
                                 if (fonts.Any())
-                                    outDict["Fonts"] = checkOne ? fonts.ToEmptyArray() : fonts.ToArray();
+                                    outDict["字体"] = checkOne ? fonts.ToEmptyArray() : fonts.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -420,7 +420,7 @@ namespace UndertaleModTool.Windows
 
                             var embImages = data.EmbeddedImages.NotNullWhere(x => x.TextureEntry == obj);
                             if (embImages.Any())
-                                return new() { { "Embedded images", checkOne ? embImages.ToEmptyArray() : embImages.ToArray() } };
+                                return new() { { "内嵌图像", checkOne ? embImages.ToEmptyArray() : embImages.ToArray() } };
                             else
                                 return null;
                         }
@@ -445,7 +445,7 @@ namespace UndertaleModTool.Windows
                             {
                                 var backgrounds = data.Backgrounds.NotNullWhere(x => x.Name == obj);
                                 if (backgrounds.Any())
-                                    outDict[data.IsGameMaker2() ? "Tile sets" : "Backgrounds"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
+                                    outDict[data.IsGameMaker2() ? "图块集" : "背景"] = checkOne ? backgrounds.ToEmptyArray() : backgrounds.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleCode)))
@@ -461,33 +461,33 @@ namespace UndertaleModTool.Windows
                                 codeEntries = codeEntries.Concat(stringRefs);
 
                                 if (codeEntries.Any())
-                                    outDict["Code entries (name and contents)"] = checkOne ? codeEntries.ToEmptyArray() : codeEntries.ToArray();
+                                    outDict["代码条目（名称和内容）"] = checkOne ? codeEntries.ToEmptyArray() : codeEntries.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleFunction)))
                             {
                                 var functions = data.Functions.NotNullWhere(x => x.Name == obj);
                                 if (functions.Any())
-                                    outDict["Functions"] = checkOne ? functions.ToEmptyArray() : functions.ToArray();
+                                    outDict["函数"] = checkOne ? functions.ToEmptyArray() : functions.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleVariable)))
                             {
                                 var variables = data.Variables.NotNullWhere(x => x.Name == obj);
                                 if (variables.Any())
-                                    outDict["Variables"] = checkOne ? variables.ToEmptyArray() : variables.ToArray();
+                                    outDict["变量"] = checkOne ? variables.ToEmptyArray() : variables.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleSound)))
                             {
                                 var sounds = data.Sounds.NotNullWhere(x => x.Name == obj || x.Type == obj || x.File == obj);
                                 if (sounds.Any())
-                                    outDict["Sounds"] = checkOne ? sounds.ToEmptyArray() : sounds.ToArray();
+                                    outDict["声音"] = checkOne ? sounds.ToEmptyArray() : sounds.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleAudioGroup)))
                             {
                                 var audioGroups = data.AudioGroups.NotNullWhere(x => x.Name == obj);
                                 if (audioGroups.Any())
-                                    outDict["Audio groups"] = checkOne ? audioGroups.ToEmptyArray() : audioGroups.ToArray();
+                                    outDict["音频组"] = checkOne ? audioGroups.ToEmptyArray() : audioGroups.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleSprite)))
@@ -503,7 +503,7 @@ namespace UndertaleModTool.Windows
                                 }
 
                                 if (sprites.Any())
-                                    outDict["Sprites"] = checkOne ? sprites.ToEmptyArray() : sprites.ToArray();
+                                    outDict["精灵"] = checkOne ? sprites.ToEmptyArray() : sprites.ToArray();
                             }
 
 
@@ -511,7 +511,7 @@ namespace UndertaleModTool.Windows
                             {
                                 var extensions = data.Extensions.NotNullWhere(x => x.Name == obj || x.ClassName == obj || x.FolderName == obj);
                                 if (extensions.Any())
-                                    outDict["Extensions"] = checkOne ? extensions.ToEmptyArray() : extensions.ToArray();
+                                    outDict["扩展"] = checkOne ? extensions.ToEmptyArray() : extensions.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleExtensionOption)))
                             {
@@ -527,7 +527,7 @@ namespace UndertaleModTool.Windows
 
                                 var extnOptions = GetExtnOptions();
                                 if (extnOptions.Any())
-                                    outDict["Extension options"] = checkOne ? extnOptions.ToEmptyArray() : extnOptions.ToArray();
+                                    outDict["扩展选项"] = checkOne ? extnOptions.ToEmptyArray() : extnOptions.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleExtensionFile)))
                             {
@@ -543,7 +543,7 @@ namespace UndertaleModTool.Windows
 
                                 var extnFiles = GetExtnFiles();
                                 if (extnFiles.Any())
-                                    outDict["Extension files"] = checkOne ? extnFiles.ToEmptyArray() : extnFiles.ToArray();
+                                    outDict["扩展文件"] = checkOne ? extnFiles.ToEmptyArray() : extnFiles.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleExtensionFunction)))
                             {
@@ -562,21 +562,21 @@ namespace UndertaleModTool.Windows
 
                                 var extnFunctions = GetExtnFunctions();
                                 if (extnFunctions.Any())
-                                    outDict["Extension functions"] = checkOne ? extnFunctions.ToEmptyArray() : extnFunctions.ToArray();
+                                    outDict["扩展函数"] = checkOne ? extnFunctions.ToEmptyArray() : extnFunctions.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleFont)))
                             {
                                 var fonts = data.Fonts.NotNullWhere(x => x.Name == obj || x.DisplayName == obj);
                                 if (fonts.Any())
-                                    outDict["Fonts"] = checkOne ? fonts.ToEmptyArray() : fonts.ToArray();
+                                    outDict["字体"] = checkOne ? fonts.ToEmptyArray() : fonts.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleGameObject)))
                             {
                                 var gameObjects = data.GameObjects.NotNullWhere(x => x.Name == obj);
                                 if (gameObjects.Any())
-                                    outDict["Game objects"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
+                                    outDict["游戏对象"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleGeneralInfo)))
@@ -584,35 +584,35 @@ namespace UndertaleModTool.Windows
                                 bool genInfoMatches = data.GeneralInfo.Name == obj || data.GeneralInfo.FileName == obj
                                                       || data.GeneralInfo.Config == obj || data.GeneralInfo.DisplayName == obj;
                                 if (genInfoMatches)
-                                    outDict["General Info"] = new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) };
+                                    outDict["常规信息"] = new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) };
                             }
 
                             if (types.Contains(typeof(UndertaleOptions.Constant)))
                             {
                                 bool constantsMatches = data.Options.Constants.Any(x => x.Name == obj || x.Value == obj);
                                 if (constantsMatches)
-                                    outDict["Game options constants"] = new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) };
+                                    outDict["游戏选项常量"] = new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) };
                             }
 
                             if (types.Contains(typeof(UndertalePath)))
                             {
                                 var paths = data.Paths.NotNullWhere(x => x.Name == obj);
                                 if (paths.Any())
-                                    outDict["Paths"] = checkOne ? paths.ToEmptyArray() : paths.ToArray();
+                                    outDict["路径"] = checkOne ? paths.ToEmptyArray() : paths.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom)))
                             {
                                 var rooms = data.Rooms.NotNullWhere(x => x.Name == obj || x.Caption == obj);
                                 if (rooms.Any())
-                                    outDict["Rooms"] = checkOne ? rooms.ToEmptyArray() : rooms.ToArray();
+                                    outDict["房间"] = checkOne ? rooms.ToEmptyArray() : rooms.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleScript)))
                             {
                                 var scripts = data.Scripts.NotNullWhere(x => x.Name == obj);
                                 if (scripts.Any())
-                                    outDict["Scripts"] = checkOne ? scripts.ToEmptyArray() : scripts.ToArray();
+                                    outDict["脚本"] = checkOne ? scripts.ToEmptyArray() : scripts.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleShader)))
@@ -622,14 +622,14 @@ namespace UndertaleModTool.Windows
                                                                              || x.GLSL_ES_Fragment == obj || x.GLSL_Fragment == obj || x.HLSL9_Fragment == obj
                                                                              || x.VertexShaderAttributes.Any(a => a.Name == obj));
                                 if (shaders.Any())
-                                    outDict["Shaders"] = checkOne ? shaders.ToEmptyArray() : shaders.ToArray();
+                                    outDict["着色器"] = checkOne ? shaders.ToEmptyArray() : shaders.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleTimeline)))
                             {
                                 var timelines = data.Timelines.NotNullWhere(x => x.Name == obj);
                                 if (timelines.Any())
-                                    outDict["Timelines"] = checkOne ? timelines.ToEmptyArray() : timelines.ToArray();
+                                    outDict["时间轴"] = checkOne ? timelines.ToEmptyArray() : timelines.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -652,7 +652,7 @@ namespace UndertaleModTool.Windows
 
                             var codeLocals = data.CodeLocals.NotNullWhere(x => x.Name == obj || x.Locals.Any(l => l.Name == obj));
                             if (codeLocals.Any())
-                                return new() { { "Code locals", checkOne ? codeLocals.ToEmptyArray() : codeLocals.ToArray() } };
+                                return new() { { "代码局部变量", checkOne ? codeLocals.ToEmptyArray() : codeLocals.ToArray() } };
                             else
                                 return null;
                         }
@@ -674,7 +674,7 @@ namespace UndertaleModTool.Windows
                                                                                     || x.Entries.Contains(obj));
 
                             if (langsMatches)
-                                return new() { { "Languages",  new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) } } };
+                                return new() { { "语言",  new object[] { new GeneralInfoEditor(data.GeneralInfo, data.Options, data.Language) } } };
                             else
                                 return null;
                         }
@@ -693,7 +693,7 @@ namespace UndertaleModTool.Windows
                             {
                                 var embImages = data.EmbeddedImages.NotNullWhere(x => x.Name == obj);
                                 if (embImages.Any())
-                                    outDict["Embedded images"] = checkOne ? embImages.ToEmptyArray() : embImages.ToArray();
+                                    outDict["内嵌图像"] = checkOne ? embImages.ToEmptyArray() : embImages.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom.Layer)))
@@ -708,7 +708,7 @@ namespace UndertaleModTool.Windows
 
                                 var layers = GetLayers();
                                 if (layers.Any())
-                                    outDict["Room layers"] = checkOne ? layers.ToEmptyArray() : layers.ToArray();
+                                    outDict["房间图层"] = checkOne ? layers.ToEmptyArray() : layers.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleRoom.SpriteInstance)))
                             {
@@ -730,7 +730,7 @@ namespace UndertaleModTool.Windows
 
                                 var sprInstances = GetSprInstances();
                                 if (sprInstances.Any())
-                                    outDict["Room sprite instances"] = checkOne ? sprInstances.ToEmptyArray() : sprInstances.ToArray();
+                                    outDict["房间精灵实例"] = checkOne ? sprInstances.ToEmptyArray() : sprInstances.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -751,7 +751,7 @@ namespace UndertaleModTool.Windows
 
                             var textGroups = data.TextureGroupInfo.NotNullWhere(x => x.Name == obj);
                             if (textGroups.Any())
-                                return new() { { "Texture groups", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
+                                return new() { { "纹理组", checkOne ? textGroups.ToEmptyArray() : textGroups.ToArray() } };
                             else
                                 return null;
                         }
@@ -770,7 +770,7 @@ namespace UndertaleModTool.Windows
                             {
                                 var animCurves = data.AnimationCurves.NotNullWhere(x => x.Name == obj);
                                 if (animCurves.Any())
-                                    outDict["Animation curves"] = checkOne ? animCurves.ToEmptyArray() : animCurves.ToArray();
+                                    outDict["动画曲线"] = checkOne ? animCurves.ToEmptyArray() : animCurves.ToArray();
                             }
                             if (types.Contains(typeof(UndertaleAnimationCurve.Channel)))
                             {
@@ -786,7 +786,7 @@ namespace UndertaleModTool.Windows
 
                                 var animCurveChannels = GetAnimCurveChannels();
                                 if (animCurveChannels.Any())
-                                    outDict["Animation curve channels"] = checkOne ? animCurveChannels.ToEmptyArray() : animCurveChannels.ToArray();
+                                    outDict["动画曲线通道"] = checkOne ? animCurveChannels.ToEmptyArray() : animCurveChannels.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom.SequenceInstance)))
@@ -809,7 +809,7 @@ namespace UndertaleModTool.Windows
 
                                 var seqInstances = GetSeqInstances();
                                 if (seqInstances.Any())
-                                    outDict["Room sequence instances"] = checkOne ? seqInstances.ToEmptyArray() : seqInstances.ToArray();
+                                    outDict["房间序列实例"] = checkOne ? seqInstances.ToEmptyArray() : seqInstances.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleSequence)))
@@ -817,7 +817,7 @@ namespace UndertaleModTool.Windows
                                 var sequences = data.Sequences.NotNullWhere(x => x.Name == obj
                                                                                  || x.FunctionIDs.Any(f => f.FunctionName == obj));
                                 if (sequences.Any())
-                                    outDict["Sequences"] = checkOne ? sequences.ToEmptyArray() : sequences.ToArray();
+                                    outDict["序列"] = checkOne ? sequences.ToEmptyArray() : sequences.ToArray();
                             }
 
                             // TODO: make these "IEnumerable<object[]>"
@@ -860,9 +860,9 @@ namespace UndertaleModTool.Windows
                                 }
                             }
                             if (sequenceTracks.Count > 0)
-                                outDict["Sequence tracks"] = checkOne ? sequenceTracks.ToEmptyArray() : sequenceTracks.ToArray();
+                                outDict["序列轨道"] = checkOne ? sequenceTracks.ToEmptyArray() : sequenceTracks.ToArray();
                             if (seqStringKeyframes.Count > 0)
-                                outDict["Sequence string keyframes"] = checkOne ? seqStringKeyframes.ToEmptyArray() : seqStringKeyframes.ToArray();
+                                outDict["序列字符串关键帧"] = checkOne ? seqStringKeyframes.ToEmptyArray() : seqStringKeyframes.ToArray();
 
                             if (types.Contains(typeof(BroadcastMessage)))
                             {
@@ -881,7 +881,7 @@ namespace UndertaleModTool.Windows
 
                                 var seqBroadMessages = GetSeqBroadMessages();
                                 if (seqBroadMessages.Any())
-                                    outDict["Sequence broadcast messages"] = checkOne ? seqBroadMessages.ToEmptyArray() : seqBroadMessages.ToArray();
+                                    outDict["序列广播消息"] = checkOne ? seqBroadMessages.ToEmptyArray() : seqBroadMessages.ToArray();
                             }
                             if (types.Contains(typeof(Moment)))
                             {
@@ -900,7 +900,7 @@ namespace UndertaleModTool.Windows
 
                                 var sequenceMoments = GetSequenceMoments();
                                 if (sequenceMoments.Any())
-                                    outDict["Sequence moments"] = checkOne ? sequenceMoments.ToEmptyArray() : sequenceMoments.ToArray();
+                                    outDict["序列时刻"] = checkOne ? sequenceMoments.ToEmptyArray() : sequenceMoments.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -921,7 +921,7 @@ namespace UndertaleModTool.Windows
 
                             var filterEffects = data.FilterEffects.NotNullWhere(x => x.Name == obj || x.Value == obj);
                             if (filterEffects.Any())
-                                return new() { { "Filter effects", checkOne ? filterEffects.ToEmptyArray() : filterEffects.ToArray() } };
+                                return new() { { "滤镜效果", checkOne ? filterEffects.ToEmptyArray() : filterEffects.ToArray() } };
                             else
                                 return null;
                         }
@@ -952,7 +952,7 @@ namespace UndertaleModTool.Windows
 
                             var effectProps = GetEffectProps();
                             if (effectProps.Any())
-                                return new() { { "Room effect properties", checkOne ? effectProps.ToEmptyArray() : effectProps.ToArray() } };
+                                return new() { { "房间效果属性", checkOne ? effectProps.ToEmptyArray() : effectProps.ToArray() } };
                             else
                                 return null;
                         }
@@ -998,7 +998,7 @@ namespace UndertaleModTool.Windows
                                 }
                             }
                             if (textKeyframesList.Count > 0)
-                                return new() { { "Sequence text keyframes", checkOne ? textKeyframesList.ToEmptyArray() : textKeyframesList.ToArray() } };
+                                return new() { { "序列文本关键帧", checkOne ? textKeyframesList.ToEmptyArray() : textKeyframesList.ToArray() } };
                             else
                                 return null;
                         }
@@ -1018,14 +1018,14 @@ namespace UndertaleModTool.Windows
                             {
                                 var partSystems = data.ParticleSystems.NotNullWhere(x => x.Name == obj);
                                 if (partSystems.Any())
-                                    outDict["Particle systems"] = checkOne ? partSystems.ToEmptyArray() : partSystems.ToArray();
+                                    outDict["粒子系统"] = checkOne ? partSystems.ToEmptyArray() : partSystems.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleParticleSystemEmitter)))
                             {
                                 var partSysEmitters = data.ParticleSystemEmitters.NotNullWhere(x => x.Name == obj);
                                 if (partSysEmitters.Any())
-                                    outDict["Particle system emitters"] = checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray();
+                                    outDict["粒子系统发射器"] = checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom.ParticleSystemInstance)))
@@ -1048,7 +1048,7 @@ namespace UndertaleModTool.Windows
 
                                 var partSysInstances = GetPartSysInstances();
                                 if (partSysInstances.Any())
-                                    outDict["Room particle system instances"] = checkOne ? partSysInstances.ToEmptyArray() : partSysInstances.ToArray();
+                                    outDict["房间粒子系统实例"] = checkOne ? partSysInstances.ToEmptyArray() : partSysInstances.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -1076,7 +1076,7 @@ namespace UndertaleModTool.Windows
                             {
                                 var gameObjects = obj.FindChildren(data);
                                 if (gameObjects.Any())
-                                    outDict["Game objects (children)"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
+                                    outDict["游戏对象（子对象）"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom.GameObject)))
@@ -1111,7 +1111,7 @@ namespace UndertaleModTool.Windows
 
                                 var objInstances = GetObjInstances();
                                 if (objInstances.Any())
-                                    outDict["Room object instances"] = checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray();
+                                    outDict["房间对象实例"] = checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -1160,7 +1160,7 @@ namespace UndertaleModTool.Windows
                                 }
                             }
                             if (instKeyframesList.Count > 0)
-                                return new() { { "Sequence object instance keyframes", checkOne ? instKeyframesList.ToEmptyArray() : instKeyframesList.ToArray() } };
+                                return new() { { "序列对象实例关键帧", checkOne ? instKeyframesList.ToEmptyArray() : instKeyframesList.ToArray() } };
                             else
                                 return null;
                         }
@@ -1187,14 +1187,14 @@ namespace UndertaleModTool.Windows
                                                                                        e => e.Any(se => se.Actions.Any(
                                                                                          a => a.CodeId == obj))));
                                 if (gameObjects.Any())
-                                    outDict["Game objects"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
+                                    outDict["游戏对象"] = checkOne ? gameObjects.ToEmptyArray() : gameObjects.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom)))
                             {
                                 var rooms = data.Rooms.NotNullWhere(x => x.CreationCodeId == obj);
                                 if (rooms.Any())
-                                    outDict["Rooms"] = checkOne ? rooms.ToEmptyArray() : rooms.ToArray();
+                                    outDict["房间"] = checkOne ? rooms.ToEmptyArray() : rooms.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleRoom.GameObject)))
@@ -1229,25 +1229,25 @@ namespace UndertaleModTool.Windows
 
                                 var objInstances = GetObjInstances();
                                 if (objInstances.Any())
-                                    outDict["Room object instances"] = checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray();
+                                    outDict["房间对象实例"] = checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleGlobalInit)))
                             {
                                 bool matches = data.GlobalInitScripts?.Any(x => x.Code == obj) == true;
                                 if (matches)
-                                    outDict["Global init"] = new object[] { new GlobalInitEditor(data.GlobalInitScripts) };
+                                    outDict["全局初始化"] = new object[] { new GlobalInitEditor(data.GlobalInitScripts) };
 
                                 matches = data.GameEndScripts?.Any(x => x.Code == obj) == true;
                                 if (matches)
-                                    outDict["Game end scripts"] = new object[] { new GameEndEditor(data.GameEndScripts) };
+                                    outDict["游戏结束脚本"] = new object[] { new GameEndEditor(data.GameEndScripts) };
                             }
 
                             if (types.Contains(typeof(UndertaleScript)))
                             {
                                 var scripts = data.Scripts.NotNullWhere(x => x.Code == obj);
                                 if (scripts.Any())
-                                    outDict["Scripts"] = checkOne ? scripts.ToEmptyArray() : scripts.ToArray();
+                                    outDict["脚本"] = checkOne ? scripts.ToEmptyArray() : scripts.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -1297,7 +1297,7 @@ namespace UndertaleModTool.Windows
 
                             var objInstances = GetObjInstances();
                             if (objInstances.Any())
-                                return new() { { "Room object instances", checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray() } };
+                                return new() { { "房间对象实例", checkOne ? objInstances.ToEmptyArray() : objInstances.ToArray() } };
                             else
                                 return null;
                         }
@@ -1321,7 +1321,7 @@ namespace UndertaleModTool.Windows
 
                             var sounds = data.Sounds.NotNullWhere(x => x.AudioFile == obj);
                             if (sounds.Any())
-                                return new() { { "Sounds", checkOne ? sounds.ToEmptyArray() : sounds.ToArray() } };
+                                return new() { { "声音", checkOne ? sounds.ToEmptyArray() : sounds.ToArray() } };
                             else
                                 return null;
                         }
@@ -1345,7 +1345,7 @@ namespace UndertaleModTool.Windows
 
                             var sounds = data.Sounds.NotNullWhere(x => x.AudioGroup == obj);
                             if (sounds.Any())
-                                return new() { { "Sounds", checkOne ? sounds.ToEmptyArray() : sounds.ToArray() } };
+                                return new() { { "声音", checkOne ? sounds.ToEmptyArray() : sounds.ToArray() } };
                             else
                                 return null;
                         }
@@ -1374,7 +1374,7 @@ namespace UndertaleModTool.Windows
                             else
                                 funcRefs = data.Code.NotNullWhere(x => x.Instructions.Any(i => i.ValueFunction == obj));
                             if (funcRefs.Any())
-                                return new() { { "Code", checkOne ? funcRefs.ToEmptyArray() : funcRefs.ToArray() } };
+                                return new() { { "代码", checkOne ? funcRefs.ToEmptyArray() : funcRefs.ToArray() } };
                             else
                                 return null;
                         }
@@ -1408,7 +1408,7 @@ namespace UndertaleModTool.Windows
                             else
                                 variRefs = data.Code.NotNullWhere(x => x.Instructions.Any(i => i.ValueVariable == obj));
                             if (variRefs.Any())
-                                return new() { { "Code", checkOne ? variRefs.ToEmptyArray() : variRefs.ToArray() } };
+                                return new() { { "代码", checkOne ? variRefs.ToEmptyArray() : variRefs.ToArray() } };
                             else
                                 return null;
                         }
@@ -1456,7 +1456,7 @@ namespace UndertaleModTool.Windows
                             var tileLayers = GetTileLayers();
 
                             if (tileLayers.Any())
-                                return new() { { "Room tile layers", checkOne ? tileLayers.ToEmptyArray() : tileLayers.ToArray() } };
+                                return new() { { "房间图块图层", checkOne ? tileLayers.ToEmptyArray() : tileLayers.ToArray() } };
                             else
                                 return null;
                         }
@@ -1497,7 +1497,7 @@ namespace UndertaleModTool.Windows
 
                             var partSysInstances = GetPartSysInstances();
                             if (partSysInstances.Any())
-                                return new() { { "Room particle system instance", checkOne ? partSysInstances.ToEmptyArray() : partSysInstances.ToArray() } };
+                                return new() { { "房间粒子系统实例", checkOne ? partSysInstances.ToEmptyArray() : partSysInstances.ToArray() } };
                             else
                                 return null;
                         }
@@ -1523,14 +1523,14 @@ namespace UndertaleModTool.Windows
                             {
                                 var partSystems = data.ParticleSystems.NotNullWhere(x => x.Emitters.Any(e => e.Resource == obj));
                                 if (partSystems.Any())
-                                    outDict["Particle systems"] = checkOne ? partSystems.ToEmptyArray() : partSystems.ToArray();
+                                    outDict["粒子系统"] = checkOne ? partSystems.ToEmptyArray() : partSystems.ToArray();
                             }
 
                             if (types.Contains(typeof(UndertaleParticleSystemEmitter)))
                             {
                                 var partSysEmitters = data.ParticleSystemEmitters.NotNullWhere(x => x.SpawnOnDeath == obj || x.SpawnOnUpdate == obj);
                                 if (partSysEmitters.Any())
-                                    outDict["Particle system emitters"] = checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray();
+                                    outDict["粒子系统发射器"] = checkOne ? partSysEmitters.ToEmptyArray() : partSysEmitters.ToArray();
                             }
 
                             if (outDict.Count == 0)
@@ -1652,8 +1652,8 @@ namespace UndertaleModTool.Windows
             mainWindow.IsEnabled = false;
             try
             {
-                mainWindow.InitializeProgressDialog("Searching in progress...", "Please wait...");
-                mainWindow.SetProgressBar(null, "Assets", 0, assets.Count);
+                mainWindow.InitializeProgressDialog("正在搜索...", "请稍候...");
+                mainWindow.SetProgressBar(null, "资源", 0, assets.Count);
                 mainWindow.StartProgressBarUpdater();
 
                 List<Dictionary<string, List<object>>> dicts = new();

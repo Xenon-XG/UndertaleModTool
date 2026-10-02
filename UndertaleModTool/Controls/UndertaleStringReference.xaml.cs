@@ -85,7 +85,7 @@ namespace UndertaleModTool
             foreach (var item in menu.Items)
             {
                 var menuItem = item as MenuItem;
-                if ((menuItem.Header as string) == "Find all references")
+                if ((menuItem.Header as string) == "查找所有引用")
                 {
                     Type objType = menu.DataContext.GetType();
                     menuItem.Visibility = UndertaleResourceReferenceMap.IsTypeReferenceable(objType)
@@ -100,7 +100,7 @@ namespace UndertaleModTool
             var obj = (sender as FrameworkElement)?.DataContext;
             if (obj is not UndertaleResource res)
             {
-                mainWindow.ShowError("The selected object is not an \"UndertaleResource\".");
+                mainWindow.ShowError("所选对象不是 \"UndertaleResource\"。");
                 return;
             }
 
@@ -112,8 +112,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口中发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {

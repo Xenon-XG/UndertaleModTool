@@ -61,7 +61,7 @@ namespace UndertaleModTool.Editors.UndertaleFontEditor
                                                        && x.Offset == selectedGlyph.Offset);
             if (SelectedGlyph is null)
             {
-                this.ShowError("Cannot find the selected glyph.");
+                this.ShowError("找不到选中的字形。");
                 Close();
             }
 
@@ -441,9 +441,9 @@ namespace UndertaleModTool.Editors.UndertaleFontEditor
 
         private void HelpButton_Click(object sender, RoutedEventArgs e)
         {
-            this.ShowMessage("1) Double-click an inactive rectangle to select it.\n" +
-                             "2) You can move the selected rectangle with the arrow keys (held Shift - resize).\n" +
-                             "3) Drag mouse on desired region if it's an empty glyph.", "Help");
+            this.ShowMessage("1) 双击未激活的矩形以选中它。\n" +
+                             "2) 可以使用方向键移动选中的矩形（按住 Shift 可调整大小）。\n" +
+                             "3) 如果是空字形，请在所需区域拖动鼠标进行框选。", "帮助");
         }
     }
 

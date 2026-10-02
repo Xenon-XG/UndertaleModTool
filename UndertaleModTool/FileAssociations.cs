@@ -68,9 +68,9 @@ internal class FileAssociations
         bool anythingChanged = false;
         anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\open\command", $"\"{procFileName}\" \"%1\"");
         anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\launch\command", $"\"{procFileName}\" \"%1\" launch");
-        anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\launch", "Run game normally");
+        anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\launch", "正常运行游戏");
         anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\special_launch\command", $"\"{procFileName}\" \"%1\" special_launch");
-        anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\special_launch", "Run extended options");
+        anythingChanged |= SetSubkeyValue(UndertaleModTool_app, @"shell\special_launch", "运行扩展选项");
 
         // Associate with file extensions
         foreach (string extStr in Extensions)

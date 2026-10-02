@@ -612,7 +612,7 @@ namespace UndertaleModLib
                     }
                     else
                     {
-                        reader.SubmitWarning("Null pointers found in pointer list on file built with pre-GMS2!");
+                        reader.SubmitWarning("在 GMS2 之前版本构建的文件的指针列表中发现了空指针！");
                     }
 
                     i--;

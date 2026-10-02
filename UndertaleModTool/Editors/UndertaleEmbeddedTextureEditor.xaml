@@ -31,15 +31,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Scaled</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">已缩放</TextBlock>
         <local:TextBoxDark Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding Scaled}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" Text="Generated mips"
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" Text="生成的 Mipmap 层级"
                    Visibility="{Binding Mode=OneTime, Converter={StaticResource IsVersionAtLeastConverter}, ConverterParameter=2.0.6}"/>
         <local:TextBoxDark Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding GeneratedMips}"
                  Visibility="{Binding Mode=OneTime, Converter={StaticResource IsVersionAtLeastConverter}, ConverterParameter=2.0.6}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Size</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">大小</TextBlock>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -49,7 +49,7 @@
             <local:TextBoxDark Grid.Column="1" x:Name="TexHeight" Margin="3" Text="{Binding TextureData.Height, Mode=OneWay}" IsReadOnly="True"/>
         </Grid>
 
-        <TextBlock Grid.Row="3" Grid.Column="4" Margin="3" Foreground="Red" Text="Warning: Texture failed to load!">
+        <TextBlock Grid.Row="3" Grid.Column="4" Margin="3" Foreground="Red" Text="警告：纹理加载失败！">
             <TextBlock.Visibility>
                 <MultiBinding Converter="{StaticResource TextureLoadedWrapper}" Mode="OneWay">
                     <Binding Path="TextureLoaded" Mode="OneWay"/>
@@ -72,7 +72,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Margin="3" HorizontalAlignment="Center" Foreground="DarkGray" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center">
-                Hint: This image is mouse interactable (3 mouse buttons and mouse wheel).
+                提示：此图像可用鼠标交互（三个鼠标按键及滚轮）。
             </TextBlock>
             <ScrollViewer Name="TextureScroll" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" MaxHeight="450"
                           HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ScrollChanged="TextureScroll_ScrollChanged">
@@ -93,8 +93,8 @@
                 </Viewbox>
             </ScrollViewer>
 
-            <local:ButtonDark Grid.Row="2" Grid.Column="0" Margin="0,2" Content="Import" Click="Import_Click"/>
-            <local:ButtonDark Grid.Row="2" Grid.Column="3" Margin="0,2" Content="Export" Click="Export_Click"/>
+            <local:ButtonDark Grid.Row="2" Grid.Column="0" Margin="0,2" Content="导入" Click="Import_Click"/>
+            <local:ButtonDark Grid.Row="2" Grid.Column="3" Margin="0,2" Content="导出" Click="Export_Click"/>
         </Grid>
     </Grid>
 </local:DataUserControl>

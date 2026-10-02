@@ -18,7 +18,7 @@
 
   <StackPanel>
         <StackPanel>
-            <TextBlock Text="Texture Group" FontWeight="Bold"/>
+            <TextBlock Text="纹理组" FontWeight="Bold"/>
             <Separator/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -52,13 +52,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Group Name</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">组名称</TextBlock>
                 <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
 
               <!--Texture Page List-->
-              <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Texture Pages</TextBlock>
-              <Expander Grid.Row="1" Grid.Column="1" Margin="3" Name="TextureListExpander" Header="List">
+              <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">纹理页</TextBlock>
+              <Expander Grid.Row="1" Grid.Column="1" Margin="3" Name="TextureListExpander" Header="列表">
                 <local:DataGridDark ItemsSource="{Binding TexturePages}" MaxHeight="370" x:Name="TextureListGrid"
                                     AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                     ScrollViewer.CanContentScroll="True"
@@ -81,7 +81,7 @@
                           <Setter Property="Template">
                             <Setter.Value>
                               <ControlTemplate>
-                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                               </ControlTemplate>
                             </Setter.Value>
                           </Setter>
@@ -102,8 +102,8 @@
               </Expander>
 
               <!--Sprite List-->
-              <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Sprites</TextBlock>
-              <Expander Grid.Row="2" Grid.Column="1" Margin="3" Name="SpriteListExpander" Header="List">
+              <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">精灵</TextBlock>
+              <Expander Grid.Row="2" Grid.Column="1" Margin="3" Name="SpriteListExpander" Header="列表">
                 <local:DataGridDark ItemsSource="{Binding Sprites}" MaxHeight="370" x:Name="SpriteListGrid"
                                     AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                     ScrollViewer.CanContentScroll="True"
@@ -126,7 +126,7 @@
                           <Setter Property="Template">
                             <Setter.Value>
                               <ControlTemplate>
-                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                               </ControlTemplate>
                             </Setter.Value>
                           </Setter>
@@ -147,8 +147,8 @@
               </Expander>
 
               <!--Spine Sprite List-->
-              <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Spine Sprites</TextBlock>
-              <Expander Grid.Row="3" Grid.Column="1" Margin="3" Name="SpineSprListExpander" Header="List">
+              <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Spine 精灵</TextBlock>
+              <Expander Grid.Row="3" Grid.Column="1" Margin="3" Name="SpineSprListExpander" Header="列表">
                 <local:DataGridDark ItemsSource="{Binding SpineSprites}" MaxHeight="370" x:Name="SpineSprListGrid"
                                     AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                     ScrollViewer.CanContentScroll="True"
@@ -171,7 +171,7 @@
                           <Setter Property="Template">
                             <Setter.Value>
                               <ControlTemplate>
-                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                               </ControlTemplate>
                             </Setter.Value>
                           </Setter>
@@ -192,8 +192,8 @@
               </Expander>
 
               <!--Font List-->
-              <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Fonts</TextBlock>
-              <Expander Grid.Row="4" Grid.Column="1" Margin="3" Name="FontListExpander" Header="List">
+              <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">字体</TextBlock>
+              <Expander Grid.Row="4" Grid.Column="1" Margin="3" Name="FontListExpander" Header="列表">
                 <local:DataGridDark ItemsSource="{Binding Fonts}" MaxHeight="370" x:Name="FontListGrid"
                                     AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                     ScrollViewer.CanContentScroll="True"
@@ -216,7 +216,7 @@
                           <Setter Property="Template">
                             <Setter.Value>
                               <ControlTemplate>
-                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                               </ControlTemplate>
                             </Setter.Value>
                           </Setter>
@@ -237,8 +237,8 @@
               </Expander>
 
               <!--Tileset List-->
-              <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Tilesets</TextBlock>
-              <Expander Grid.Row="5" Grid.Column="1" Margin="3" Name="TilesetListExpander" Header="List">
+              <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">图块集</TextBlock>
+              <Expander Grid.Row="5" Grid.Column="1" Margin="3" Name="TilesetListExpander" Header="列表">
                 <local:DataGridDark ItemsSource="{Binding Tilesets}" MaxHeight="370" x:Name="TilesetListGrid"
                                     AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                     ScrollViewer.CanContentScroll="True"
@@ -261,7 +261,7 @@
                           <Setter Property="Template">
                             <Setter.Value>
                               <ControlTemplate>
-                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                               </ControlTemplate>
                             </Setter.Value>
                           </Setter>

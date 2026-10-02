@@ -125,8 +125,8 @@ namespace UndertaleModTool
 
         private void ExportAllSpine(SaveFileDialog dlg, UndertaleSprite sprite)
         {
-            mainWindow.ShowWarning("This seems to be a Spine sprite, .json and .atlas files will be exported together with the frames. " +
-                                 "PLEASE EDIT THEM CAREFULLY! SOME MANUAL EDITING OF THE JSON MAY BE REQUIRED! THE DATA IS EXPORTED AS-IS.", "Spine warning");
+            mainWindow.ShowWarning("这似乎是一个 Spine 精灵，.json 和 .atlas 文件将与帧一同导出。" +
+                                 "请谨慎编辑这些文件！可能需要手动修改 JSON！数据将按原样导出。", "Spine 警告");
 
             if (dlg.ShowDialog() == true)
             {
@@ -152,7 +152,7 @@ namespace UndertaleModTool
                                 } 
                                 catch (Exception ex) 
                                 {
-                                    mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                                    mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                                 }
                             }
                         }
@@ -164,7 +164,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export: " + ex.Message, "Failed to export sprite");
+                    mainWindow.ShowError("导出失败：" + ex.Message, "导出精灵失败");
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace UndertaleModTool
 
             dlg.FileName = sprite.Name.Content + ".png";
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (sprite.IsSpineSprite)
             {
@@ -190,7 +190,7 @@ namespace UndertaleModTool
             {
                 try
                 {
-                    bool includePadding = (mainWindow.ShowQuestion("Include padding?") == MessageBoxResult.Yes);
+                    bool includePadding = (mainWindow.ShowQuestion("是否包含内边距？") == MessageBoxResult.Yes);
 
                     using TextureWorker worker = new();
                     if (sprite.Textures.Count > 1)
@@ -209,7 +209,7 @@ namespace UndertaleModTool
                             }
                             catch (Exception ex)
                             {
-                                mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                                mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                             }
                         }
                     }
@@ -221,17 +221,17 @@ namespace UndertaleModTool
                         }
                         catch (Exception ex)
                         {
-                            mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                            mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                         }
                     }
                     else
                     {
-                        mainWindow.ShowError("No frames to export", "Failed to export sprite");
+                        mainWindow.ShowError("没有可导出的帧", "导出精灵失败");
                     }
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export: " + ex.Message, "Failed to export sprite");
+                    mainWindow.ShowError("导出失败：" + ex.Message, "导出精灵失败");
                 }
             }
         }
@@ -248,7 +248,7 @@ namespace UndertaleModTool
 
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -263,7 +263,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to import file: " + ex.Message, "Failed to import file");
+                    mainWindow.ShowError("导入文件失败：" + ex.Message, "导入文件失败");
                 }
             }
         }
@@ -276,7 +276,7 @@ namespace UndertaleModTool
             SaveFileDialog dlg = new SaveFileDialog();
 
             dlg.DefaultExt = ".png";
-            dlg.Filter = "PNG files (.png)|*.png|All files|*";
+            dlg.Filter = "PNG 文件 (.png)|*.png|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -287,7 +287,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                    mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                 }
             }
         }
@@ -298,9 +298,9 @@ namespace UndertaleModTool
 
             objRef.ClearRemoveClickHandler();
             objRef.RemoveButton.Click += Remove_Click_Override;
-            objRef.RemoveButton.ToolTip = "Remove texture entry";
+            objRef.RemoveButton.ToolTip = "移除纹理条目";
             objRef.RemoveButton.IsEnabled = true;
-            objRef.DetailsButton.ToolTip = "Open texture entry";
+            objRef.DetailsButton.ToolTip = "打开纹理条目";
             objRef.ObjectText.PreviewKeyDown += ObjectText_PreviewKeyDown;
         }
         private void ObjectText_PreviewKeyDown(object sender, KeyEventArgs e)

@@ -48,8 +48,8 @@ namespace UndertaleModTool
                 return;
 
             e.Handled = true;
-            var result = mainWindow.ShowQuestion("Are you sure that you want to enable GMS debugger?\n" +
-                                                 "If you want to enable a debug mode in some game, then you need to use one of the scripts.");
+            var result = mainWindow.ShowQuestion("确定要启用 GMS 调试器吗？\n" +
+                                                 "如果你想在某个游戏中启用调试模式，需要使用相应的脚本。");
             if (result == MessageBoxResult.Yes)
                 checkBox.IsChecked = false;
         }
@@ -60,7 +60,7 @@ namespace UndertaleModTool
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not ulong timestamp)
-                return "(error)";
+                return "（错误）";
             DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds((long)timestamp);
             if (parameter is string par && par == "GMT")
                 return "GMT+0: " + dateTimeOffset.UtcDateTime.ToString();
@@ -71,9 +71,9 @@ namespace UndertaleModTool
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not string dateTimeStr)
-                return new ValidationResult(false, "The value is not a string.");
+                return new ValidationResult(false, "该值不是字符串。");
             if (!DateTime.TryParse(dateTimeStr, out DateTime dateTime))
-                return new ValidationResult(false, "Invalid date time format.");
+                return new ValidationResult(false, "日期时间格式无效。");
 
             return (ulong)(new DateTimeOffset(dateTime).ToUnixTimeSeconds());
         }

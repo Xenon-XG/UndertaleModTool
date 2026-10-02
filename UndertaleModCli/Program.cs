@@ -113,7 +113,7 @@ public partial class Program : IScriptInterface
         // Give a friendly message when not running from an actual console, on Windows... (and when no arguments are passed in)
         if (OperatingSystem.IsWindows() && args.Length == 0 && Console.GetCursorPosition() == (0, 0))
         {
-            Console.WriteLine("UndertaleModCli is meant to be executed from a command line terminal/console.\nDid you mean to download the GUI version of UndertaleModTool instead?\n\n(Press any key to dismiss this message.)");
+            Console.WriteLine("UndertaleModCli 需要在命令行终端/控制台中运行。\n您想下载的是否是 UndertaleModTool 的图形界面（GUI）版本？\n\n（按任意键关闭此消息。）");
             Console.ReadKey();
             return EXIT_FAILURE;
         }
@@ -129,18 +129,18 @@ public partial class Program : IScriptInterface
             }
         }
 
-        Option<bool> verboseOption = new("-v", "--verbose") { Description = "Detailed logs" };
+        Option<bool> verboseOption = new("-v", "--verbose") { Description = "输出详细日志" };
 
         Argument<FileInfo> dataFileArgument = new("datafile")
         {
-            Description = "Path to the data.win/.ios/.droid/.unx file"
+            Description = "data.win/.ios/.droid/.unx 文件的路径"
         };
 
         // Setup new command
         Option<FileInfo> newOutputOption = new("-o", "--output") { DefaultValueFactory = _ => new NewOptions().Output };
-        Option<bool> newOverwriteOption = new("-f", "--overwrite") { Description = "Overwrite destination file if it already exists" };
-        Option<bool> newStdoutOption = new("-", "--stdout") { Description = "Write new data content to stdout" };
-        Command newCommand = new("new", "Generates a blank data file")
+        Option<bool> newOverwriteOption = new("-f", "--overwrite") { Description = "若目标文件已存在则覆盖" };
+        Option<bool> newStdoutOption = new("-", "--stdout") { Description = "将新数据内容写入标准输出（stdout）" };
+        Command newCommand = new("new", "生成一个空白数据文件")
         {
             newOutputOption,
             newOverwriteOption,
@@ -159,12 +159,12 @@ public partial class Program : IScriptInterface
         });
 
         // Setup load command
-        Option<FileInfo[]> scriptRunnerOption = new("-s", "--scripts") { Description = "Scripts to apply to the <datafile>. Ex. a.csx b.csx" };
-        Option<FileInfo> loadOutputOption = new("-o", "--output") { Description = "Where to save the modified data file" };
-        Option<bool> loadOverwriteOption = new("-f", "--overwrite") { Description = "Overwrite destination file if it already exists" };
-        Option<string> loadLineOption = new("-l", "--line") { Description = "Run C# string. Runs AFTER everything else" };
-        Option<bool> loadInteractiveOption = new("-i", "--interactive") { Description = "Interactive menu launch" };
-        Command loadCommand = new("load", "Load a data file and perform actions on it")
+        Option<FileInfo[]> scriptRunnerOption = new("-s", "--scripts") { Description = "要应用到 <datafile> 的脚本，例如：a.csx b.csx" };
+        Option<FileInfo> loadOutputOption = new("-o", "--output") { Description = "修改后的数据文件的保存位置" };
+        Option<bool> loadOverwriteOption = new("-f", "--overwrite") { Description = "若目标文件已存在则覆盖" };
+        Option<string> loadLineOption = new("-l", "--line") { Description = "运行一段 C# 代码字符串（在其他所有操作之后运行）" };
+        Option<bool> loadInteractiveOption = new("-i", "--interactive") { Description = "启动交互式菜单" };
+        Command loadCommand = new("load", "加载数据文件并对其执行操作")
         {
             dataFileArgument,
             scriptRunnerOption,
@@ -190,7 +190,7 @@ public partial class Program : IScriptInterface
         });
 
         // Setup info command
-        Command infoCommand = new("info", "Show basic info about the game data file") { dataFileArgument, verboseOption };
+        Command infoCommand = new("info", "显示游戏数据文件的基本信息") { dataFileArgument, verboseOption };
         infoCommand.SetAction(parseResult =>
         {
             return Info(new InfoOptions()
@@ -201,15 +201,15 @@ public partial class Program : IScriptInterface
         });
 
         // Setup dump command
-        Option<DirectoryInfo> dumpOutputOption = new("-o", "--output") { Description = "Where to dump data file properties to. Will default to path of the data file" };
+        Option<DirectoryInfo> dumpOutputOption = new("-o", "--output") { Description = "数据文件内容的转储目标目录，默认为数据文件所在路径" };
         Option<string[]> dumpCodeOption = new("-c", "--code")
         {
-            Description = $"The code files to dump. Ex. gml_Script_init_map gml_Script_reset_map. Specify '{UMT_DUMP_ALL}' to dump all code entries"
+            Description = $"要转储的代码条目，例如：gml_Script_init_map gml_Script_reset_map。指定 '{UMT_DUMP_ALL}' 可转储所有代码条目"
         };
-        Option<bool> dumpStringsOption = new("-s", "--strings") { Description = "Whether to dump all strings" };
-        Option<bool> dumpTexturesOption = new("-t", "--textures") { Description = "Whether to dump all embedded textures" };
-        Option<bool> dumpSpritesOption = new("--sprites") { Description = "Whether to dump all sprites" };
-        Command dumpCommand = new("dump", "Dump certain properties about the game data file")
+        Option<bool> dumpStringsOption = new("-s", "--strings") { Description = "是否转储所有字符串" };
+        Option<bool> dumpTexturesOption = new("-t", "--textures") { Description = "是否转储所有内嵌纹理" };
+        Option<bool> dumpSpritesOption = new("--sprites") { Description = "是否转储所有精灵" };
+        Command dumpCommand = new("dump", "转储游戏数据文件中的特定内容")
         {
             dataFileArgument,
             verboseOption,
@@ -234,16 +234,16 @@ public partial class Program : IScriptInterface
         });
 
         // Setup replace command
-        Option<FileInfo> replaceOutputOption = new("-o", "--output") { Description = "Where to save the modified data file" };
+        Option<FileInfo> replaceOutputOption = new("-o", "--output") { Description = "修改后的数据文件的保存位置" };
         Option<string[]> replaceCodeOption = new("-c", "--code")
         {
-            Description = $"Which code files to replace with which file. Ex. 'gml_Script_init_map=./newCode.gml'. It is possible to replace everything by using '{UMT_REPLACE_ALL}'"
+            Description = $"要替换的代码条目及用于替换的文件，例如：'gml_Script_init_map=./newCode.gml'。使用 '{UMT_REPLACE_ALL}' 可替换全部"
         };
         Option<string[]> replaceTexturesOption = new("-t", "--textures")
         {
-            Description = $"Which embedded texture entry to replace with which file. Ex. 'Texture 0=./newTexture.png'. It is possible to replace everything by using '{UMT_REPLACE_ALL}'"
+            Description = $"要替换的内嵌纹理条目及用于替换的文件，例如：'Texture 0=./newTexture.png'。使用 '{UMT_REPLACE_ALL}' 可替换全部"
         };
-        Command replaceCommand = new("replace", "Replace certain properties in the game data file")
+        Command replaceCommand = new("replace", "替换游戏数据文件中的特定内容")
         {
             dataFileArgument,
             verboseOption,
@@ -266,12 +266,12 @@ public partial class Program : IScriptInterface
         // Setup project command
         Argument<FileInfo> projectBuildFileArgument = new("file")
         {
-            Description = "Path to the UndertaleModTool project.json file"
+            Description = "UndertaleModTool 项目 project.json 文件的路径"
         };
-        Option<FileInfo> projectBuildSourceOption = new("-s", "--source") { Description = "Source data file", Required = true };
-        Option<FileInfo> projectBuildDestinationOption = new("-d", "--destination") { Description = "Destination data file", Required = true };
+        Option<FileInfo> projectBuildSourceOption = new("-s", "--source") { Description = "源数据文件", Required = true };
+        Option<FileInfo> projectBuildDestinationOption = new("-d", "--destination") { Description = "目标数据文件", Required = true };
 
-        Command projectBuildCommand = new("build", "Build a project")
+        Command projectBuildCommand = new("build", "构建项目")
         {
             projectBuildFileArgument,
             verboseOption,
@@ -290,7 +290,7 @@ public partial class Program : IScriptInterface
             });
         });
 
-        Command projectCommand = new("project", "Subcommands that deal with projects")
+        Command projectCommand = new("project", "与项目相关的子命令")
         {
             projectBuildCommand
         };
@@ -305,7 +305,7 @@ public partial class Program : IScriptInterface
             replaceCommand,
             projectCommand
         ];
-        rootCommand.Description = "CLI tool for modding, decompiling and unpacking Undertale (and other GameMaker games)!";
+        rootCommand.Description = "用于修改、反编译和解包 Undertale（以及其他 GameMaker 游戏）的命令行工具！";
         ParseResult parseResult = rootCommand.Parse(args);
         return parseResult.Invoke();
     }
@@ -318,7 +318,7 @@ public partial class Program : IScriptInterface
         Console.OutputEncoding = Console.InputEncoding;
 
 
-        Console.WriteLine($"Trying to load file: '{datafile.FullName}'");
+        Console.WriteLine($"正在尝试加载文件：'{datafile.FullName}'");
 
         this.FilePath = datafile.FullName;
         this.ExePath = Environment.CurrentDirectory;
@@ -336,13 +336,13 @@ public partial class Program : IScriptInterface
     {
         if (datafile == null) throw new ArgumentNullException(nameof(datafile));
 
-        Console.WriteLine($"Trying to load file: '{datafile.FullName}'");
+        Console.WriteLine($"正在尝试加载文件：'{datafile.FullName}'");
         this.Verbose = verbose;
         this.Data = ReadDataFile(datafile, verbose ? WarningHandler : null, verbose ? MessageHandler : null);
         this.Output = output ?? new DirectoryInfo(datafile.DirectoryName);
 
         if (this.Verbose)
-            Console.WriteLine("Output directory has been set to " + this.Output.FullName);
+            Console.WriteLine("输出目录已设置为：" + this.Output.FullName);
     }
 
     /// <summary>
@@ -359,12 +359,12 @@ public partial class Program : IScriptInterface
         // If stdout flag is set, write new data to stdout and quit
         if (options.Stdout)
         {
-            if (options.Verbose) Console.WriteLine("Attempting to write new Data file to STDOUT...");
+            if (options.Verbose) Console.WriteLine("正在尝试将新数据文件写入标准输出（STDOUT）...");
             using MemoryStream ms = new MemoryStream();
             UndertaleIO.Write(ms, data);
             Console.OpenStandardOutput().Write(ms.ToArray(), 0, (int)ms.Length);
             Console.Out.Flush();
-            if (options.Verbose) Console.WriteLine("Successfully wrote new Data file to STDOUT.");
+            if (options.Verbose) Console.WriteLine("已成功将新数据文件写入标准输出（STDOUT）。");
 
             return EXIT_SUCCESS;
         }
@@ -372,15 +372,15 @@ public partial class Program : IScriptInterface
         // If not STDOUT, write to file instead. Check first if we have permission to overwrite
         if (options.Output.Exists && !options.Overwrite)
         {
-            Console.Error.WriteLine($"'{options.Output}' already exists. Pass --overwrite to overwrite");
+            Console.Error.WriteLine($"'{options.Output}' 已存在。请传入 --overwrite 以覆盖");
             return EXIT_FAILURE;
         }
 
         // We're not writing to STDOUT, and overwrite flag was given, so we write to specified file.
-        if (options.Verbose) Console.WriteLine($"Attempting to write new Data file to '{options.Output}'...");
+        if (options.Verbose) Console.WriteLine($"正在尝试将新数据文件写入 '{options.Output}'...");
         using FileStream fs = options.Output.OpenWrite();
         UndertaleIO.Write(fs, data);
-        if (options.Verbose) Console.WriteLine($"Successfully wrote new Data file to '{options.Output}'.");
+        if (options.Verbose) Console.WriteLine($"已成功将新数据文件写入 '{options.Output}'。");
         return EXIT_SUCCESS;
     }
 
@@ -422,7 +422,7 @@ public partial class Program : IScriptInterface
                 // If script execution failed, stop and return failure
                 if (!program.ScriptExecutionSuccess)
                 {
-                    Console.Error.WriteLine($"Script execution failed: {script.FullName}");
+                    Console.Error.WriteLine($"脚本执行失败：{script.FullName}");
                     return EXIT_FAILURE;
                 }
             }
@@ -437,7 +437,7 @@ public partial class Program : IScriptInterface
             // If script execution failed, stop and return failure
             if (!program.ScriptExecutionSuccess)
             {
-                Console.Error.WriteLine("Script execution failed");
+                Console.Error.WriteLine("脚本执行失败");
                 return EXIT_FAILURE;
             }
         }
@@ -451,7 +451,7 @@ public partial class Program : IScriptInterface
         {
             if (options.Output.Exists && !options.Overwrite)
             {
-                Console.Error.WriteLine($"'{options.Output}' already exists. Pass --overwrite to overwrite");
+                Console.Error.WriteLine($"'{options.Output}' 已存在。请传入 --overwrite 以覆盖");
                 return EXIT_FAILURE;
             }
             program.SaveDataFile(options.Output.FullName);
@@ -502,8 +502,8 @@ public partial class Program : IScriptInterface
 
         if (program.Data.IsYYC())
         {
-            Console.WriteLine("The game was made with YYC (YoYo Compiler), which means that the code was compiled into the executable. " +
-                              "There is thus no code to dump. Exiting.");
+            Console.WriteLine("该游戏使用 YYC（YoYo Compiler）构建，代码已被编译进可执行文件中，" +
+                              "因此没有可转储的代码。正在退出。");
             return EXIT_SUCCESS;
         }
 
@@ -580,7 +580,7 @@ public partial class Program : IScriptInterface
 
                 if (splitText.Length != 2)
                 {
-                    Console.Error.WriteLine($"{code} is malformed! Should be of format 'name_of_code=./newCode.gml' instead!");
+                    Console.Error.WriteLine($"{code} 格式错误！应为 'name_of_code=./newCode.gml' 的格式！");
                     return EXIT_FAILURE;
                 }
 
@@ -613,7 +613,7 @@ public partial class Program : IScriptInterface
 
                 if (splitText.Length != 2)
                 {
-                    Console.Error.WriteLine($"{texture} is malformed! Should be of format 'Name=./new.png' instead!");
+                    Console.Error.WriteLine($"{texture} 格式错误！应为 'Name=./new.png' 的格式！");
                     return EXIT_FAILURE;
                 }
 
@@ -675,23 +675,23 @@ public partial class Program : IScriptInterface
         try
         {
             if (program.Verbose)
-                Console.WriteLine($"Loading project file '{options.ProjectFile.FullName}'");
+                Console.WriteLine($"正在加载项目文件 '{options.ProjectFile.FullName}'");
 
             newProjectContext = ProjectContext.CreateWithDataFilePaths(options.Source.FullName, options.Destination.FullName, options.ProjectFile.FullName);
 
             if (program.Verbose)
-                Console.WriteLine($"Importing project into source data file");
+                Console.WriteLine($"正在将项目导入源数据文件");
 
             newProjectContext.Import(program.Data);
         }
         catch (ProjectException e)
         {
-            Console.Error.WriteLine($"Failed to load project: {e.Message}");
+            Console.Error.WriteLine($"加载项目失败：{e.Message}");
             return EXIT_FAILURE;
         }
         catch (Exception e)
         {
-            Console.Error.WriteLine($"Error occurred when loading project:\n{e}");
+            Console.Error.WriteLine($"加载项目时发生错误：\n{e}");
             return EXIT_FAILURE;
         }
 
@@ -699,7 +699,7 @@ public partial class Program : IScriptInterface
 
         // Save destination data file
         if (program.Verbose)
-            Console.WriteLine($"Saving to destination data file");
+            Console.WriteLine($"正在保存到目标数据文件");
 
         program.SaveDataFile(options.Destination.FullName);
 
@@ -713,16 +713,16 @@ public partial class Program : IScriptInterface
     {
         while (true)
         {
-            Console.WriteLine("Interactive Menu:");
-            Console.WriteLine("1 - Run script.");
-            Console.WriteLine("2 - Run C# string.");
-            Console.WriteLine("3 - Save and overwrite.");
-            Console.WriteLine("4 - Save to different place.");
-            Console.WriteLine("5 - Display quick info.");
+            Console.WriteLine("交互式菜单：");
+            Console.WriteLine("1 - 运行脚本。");
+            Console.WriteLine("2 - 运行 C# 代码字符串。");
+            Console.WriteLine("3 - 保存并覆盖。");
+            Console.WriteLine("4 - 另存到其他位置。");
+            Console.WriteLine("5 - 显示快速信息。");
             //TODO: add dumping and replacing options
-            Console.WriteLine("6 - Quit without saving.");
+            Console.WriteLine("6 - 不保存并退出。");
 
-            Console.Write("Input, please: ");
+            Console.Write("请输入：");
             ConsoleKey k = Console.ReadKey().Key;
             Console.WriteLine();
 
@@ -732,9 +732,9 @@ public partial class Program : IScriptInterface
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.D1:
                     {
-                        Console.Write("File path (you can drag and drop)? ");
+                        Console.Write("文件路径（可直接拖放文件）：");
                         string path = RemoveQuotes(Console.ReadLine());
-                        Console.WriteLine("Trying to run script {0}", path);
+                        Console.WriteLine("正在尝试运行脚本 {0}", path);
                         try
                         {
                             RunCSharpFile(path);
@@ -751,7 +751,7 @@ public partial class Program : IScriptInterface
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2:
                     {
-                        Console.Write("C# code line? ");
+                        Console.Write("C# 代码行：");
                         string line = Console.ReadLine();
                         ScriptPath = null;
                         RunCSharpCode(line);
@@ -770,7 +770,7 @@ public partial class Program : IScriptInterface
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.D4:
                     {
-                        Console.Write("Where to save? ");
+                        Console.Write("保存到何处：");
                         string path = RemoveQuotes(Console.ReadLine());
                         SaveDataFile(path);
                         break;
@@ -788,8 +788,8 @@ public partial class Program : IScriptInterface
                 case ConsoleKey.NumPad6:
                 case ConsoleKey.D6:
                     {
-                        Console.WriteLine("Are you SURE? You can press 'n' and save before the changes are gone forever!!!");
-                        Console.WriteLine("(Y/N)? ");
+                        Console.WriteLine("确定要退出吗？您可以按 'n' 先保存，否则所做的更改将永久丢失！！！");
+                        Console.WriteLine("(Y/N)？");
                         bool isInputYes = Console.ReadKey(false).Key == ConsoleKey.Y;
                         Console.WriteLine();
                         if (isInputYes) return;
@@ -799,7 +799,7 @@ public partial class Program : IScriptInterface
 
                 default:
                     {
-                        Console.WriteLine("Unknown input. Try using the upper line of digits on your keyboard.");
+                        Console.WriteLine("未知输入。请尝试使用键盘上方的数字键。");
                         break;
                     }
             }
@@ -811,31 +811,31 @@ public partial class Program : IScriptInterface
     /// </summary>
     private void CliQuickInfo()
     {
-        Console.WriteLine("Quick Information:");
-        Console.WriteLine("Project Name - {0}", Data.GeneralInfo.Name);
-        Console.WriteLine("Is GMS2 - {0}", Data.IsGameMaker2());
-        Console.WriteLine("Is YYC - {0}", Data.IsYYC());
-        Console.WriteLine("Bytecode version - {0}", Data.GeneralInfo.BytecodeVersion);
-        Console.WriteLine("Configuration name - {0}", Data.GeneralInfo.Config);
+        Console.WriteLine("快速信息：");
+        Console.WriteLine("项目名称 - {0}", Data.GeneralInfo.Name);
+        Console.WriteLine("是否为 GMS2 - {0}", Data.IsGameMaker2());
+        Console.WriteLine("是否为 YYC - {0}", Data.IsYYC());
+        Console.WriteLine("字节码版本 - {0}", Data.GeneralInfo.BytecodeVersion);
+        Console.WriteLine("配置名称 - {0}", Data.GeneralInfo.Config);
 
-        Console.WriteLine($"{Data.Sounds.Count} Sounds, {Data.Sprites.Count} Sprites, {Data.Backgrounds.Count} Backgrounds");
-        Console.WriteLine($"{Data.Paths.Count} Paths, {Data.Scripts.Count} Scripts, {Data.Shaders.Count} Shaders");
-        Console.WriteLine($"{Data.Fonts.Count} Fonts, {Data.Timelines.Count} Timelines, {Data.GameObjects.Count} Game Objects");
-        Console.WriteLine($"{Data.Rooms.Count} Rooms, {Data.Extensions.Count} Extensions, {Data.TexturePageItems.Count} Texture Page Items");
+        Console.WriteLine($"{Data.Sounds.Count} 个声音、{Data.Sprites.Count} 个精灵、{Data.Backgrounds.Count} 个背景");
+        Console.WriteLine($"{Data.Paths.Count} 个路径、{Data.Scripts.Count} 个脚本、{Data.Shaders.Count} 个着色器");
+        Console.WriteLine($"{Data.Fonts.Count} 个字体、{Data.Timelines.Count} 个时间轴、{Data.GameObjects.Count} 个游戏对象");
+        Console.WriteLine($"{Data.Rooms.Count} 个房间、{Data.Extensions.Count} 个扩展、{Data.TexturePageItems.Count} 个纹理页项");
         if (!Data.IsYYC())
         {
-            Console.WriteLine($"{Data.Code.Count} Code Entries, {Data.Variables.Count} Variables, {Data.Functions.Count} Functions");
-            var codeLocalsInfo = Data.CodeLocals is not null ? $"{Data.CodeLocals.Count} Code locals, " : "";
-            Console.WriteLine($"{codeLocalsInfo}{Data.Strings.Count} Strings, {Data.EmbeddedTextures.Count} Embedded Textures");
+            Console.WriteLine($"{Data.Code.Count} 个代码条目、{Data.Variables.Count} 个变量、{Data.Functions.Count} 个函数");
+            var codeLocalsInfo = Data.CodeLocals is not null ? $"{Data.CodeLocals.Count} 个代码局部变量、" : "";
+            Console.WriteLine($"{codeLocalsInfo}{Data.Strings.Count} 个字符串、{Data.EmbeddedTextures.Count} 个内嵌纹理");
         }
         else
         {
-            Console.WriteLine("Unknown amount of Code entries and Code locals");
+            Console.WriteLine("代码条目和代码局部变量的数量未知");
         }
 
-        Console.WriteLine($"{Data.Strings.Count} Strings");
-        Console.WriteLine($"{Data.EmbeddedTextures.Count} Embedded Textures");
-        Console.WriteLine($"{Data.EmbeddedAudio.Count} Embedded Audio");
+        Console.WriteLine($"{Data.Strings.Count} 个字符串");
+        Console.WriteLine($"{Data.EmbeddedTextures.Count} 个内嵌纹理");
+        Console.WriteLine($"{Data.EmbeddedAudio.Count} 个内嵌音频");
 
         if (IsInteractive) Pause();
     }
@@ -852,7 +852,7 @@ public partial class Program : IScriptInterface
 
         if (code == null)
         {
-            Console.Error.WriteLine($"Data file does not contain a code entry named {codeEntryName}!");
+            Console.Error.WriteLine($"数据文件中不存在名为 {codeEntryName} 的代码条目！");
             return;
         }
 
@@ -872,12 +872,12 @@ public partial class Program : IScriptInterface
         Directory.CreateDirectory(directory);
 
         if (Verbose)
-            Console.WriteLine($"Dumping {code.Name?.Content}");
+            Console.WriteLine($"正在转储 {code.Name?.Content}");
 
         string dest = Paths.TryJoinVerifyWithinDirectory(directory, $"{code.Name?.Content}.gml");
         if (dest is null)
         {
-            Console.Error.WriteLine($"Failed to export code entry with name {code.Name?.Content}");
+            Console.Error.WriteLine($"导出代码条目 {code.Name?.Content} 失败");
             return;
         }
         File.WriteAllText(dest, GetDecompiledText(code, context, settings));
@@ -896,12 +896,12 @@ public partial class Program : IScriptInterface
         foreach (UndertaleString dataString in Data.Strings)
         {
             if (Verbose)
-                Console.WriteLine($"Added {dataString.Content}");
+                Console.WriteLine($"已添加 {dataString.Content}");
             combinedText.Append($"{dataString.Content}\n");
         }
 
         if (Verbose)
-            Console.WriteLine("Writing all strings to disk");
+            Console.WriteLine("正在将所有字符串写入磁盘");
         File.WriteAllText(Path.Join(directory, "strings.txt"), combinedText.ToString());
     }
 
@@ -917,16 +917,16 @@ public partial class Program : IScriptInterface
         foreach (UndertaleEmbeddedTexture texture in Data.EmbeddedTextures)
         {
             if (Verbose)
-                Console.WriteLine($"Dumping {texture.Name}");
+                Console.WriteLine($"正在转储 {texture.Name}");
             if (texture.TextureData.Image is not GMImage image)
             {
-                Console.WriteLine($"{texture.Name} has no image assigned, skipping");
+                Console.WriteLine($"{texture.Name} 未分配图像，已跳过");
                 continue;
             }
             string dest = Paths.TryJoinVerifyWithinDirectory(directory, $"{texture.Name.Content}.png");
             if (dest is null)
             {
-                Console.Error.WriteLine($"Failed to export texture with name {texture.Name.Content}");
+                Console.Error.WriteLine($"导出纹理 {texture.Name.Content} 失败");
                 return;
             }
             using FileStream fs = new(dest, FileMode.Create);
@@ -962,13 +962,13 @@ public partial class Program : IScriptInterface
 
         ConcurrentDictionary<string, ConcurrentBag<TextureToExport>> texturesToExport = new();
 
-        Console.WriteLine("Fetching sprite textures...");
+        Console.WriteLine("正在获取精灵纹理...");
         await Task.Run(() => Parallel.ForEach(Data.Sprites, spr =>
         {
             FetchTexturesFromSprite(spr);
         }));
 
-        Console.WriteLine("Exporting sprite textures...");
+        Console.WriteLine("正在导出精灵纹理...");
         await Task.Run(() => ExportTextures());
 
         void FetchTexturesFromSprite(UndertaleSprite sprite)
@@ -1003,7 +1003,7 @@ public partial class Program : IScriptInterface
                 foreach (TextureToExport tte in kvp.Value)
                 {
                     if (Verbose)
-                        Console.WriteLine($"Dumping {tte.PageItem.Name}");
+                        Console.WriteLine($"正在转储 {tte.PageItem.Name}");
                     localWorker.ExportAsPNG(tte.PageItem, tte.FileExportLocation, null, padded);
                 }
                 // IncrementProgressParallel();
@@ -1019,7 +1019,7 @@ public partial class Program : IScriptInterface
     private void ReplaceCodeEntryWithFile(string codeEntry, FileInfo fileToReplace)
     {
         if (Verbose)
-            Console.WriteLine("Replacing " + codeEntry);
+            Console.WriteLine("正在替换 " + codeEntry);
 
         // Read source code from file
         string gmlCode = File.ReadAllText(fileToReplace.FullName);
@@ -1035,7 +1035,7 @@ public partial class Program : IScriptInterface
             int secondLastUnderscore = codeEntry.LastIndexOf('_', lastUnderscore - 1);
             if (lastUnderscore <= 0 || secondLastUnderscore <= 0)
             {
-                Console.Error.WriteLine($"Failed to parse object code entry name: \"{codeEntry}\"");
+                Console.Error.WriteLine($"无法解析对象代码条目名称：\"{codeEntry}\"");
                 return;
             }
 
@@ -1084,7 +1084,7 @@ public partial class Program : IScriptInterface
                 }
                 else
                 {
-                    Console.Error.WriteLine($"Failed to parse event type and subtype for \"{codeEntry}\".");
+                    Console.Error.WriteLine($"无法解析 \"{codeEntry}\" 的事件类型和子类型。");
                     return;
                 }
             }
@@ -1094,14 +1094,14 @@ public partial class Program : IScriptInterface
                 manualLink = true;
                 if (eventSubtype >= Data.GameObjects.Count)
                 {
-                    if (ScriptQuestion($"Object of ID {eventSubtype} was not found.\nAdd new object? (will be ID {Data.GameObjects.Count})"))
+                    if (ScriptQuestion($"未找到 ID 为 {eventSubtype} 的对象。\n是否添加新对象？（其 ID 将为 {Data.GameObjects.Count}）"))
                     {
                         // Create new object at end of game object list
                         eventSubtype = (uint)Data.GameObjects.Count;
                         Data.GameObjects.Add(new()
                         {
                             Name = Data.Strings.MakeString(
-                                SimpleTextInput("Enter object name", $"Enter object name for ID {eventSubtype}", "", false))
+                                SimpleTextInput("输入对象名称", $"请输入 ID 为 {eventSubtype} 的对象的名称", "", false))
                         });
                     }
                     else
@@ -1148,7 +1148,7 @@ public partial class Program : IScriptInterface
         // Error if import failed
         if (!result.Successful)
         {
-            Console.Error.WriteLine("Code import unsuccessful:\n" + result.PrintAllErrors(false));
+            Console.Error.WriteLine("代码导入失败：\n" + result.PrintAllErrors(false));
         }
     }
 
@@ -1163,12 +1163,12 @@ public partial class Program : IScriptInterface
 
         if (texture == null)
         {
-            Console.Error.WriteLine($"Data file does not contain an embedded texture named {textureEntry}!");
+            Console.Error.WriteLine($"数据文件中不存在名为 {textureEntry} 的内嵌纹理！");
             return;
         }
 
         if (Verbose)
-            Console.WriteLine("Replacing " + textureEntry);
+            Console.WriteLine("正在替换 " + textureEntry);
 
         texture.TextureData.Image = GMImage.FromPng(File.ReadAllBytes(fileToReplace.FullName));
     }
@@ -1205,7 +1205,7 @@ public partial class Program : IScriptInterface
     private void RunCSharpCode(string code, string scriptFile = null)
     {
         if (Verbose)
-            Console.WriteLine($"Attempting to execute '1{scriptFile ?? code}'...");
+            Console.WriteLine($"正在尝试执行 '{scriptFile ?? code}'...");
 
         try
         {
@@ -1236,7 +1236,7 @@ public partial class Program : IScriptInterface
         if (ScriptExecutionSuccess)
         {
             if (Verbose)
-                Console.WriteLine($"Finished executing '{scriptFile ?? code}'");
+                Console.WriteLine($"已执行完毕：'{scriptFile ?? code}'");
         }
         else
         {
@@ -1252,7 +1252,7 @@ public partial class Program : IScriptInterface
     private void SaveDataFile(string outputPath)
     {
         if (Verbose)
-            Console.WriteLine($"Saving new data file to '{outputPath}'");
+            Console.WriteLine($"正在将新数据文件保存到 '{outputPath}'");
         try
         {
             // Save data.win to temp file
@@ -1266,14 +1266,14 @@ public partial class Program : IScriptInterface
             File.Move(outputPath + "temp", outputPath, true);
 
             if (Verbose)
-                Console.WriteLine($"Saved data file to '{outputPath}'");
+                Console.WriteLine($"数据文件已保存到 '{outputPath}'");
         }
         catch (Exception e)
         {
             // Delete the temporary file in case we partially wrote it
             if (File.Exists(outputPath + "temp"))
                 File.Delete(outputPath + "temp");
-            throw new IOException($"Could not save data file: {e.Message}");
+            throw new IOException($"无法保存数据文件：{e.Message}");
         }
     }
 
@@ -1295,7 +1295,7 @@ public partial class Program : IScriptInterface
         }
         catch (FileNotFoundException e)
         {
-            throw new FileNotFoundException($"Data file '{e.FileName}' does not exist");
+            throw new FileNotFoundException($"数据文件 '{e.FileName}' 不存在");
         }
     }
 
@@ -1352,7 +1352,7 @@ public partial class Program : IScriptInterface
     private static void Pause()
     {
         Console.WriteLine();
-        Console.Write("Press any key to continue . . . ");
+        Console.Write("按任意键继续 . . . ");
         Console.ReadKey(true);
         Console.WriteLine();
     }
@@ -1362,13 +1362,13 @@ public partial class Program : IScriptInterface
     /// </summary>
     /// <param name="warning">The warning to print</param>
     /// <param name="isImportant">Whether the warning is important (may lead to data corruption)</param>
-    private static void WarningHandler(string warning, bool isImportant) => Console.WriteLine($"[WARNING]: {warning}");
+    private static void WarningHandler(string warning, bool isImportant) => Console.WriteLine($"[警告]：{warning}");
 
     /// <summary>
     /// A simple message handler that prints messages to console.
     /// </summary>
     /// <param name="message">The message to print</param>
-    private static void MessageHandler(string message) => Console.WriteLine($"[MESSAGE]: {message}");
+    private static void MessageHandler(string message) => Console.WriteLine($"[消息]：{message}");
 
     /// <summary>
     /// A dummy handler that does nothing.

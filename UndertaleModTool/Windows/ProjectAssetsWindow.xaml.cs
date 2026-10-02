@@ -92,7 +92,7 @@ namespace UndertaleModTool
 
                 if (!mainWindow.HasEditorForAsset(obj))
                 {
-                    this.ShowError("The type of this object doesn't have an editor/viewer.");
+                    this.ShowError("此对象的类型没有对应的编辑器/查看器。");
                     return;
                 }
 

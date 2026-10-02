@@ -88,7 +88,7 @@ namespace UndertaleModTool
                 if (!value && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     // Prompt user if they want to unassociate
-                    if (mainWindow.ShowQuestion("Remove current file associations, if they exist?", MessageBoxImage.Question, "File associations") == MessageBoxResult.Yes)
+                    if (mainWindow.ShowQuestion("是否移除当前的文件关联（如果存在）？", MessageBoxImage.Question, "文件关联") == MessageBoxResult.Yes)
                     {
                         try
                         {
@@ -96,7 +96,7 @@ namespace UndertaleModTool
                         }
                         catch (Exception ex)
                         {
-                            mainWindow.ScriptError(ex.ToString(), "Unassociation failed", false);
+                            mainWindow.ScriptError(ex.ToString(), "取消文件关联失败", false);
                         }
                     }
                 }
@@ -216,8 +216,8 @@ namespace UndertaleModTool
                 MainWindow.SetDarkMode(value);
 
                 if (value)
-                    mainWindow.ShowWarning("The message boxes (like this one) aren't compatible with the dark mode.\n" +
-                                           "This will be fixed in future versions.");
+                    mainWindow.ShowWarning("消息框（例如此消息框）尚不兼容深色模式。\n" +
+                                           "这将在未来版本中修复。");
             }
         }
 

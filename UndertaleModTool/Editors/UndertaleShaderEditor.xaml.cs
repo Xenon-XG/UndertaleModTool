@@ -36,14 +36,14 @@ namespace UndertaleModTool
             var editor = sender as TextEditor;
             if (editor is null)
             {
-                mainWindow.ShowError("Cannot load the code of one of the shader properties - the editor is not found?");
+                mainWindow.ShowError("无法加载着色器某个属性的代码——未找到编辑器？");
                 return;
             }
 
             var srcString = editor.DataContext as UndertaleString;
             if (srcString is null)
             {
-                mainWindow.ShowError("Cannot load the code of one of the shader properties - the source string object is null.");
+                mainWindow.ShowError("无法加载着色器某个属性的代码——源字符串对象为 null。");
                 return;
             }
 
@@ -55,14 +55,14 @@ namespace UndertaleModTool
             var editor = sender as TextEditor;
             if (editor is null)
             {
-                mainWindow.ShowError("The changes weren't saved - the editor is not found?");
+                mainWindow.ShowError("更改未保存——未找到编辑器？");
                 return;
             }
 
             var srcString = editor.DataContext as UndertaleString;
             if (srcString is null)
             {
-                mainWindow.ShowError("The changes weren't saved - the source string object is null.");
+                mainWindow.ShowError("更改未保存——源字符串对象为 null。");
                 return;
             }
 

@@ -56,10 +56,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Size</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">大小</TextBlock>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -67,13 +67,13 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="3">Width:</TextBlock>
+            <TextBlock Grid.Column="0" Margin="3">宽度：</TextBlock>
             <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Width}"/>
-            <TextBlock Grid.Column="2" Margin="3">Height:</TextBlock>
+            <TextBlock Grid.Column="2" Margin="3">高度：</TextBlock>
             <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding Height}"/>
         </Grid>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Margin</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">边距</TextBlock>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -85,33 +85,33 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="3">Left:</TextBlock>
+            <TextBlock Grid.Column="0" Margin="3">左：</TextBlock>
             <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding MarginLeft}"/>
-            <TextBlock Grid.Column="2" Margin="3">Right:</TextBlock>
+            <TextBlock Grid.Column="2" Margin="3">右：</TextBlock>
             <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding MarginRight}"/>
-            <TextBlock Grid.Column="4" Margin="3">Bottom:</TextBlock>
+            <TextBlock Grid.Column="4" Margin="3">下：</TextBlock>
             <local:TextBoxDark Grid.Column="5" Margin="3" Text="{Binding MarginBottom}"/>
-            <TextBlock Grid.Column="6" Margin="3">Top:</TextBlock>
+            <TextBlock Grid.Column="6" Margin="3">上：</TextBlock>
             <local:TextBoxDark Grid.Column="7" Margin="3" Text="{Binding MarginTop}"/>
         </Grid>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Transparent</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">透明</TextBlock>
         <CheckBox Grid.Row="4" Grid.Column="1" Margin="3" IsChecked="{Binding Transparent}"/>
-        
-        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Smooth</TextBlock>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">平滑</TextBlock>
         <CheckBox Grid.Row="5" Grid.Column="1" Margin="3" IsChecked="{Binding Smooth}"/>
-        
-        <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Preload</TextBlock>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">预加载</TextBlock>
         <CheckBox Grid.Row="6" Grid.Column="1" Margin="3" IsChecked="{Binding Preload}"/>
 
-        <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Bounding box mode</TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">边界框模式</TextBlock>
         <local:TextBoxDark Grid.Row="7" Grid.Column="1" Margin="3" Text="{Binding BBoxMode}"/>
 
-        <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">SepMasks</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">分离遮罩类型</TextBlock>
         <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource SepMaskType}}" SelectedItem="{Binding Path=SepMasks}"
                             Grid.Row="8" Grid.Column="1" Margin="3"/>
 
-        <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">Origin</TextBlock>
+        <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">原点</TextBlock>
         <Grid Grid.Row="9" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -125,7 +125,7 @@
             <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding OriginYWrapper}"/>
         </Grid>
 
-        <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">Textures</TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">纹理</TextBlock>
         <local:DataGridDark Grid.Row="10" Grid.Column="1" Margin="3" ItemsSource="{Binding Textures, Mode=OneWay}" x:Name="TextureList"
                             AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
                             HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
@@ -148,7 +148,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -178,9 +178,9 @@
             </Border>
         </Viewbox>
 
-        <local:ButtonDark Grid.Row="12" Grid.Column="1" Content="Export all frames (or Spine data if this is a Spine sprite)" Click="ExportAll_Click"/>
+        <local:ButtonDark Grid.Row="12" Grid.Column="1" Content="导出所有帧（若为 Spine 精灵则导出 Spine 数据）" Click="ExportAll_Click"/>
 
-        <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">Collision masks</TextBlock>
+        <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">碰撞遮罩</TextBlock>
         <local:DataGridDark Grid.Row="13" Grid.Column="1" Margin="3" ItemsSource="{Binding CollisionMasks, Mode=OneWay}" x:Name="MaskList" 
                             AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" 
                             HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" 
@@ -203,7 +203,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -220,8 +220,8 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="(CollisionMask)"/>
-                                <local:ButtonDark Grid.Column="1" x:Name="RemoveButton" Content=" X " Click="RemoveMask_Clicked" ToolTip="Remove">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="(碰撞遮罩)"/>
+                                <local:ButtonDark Grid.Column="1" x:Name="RemoveButton" Content=" X " Click="RemoveMask_Clicked" ToolTip="移除">
                                 </local:ButtonDark>
                             </Grid>
                         </DataTemplate>
@@ -251,7 +251,7 @@
                                 </Image>
                             </Border>
                         </Viewbox>
-                        <TextBlock Text="Invalid mask data!" Foreground="Red" Name="MaskIsInvalid" Visibility="Hidden"/>
+                        <TextBlock Text="遮罩数据无效！" Foreground="Red" Name="MaskIsInvalid" Visibility="Hidden"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -264,8 +264,8 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <local:ButtonDark Grid.Row="0" Grid.Column="0" Content="Import mask" Click="MaskImport_Click" x:Name="MaskImport"/>
-                            <local:ButtonDark Grid.Row="0" Grid.Column="3" Content="Export mask" Click="MaskExport_Click" x:Name="MaskExport"/>
+                            <local:ButtonDark Grid.Row="0" Grid.Column="0" Content="导入遮罩" Click="MaskImport_Click" x:Name="MaskImport"/>
+                            <local:ButtonDark Grid.Row="0" Grid.Column="3" Content="导出遮罩" Click="MaskExport_Click" x:Name="MaskExport"/>
                         </Grid>
                     </StackPanel>
                     <ControlTemplate.Triggers>
@@ -291,7 +291,7 @@
             </ContentControl.Template>
         </ContentControl>
 
-        <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">Is special type?</TextBlock>
+        <TextBlock Grid.Row="15" Grid.Column="0" Margin="3">是否为特殊类型？</TextBlock>
         <CheckBox Grid.Row="15" Grid.Column="1" Margin="3" IsChecked="{Binding IsSpecialType}"/>
 
         <Grid Grid.Row="16" Grid.ColumnSpan="2" Margin="0" Visibility="{Binding Path=IsSpecialType, Mode=OneWay, Converter={StaticResource BoolToVis}}">
@@ -305,10 +305,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Version</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">版本</TextBlock>
             <local:TextBoxDark Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding SVersion}"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Type</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">类型</TextBlock>
             <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource SpriteType}}" SelectedItem="{Binding Path=SSpriteType}"
                                 Grid.Row="1" Grid.Column="1" Margin="3"/>
 
@@ -322,10 +322,10 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Playback speed</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">播放速度</TextBlock>
                 <local:TextBoxDark Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding GMS2PlaybackSpeed}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Playback speed type</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">播放速度类型</TextBlock>
                 <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource AnimSpeedType}}" SelectedItem="{Binding Path=GMS2PlaybackSpeedType}"
                                     Grid.Row="1" Grid.Column="1" Margin="3"/>
             </Grid>

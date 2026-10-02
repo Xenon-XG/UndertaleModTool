@@ -29,7 +29,6 @@ namespace UndertaleModTool
     {
         private static readonly MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
         private static readonly Regex camelCaseRegex = new("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
-        private static readonly char[] vowels = { 'a', 'o', 'u', 'e', 'i', 'y' };
 
         public event EventHandler<ObjectReferenceChangedEventArgs> ObjectReferenceChanged;
 
@@ -185,22 +184,56 @@ namespace UndertaleModTool
             if (label is null)
                 return;
 
-            string typeName = ObjectType.ToString();
-            string n = "";
+            string typeName = GetLocalizedTypeName(ObjectType);
+
+            if (CanChange)
+                label.Content = $"(拖放{typeName}到此处)";
+            else
+                label.Content = $"(空的{typeName}引用)";
+        }
+
+        private static string GetLocalizedTypeName(Type type)
+        {
+            switch (type.Name)
+            {
+                case "UndertaleSprite": return "精灵";
+                case "UndertaleBackground": return "背景";
+                case "UndertaleCode": return "代码";
+                case "UndertaleCodeLocals": return "代码局部变量";
+                case "UndertaleGameObject": return "游戏对象";
+                case "UndertaleRoom": return "房间";
+                case "UndertalePath": return "路径";
+                case "UndertaleScript": return "脚本";
+                case "UndertaleShader": return "着色器";
+                case "UndertaleFont": return "字体";
+                case "UndertaleTimeline": return "时间轴";
+                case "UndertaleSound": return "声音";
+                case "UndertaleAudioGroup": return "音频组";
+                case "UndertaleEmbeddedAudio": return "内嵌音频";
+                case "UndertaleEmbeddedTexture": return "内嵌纹理";
+                case "UndertaleEmbeddedImage": return "内嵌图像";
+                case "UndertaleTexturePageItem": return "纹理页项";
+                case "UndertaleTextureGroupInfo": return "纹理组信息";
+                case "UndertaleString": return "字符串";
+                case "UndertaleExtension": return "扩展";
+                case "UndertaleExtensionFile": return "扩展文件";
+                case "UndertaleExtensionFunction": return "扩展函数";
+                case "UndertaleSequence": return "序列";
+                case "UndertaleAnimationCurve": return "动画曲线";
+                case "UndertaleParticleSystem": return "粒子系统";
+                case "UndertaleParticleSystemEmitter": return "粒子系统发射器";
+                case "UndertaleFunction": return "函数";
+                case "UndertaleVariable": return "变量";
+            }
+
+            string typeName = type.ToString();
             if (typeName.StartsWith("UndertaleModLib.Models.Undertale"))
             {
                 // "UndertaleAudioGroup" -> "audio group"
                 typeName = typeName["UndertaleModLib.Models.Undertale".Length..];
                 typeName = camelCaseRegex.Replace(typeName, " $1").ToLowerInvariant();
             }
-            // If the first letter is a vowel
-            if (Array.IndexOf(vowels, typeName[0]) != -1)
-                n = "n";
-
-            if (CanChange)
-                label.Content = $"(drag & drop a{n} {typeName})";
-            else
-                label.Content = $"(empty {typeName} reference)";
+            return typeName;
         }
 
         public void ClearRemoveClickHandler()
@@ -229,7 +262,7 @@ namespace UndertaleModTool
                         // If code already exists, use it (otherwise create new code)
                         if (mainWindow.Data.Code.ByName(name) is UndertaleCode existing)
                         {
-                            mainWindow.ShowWarning("Code entry for room already exists; reusing it.");
+                            mainWindow.ShowWarning("该房间的代码条目已存在，将复用它。");
                             ObjectReference = existing;
                         }
                         else
@@ -256,7 +289,7 @@ namespace UndertaleModTool
                 }
                 else
                 {
-                    mainWindow.ShowError("Adding not supported in this situation.");
+                    mainWindow.ShowError("当前情形下不支持添加。");
                 }
 
                 if (oldObj != ObjectReference)
@@ -295,7 +328,7 @@ namespace UndertaleModTool
             foreach (var item in menu.Items)
             {
                 var menuItem = item as MenuItem;
-                if ((menuItem.Header as string) == "Find all references")
+                if ((menuItem.Header as string) == "查找所有引用")
                 {
                     Type objType = menu.DataContext.GetType();
                     menuItem.Visibility = UndertaleResourceReferenceMap.IsTypeReferenceable(objType)
@@ -310,7 +343,7 @@ namespace UndertaleModTool
             var obj = (sender as FrameworkElement)?.DataContext;
             if (obj is not UndertaleResource res)
             {
-                mainWindow.ShowError("The selected object is not an \"UndertaleResource\".");
+                mainWindow.ShowError("所选对象不是 \"UndertaleResource\"。");
                 return;
             }
 
@@ -322,8 +355,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口中发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {

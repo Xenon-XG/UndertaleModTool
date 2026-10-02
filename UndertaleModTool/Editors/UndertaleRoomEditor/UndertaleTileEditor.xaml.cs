@@ -32,15 +32,15 @@ namespace UndertaleModTool
     [PropertyChanged.AddINotifyPropertyChangedInterface]
     public partial class UndertaleTileEditor : Window
     {
-        public static RoutedUICommand MirrorCommand = new("Mirror the brush", "Mirror", typeof(UndertaleTileEditor));
-        public static RoutedUICommand FlipCommand = new("Flip the brush", "Flip", typeof(UndertaleTileEditor));
-        public static RoutedUICommand RotateCWCommand = new("Rotate the brush 90 degrees clockwise", "RotateCW", typeof(UndertaleTileEditor));
-        public static RoutedUICommand RotateCCWCommand = new("Rotate the brush 90 degrees counterclockwise", "RotateCCW", typeof(UndertaleTileEditor));
-        public static RoutedUICommand ToggleGridCommand = new("Toggle the tile grid", "ToggleGrid", typeof(UndertaleTileEditor));
-        public static RoutedUICommand ToggleBrushTilingCommand = new("Toggle the \"tiling\" behavior on multi-tile brushes", "ToggleBrushTiling", typeof(UndertaleTileEditor));
-        public static RoutedUICommand TogglePreviewCommand = new("Toggle the room preview", "TogglePreview", typeof(UndertaleTileEditor));
-        public static RoutedUICommand UndoCommand = new("Undoes actions", "Undo", typeof(UndertaleTileEditor));
-        public static RoutedUICommand RedoCommand = new("Redoes actions", "Redo", typeof(UndertaleTileEditor));
+        public static RoutedUICommand MirrorCommand = new("镜像画笔", "Mirror", typeof(UndertaleTileEditor));
+        public static RoutedUICommand FlipCommand = new("翻转画笔", "Flip", typeof(UndertaleTileEditor));
+        public static RoutedUICommand RotateCWCommand = new("将画笔顺时针旋转 90 度", "RotateCW", typeof(UndertaleTileEditor));
+        public static RoutedUICommand RotateCCWCommand = new("将画笔逆时针旋转 90 度", "RotateCCW", typeof(UndertaleTileEditor));
+        public static RoutedUICommand ToggleGridCommand = new("切换图块网格", "ToggleGrid", typeof(UndertaleTileEditor));
+        public static RoutedUICommand ToggleBrushTilingCommand = new("切换多图块画笔的“平铺”行为", "ToggleBrushTiling", typeof(UndertaleTileEditor));
+        public static RoutedUICommand TogglePreviewCommand = new("切换房间预览", "TogglePreview", typeof(UndertaleTileEditor));
+        public static RoutedUICommand UndoCommand = new("撤销操作", "Undo", typeof(UndertaleTileEditor));
+        public static RoutedUICommand RedoCommand = new("重做操作", "Redo", typeof(UndertaleTileEditor));
 
         public TileEditorSettings settings { get; set; } = TileEditorSettings.instance;
 
@@ -264,7 +264,7 @@ namespace UndertaleModTool
         {
             if (
                 !apply && Modified && this.ShowQuestion(
-                    "Cancel changes to the tilemap?", MessageBoxImage.Warning, "Confirmation"
+                    "是否放弃对图块地图的更改？", MessageBoxImage.Warning, "确认"
                 ) == MessageBoxResult.No
             )
             {
@@ -881,7 +881,7 @@ namespace UndertaleModTool
                     newBMP.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipXY);
                     break;
                 default:
-                    throw new InvalidDataException($"{tile & TILE_FLAGS} is not a valid tile flag value.");
+                    throw new InvalidDataException($"{tile & TILE_FLAGS} 不是有效的图块标志值。");
             }
 
             DrawBitmapToWBitmap(

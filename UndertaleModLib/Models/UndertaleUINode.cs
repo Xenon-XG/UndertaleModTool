@@ -93,7 +93,7 @@ public class UndertaleUINode : UndertaleObject
         // Unserialize the rest of the node data
         if (dataPtr != reader.AbsPosition)
         {
-            reader.SubmitWarning($"Reading misaligned while reading UI node at {reader.AbsPosition:X8}, realigning to {dataPtr:X8}");
+            reader.SubmitWarning($"读取 UI 节点时在 {reader.AbsPosition:X8} 处发生错位，正在重新对齐到 {dataPtr:X8}");
             reader.AbsPosition = dataPtr;
         }
         Node.Unserialize(reader);

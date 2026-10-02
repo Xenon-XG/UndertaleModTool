@@ -1567,7 +1567,7 @@ public class UndertaleVectorFillData : UndertaleObject
             case UndertaleVectorFillType.FillInvalid:
             default:
             {
-                reader.SubmitWarning("Tried to read invalid fill data.");
+                reader.SubmitWarning("尝试读取了无效的填充数据。");
                 break;
             }
         }
@@ -2190,7 +2190,7 @@ public class UndertaleYYSWFItem : UndertaleObject
             case UndertaleYYSWFItemType.ItemSprite:
             default:
             {
-                reader.SubmitWarning("Tried to read unknown YYSWFItem, " + ItemType);
+                reader.SubmitWarning("尝试读取了未知的 YYSWFItem：" + ItemType);
                 break;
             }
         }

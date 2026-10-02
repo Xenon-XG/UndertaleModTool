@@ -30,23 +30,23 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">External Name</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">外部名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="1" Grid.Column="1" Margin="3" ObjectReference="{Binding ExtName}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">ID</TextBlock>
         <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding ID}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Kind</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">种类</TextBlock>
         <local:TextBoxDark Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding Kind}"/>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Return Type</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">返回类型</TextBlock>
         <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource VarType}}" SelectedItem="{Binding RetType}"
                             Grid.Row="4" Grid.Column="1" Margin="3"/>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Argument Types</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">参数类型</TextBlock>
         <local:DataGridDark Grid.Row="5" Grid.Column="1" Margin="3" ItemsSource="{Binding Arguments}" x:Name="ArgumentTypesList" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF26A0DA"/>
@@ -65,7 +65,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -86,9 +86,9 @@
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
             <TextBlock Foreground="Red" FontStyle="Italic">
-                Runner literally doesn't care about the 'Kind' value.
+                运行器完全不关心“种类”的值。
                 <LineBreak/>
-                The 'ID' does matter though, so make sure you don't have any overlaps.
+                不过“ID”是有意义的，请确保没有任何重复。
             </TextBlock>
         </StackPanel>
     </Grid>

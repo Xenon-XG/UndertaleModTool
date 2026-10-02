@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:Settings}"
-        Title="Settings - GML compiler/decompiler" Height="Auto" Width="700" SizeToContent="Height" WindowStartupLocation="CenterOwner">
+        Title="设置 - GML 编译器/反编译器" Height="Auto" Width="700" SizeToContent="Height" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="IndentStyleKind">
             <ObjectDataProvider.MethodParameters>
@@ -19,8 +19,8 @@
     </Window.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Text="General settings (compiler &amp; decompiler)" Margin="10,10,10,4" FontWeight="Bold"
-                       ToolTip="Settings that apply to both the compiler and decompiler, to make editing GML code simpler."/>
+            <TextBlock Text="常规设置（编译器与反编译器）" Margin="10,10,10,4" FontWeight="Bold"
+                       ToolTip="同时适用于编译器和反编译器的设置，用于简化 GML 代码的编辑。"/>
             <Grid Margin="10,0,10,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -33,16 +33,16 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="Use CSS hex color literals" ToolTip="If enabled, color constants can be formatted in the #RRGGBB hex format."
+                <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="使用 CSS 十六进制颜色字面量" ToolTip="启用后，颜色常量可以采用 #RRGGBB 十六进制格式。"
                     IsChecked="{Binding DecompilerSettings.UseCSSColors}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="2" Margin="3" Text="Named instance ID prefix:" ToolTip="Prefix used for named instance IDs when found by decompiler, and for compilation. Change this value if it conflicts with variable names."/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="3" Text="具名实例 ID 前缀：" ToolTip="反编译器识别到具名实例 ID 时以及编译时使用的前缀。若与变量名冲突，请修改此值。"/>
                 <local:TextBoxDark Grid.Row="1" Grid.Column="3" Margin="3" Grid.ColumnSpan="1" 
                     Text="{Binding InstanceIdPrefix}"/>
             </Grid>
             <Separator Margin="10,0,10,0"/>
-            <TextBlock Text="Decompiler settings" Margin="10,10,10,4" FontWeight="Bold"
-                       ToolTip="Settings that solely apply to the GML decompiler, and will not affect GML compilation. These do not apply to all scripts."/>
+            <TextBlock Text="反编译器设置" Margin="10,10,10,4" FontWeight="Bold"
+                       ToolTip="仅适用于 GML 反编译器的设置，不影响 GML 编译。这些设置并不适用于所有脚本。"/>
             <Grid Margin="10,0,10,3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -57,10 +57,10 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="Always use semicolons" ToolTip="If enabled, all statements that can have a semicolon after them will."
+                <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="始终使用分号" ToolTip="启用后，所有可以带分号的语句都会加上分号。"
                     IsChecked="{Binding DecompilerSettings.UseSemicolon}"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Margin="3,3,6,3" Text="Indentation style:" ToolTip="Style of indentation to be used when printing decompiled code."/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="3,3,6,3" Text="缩进样式：" ToolTip="输出反编译代码时使用的缩进样式。"/>
                 <local:ComboBoxDark Grid.Column="3" 
                     ItemsSource="{Binding Source={StaticResource IndentStyleKind}}" SelectedItem="{Binding DecompilerSettings.IndentStyle}">
                     <ComboBox.ItemTemplate>
@@ -70,22 +70,22 @@
                     </ComboBox.ItemTemplate>
                 </local:ComboBoxDark>
 
-                <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="Open block braces on same line" ToolTip="If enabled, the curly braces used to open a block will be placed on the same line as the statement it belongs to, rather than placing the brace on its own line."
+                <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="块的左花括号放在同一行" ToolTip="启用后，用于开始代码块的花括号会与其所属语句放在同一行，而不是单独占一行。"
                     IsChecked="{Binding DecompilerSettings.OpenBlockBraceOnSameLine}"/>
 
-                <CheckBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="Remove block braces if single line" ToolTip="If enabled, blocks that contain a single line will have its braces removed, where possible. For if/else chains, all blocks must be single lines."
+                <CheckBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="单行代码块省略花括号" ToolTip="启用后，只包含一行的代码块会在可能的情况下省略花括号。对于 if/else 链，所有代码块都必须是单行。"
                     IsChecked="{Binding DecompilerSettings.RemoveSingleLineBlockBraces}"/>
 
-                <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="Create enum declarations" ToolTip="If enabled, enum declarations identified during decompilation will always be printed to decompiled output."
+                <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="生成枚举声明" ToolTip="启用后，反编译过程中识别出的枚举声明总会输出到反编译结果中。"
                     IsChecked="{Binding DecompilerSettings.CreateEnumDeclarations}"/>
 
-                <CheckBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="Enum/macro declarations at top of code" ToolTip="If enabled, enums and macros will appear at the start (top) of decompiled output, rather than at the end (bottom)."
+                <CheckBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="枚举/宏声明置于代码顶部" ToolTip="启用后，枚举和宏会出现在反编译输出的开头（顶部），而不是末尾（底部）。"
                     IsChecked="{Binding DecompilerSettings.MacroDeclarationsAtTop}"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="Print warnings" ToolTip="If enabled, warnings generated during decompilation will be printed as comments."
+                <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Content="输出警告" ToolTip="启用后，反编译过程中产生的警告会以注释形式输出。"
                     IsChecked="{Binding DecompilerSettings.PrintWarnings}"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="Allow leftover data on VM stack" ToolTip="If enabled, data left over on the VM stack will be treated as a warning rather than an error."
+                <CheckBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" Content="允许 VM 栈上有残留数据" ToolTip="启用后，VM 栈上残留的数据将被视为警告而非错误。"
                     IsChecked="{Binding DecompilerSettings.AllowLeftoverDataOnStack}"/>
             </Grid>
             <Grid Margin="10,3,10,3">
@@ -99,7 +99,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="Add empty lines:" ToolTip="Select specific syntax to add empty lines before, after, or around."/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="添加空行：" ToolTip="选择要在其前、后或周围添加空行的特定语法。"/>
                 <Grid Grid.Row="3" Grid.Column="2" Margin="3,3,3,3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="220"/>
@@ -110,23 +110,23 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Around branch statements"
-                              ToolTip="If enabled, adds an empty line before and after branch statements." 
+                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="分支语句前后"
+                              ToolTip="启用后，在分支语句前后添加空行。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineAroundBranchStatements}"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="After local variable declarations" 
-                              ToolTip="If enabled, adds an empty line after block-scoped local variable declarations." 
+                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="局部变量声明之后"
+                              ToolTip="启用后，在块作用域的局部变量声明之后添加空行。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineAfterBlockLocals}"/>
-                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Before switch cases" 
-                              ToolTip="If enabled, adds an empty line before (a chain) of &quot;case&quot; entries in a switch statement." 
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="switch 的 case 之前"
+                              ToolTip="启用后，在 switch 语句中的（一连串）“case”条目之前添加空行。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineBeforeSwitchCases}"/>
-                    <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="After switch cases" 
-                              ToolTip="If enabled, adds an empty line after (a chain) of &quot;case&quot; entries in a switch statement." 
+                    <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="switch 的 case 之后"
+                              ToolTip="启用后，在 switch 语句中的（一连串）“case”条目之后添加空行。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineAfterSwitchCases}"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Around function declarations" 
-                              ToolTip="If enabled, adds an empty line before and after a function declaration, even if it is anonymous." 
+                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="函数声明前后"
+                              ToolTip="启用后，在函数声明前后添加空行，即使是匿名函数也是如此。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineAroundFunctionDeclarations}"/>
-                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="Around static initialization" 
-                              ToolTip="If enabled, adds an empty line before and after static initialization, grouping together consecutive statics if possible." 
+                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="静态初始化前后"
+                              ToolTip="启用后，在静态初始化前后添加空行，并尽可能将连续的静态初始化归为一组。"
                               IsChecked="{Binding DecompilerSettings.EmptyLineAroundStaticInitialization}"/>
                 </Grid>
             </Grid>
@@ -141,8 +141,8 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="Perform cleanups:" 
-                           ToolTip="Select specific cleanup operations for the decompiler to perform. Disabling these may make code more ugly or &quot;incorrect,&quot; but can show underlying logic."/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="执行清理："
+                           ToolTip="选择反编译器要执行的特定清理操作。禁用这些操作可能会使代码更难看或“不正确”，但能展示底层逻辑。"/>
                 <Grid Grid.Row="3" Grid.Column="2" Margin="3,3,3,3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="220"/>
@@ -153,23 +153,23 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Try/catch/finally rewriting"
-                              ToolTip="If enabled, compiler-generated code and logic for try/catch/finally statements is rewritten to (attempt to) look like the original code." 
+                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="重写 try/catch/finally"
+                              ToolTip="启用后，编译器为 try/catch/finally 语句生成的代码和逻辑会被重写，以（尽量）还原为原始代码的样子。"
                               IsChecked="{Binding DecompilerSettings.CleanupTry}"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="Transform else into continue" 
-                              ToolTip="If enabled, certain usages of &quot;else&quot; inside of a loop can be transformed into &quot;continue&quot; statements, which can make code easier to read. This only happens if accuracy can be maintained." 
+                    <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="将 else 转换为 continue"
+                              ToolTip="启用后，循环内某些“else”的用法可以转换为“continue”语句，使代码更易读。仅在能保持准确性的情况下才会进行转换。"
                               IsChecked="{Binding DecompilerSettings.CleanupElseToContinue}"/>
-                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Default argument values" 
-                              ToolTip="If enabled, syntax for default named function arguments will be used. Compiler-generated if statements are transformed to do this, maintaining accuracy." 
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="默认参数值"
+                              ToolTip="启用后，将使用具名函数参数的默认值语法。编译器生成的 if 语句会被相应转换，同时保持准确性。"
                               IsChecked="{Binding DecompilerSettings.CleanupDefaultArgumentValues}"/>
-                    <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="Builtin array variable syntax" 
-                              ToolTip="If enabled, certain builtin globals (such as &quot;view_xview&quot;), when detected to be used without an array accessor, will be printed as such, rather than using compiler-generated syntax." 
+                    <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="内置数组变量语法"
+                              ToolTip="启用后，某些内置全局变量（如“view_xview”）在检测到未使用数组访问器时，将按原样输出，而不是使用编译器生成的语法。"
                               IsChecked="{Binding DecompilerSettings.CleanupBuiltinArrayVariables}"/>
-                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="Scope local variable declarations" 
-                              ToolTip="If enabled, local variable declarations will be placed according to their scopes, which are detected based on usage in the code." 
+                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="3" Content="按作用域放置局部变量声明"
+                              ToolTip="启用后，局部变量声明会根据其作用域放置，作用域依据代码中的使用情况检测得出。"
                               IsChecked="{Binding DecompilerSettings.CleanupLocalVarDeclarations}"/>
-                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="Template strings" 
-                              ToolTip="If enabled, the decompiler will attempt to rewrite string()/@@string@@() as template strings." 
+                    <CheckBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="3" Content="模板字符串"
+                              ToolTip="启用后，反编译器会尝试将 string()/@@string@@() 重写为模板字符串。"
                               IsChecked="{Binding DecompilerSettings.CleanupTemplateStrings}"/>
                 </Grid>
             </Grid>
@@ -182,7 +182,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <local:ButtonDark Grid.Column="0" Click="RestoreButton_Click" Padding="8,2,8,2" HorizontalAlignment="Right" x:Name="RestoreButton">Restore to defaults</local:ButtonDark>
+                <local:ButtonDark Grid.Column="0" Click="RestoreButton_Click" Padding="8,2,8,2" HorizontalAlignment="Right" x:Name="RestoreButton">恢复默认设置</local:ButtonDark>
             </Grid>
         </StackPanel>
     </ScrollViewer>

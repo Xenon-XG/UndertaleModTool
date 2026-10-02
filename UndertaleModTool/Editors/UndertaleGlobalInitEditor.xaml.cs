@@ -31,7 +31,7 @@ namespace UndertaleModTool
 
             objRef.ClearRemoveClickHandler();
             objRef.RemoveButton.Click += Remove_Click_Override;
-            objRef.RemoveButton.ToolTip = "Remove script";
+            objRef.RemoveButton.ToolTip = "移除脚本";
             objRef.RemoveButton.IsEnabled = true;
         }
         private void Remove_Click_Override(object sender, RoutedEventArgs e)

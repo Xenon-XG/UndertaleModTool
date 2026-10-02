@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="Runtime picker" Height="300" Width="700" WindowStartupLocation="CenterOwner">
+        Title="选择运行时" Height="300" Width="700" WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,17 +20,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="3" Text="Select the runtime you want to use" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="3" Text="请选择要使用的运行时" />
 
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="3" ItemsSource="{Binding Runtimes}" SelectionMode="Single" Name="Picker" SelectedIndex="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Version" Width="Auto" DisplayMemberBinding="{Binding Version}" />
-                    <GridViewColumn Header="Path" Width="Auto" DisplayMemberBinding="{Binding Path}" />
+                    <GridViewColumn Header="版本" Width="Auto" DisplayMemberBinding="{Binding Version}" />
+                    <GridViewColumn Header="路径" Width="Auto" DisplayMemberBinding="{Binding Path}" />
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <local:ButtonDark Grid.Row="2" Grid.Column="3" Margin="3" Content="Continue" Click="Button_Click"/>
+        <local:ButtonDark Grid.Row="2" Grid.Column="3" Margin="3" Content="继续" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -58,20 +58,20 @@ namespace UndertaleModTool.Windows
             else if (sourceObj is UndertaleString str)
                 sourceObjName = str.Content;
             else if (sourceObj is ValueTuple<UndertaleBackground, UndertaleBackground.TileID> tileTuple)
-                sourceObjName = $"Tile {tileTuple.Item2.ID} of {tileTuple.Item1.Name.Content}";
+                sourceObjName = $"{tileTuple.Item1.Name.Content} 的图块 {tileTuple.Item2.ID}";
             else
                 sourceObjName = sourceObj.GetType().Name;
             this.sourceObjName = sourceObjName;
 
-            Title = $"References of game asset \"{sourceObjName}\"";
-            label.Text = $"Results for game asset\n\"{sourceObjName}\".";
+            Title = $"游戏资源“{sourceObjName}”的引用";
+            label.Text = $"游戏资源\n“{sourceObjName}”的结果。";
             SourceObject = sourceObj;
 
             if (results is null)
             {
                 ResultsTree.Background = new VisualBrush(new Label()
                 {
-                    Content = "No references found.",
+                    Content = "未找到引用。",
                     FontSize = 16
                 }) { Stretch = Stretch.None };
             }
@@ -86,14 +86,14 @@ namespace UndertaleModTool.Windows
 
             this.data = data;
 
-            Title = "Unreferenced game assets";
-            label.Text = "Results for unreferenced game assets.";
+            Title = "未被引用的游戏资源";
+            label.Text = "未被引用的游戏资源的结果。";
 
             if (results is null)
             {
                 ResultsTree.Background = new VisualBrush(new Label()
                 {
-                    Content = "No unreferenced assets found.",
+                    Content = "未找到未被引用的资源。",
                     FontSize = 16
                 })
                 { Stretch = Stretch.None };
@@ -196,7 +196,7 @@ namespace UndertaleModTool.Windows
         {
             if (data.FORM is null)
             {
-                this.ShowError($"The object references are stale - a different game data was loaded.");
+                this.ShowError("对象引用已失效——已加载了其他游戏数据。");
                 return;
             }
 
@@ -236,7 +236,7 @@ namespace UndertaleModTool.Windows
 
             if (sb.Length == initContent.Length)
             {
-                this.ShowError("No results to export.");
+                this.ShowError("没有可导出的结果。");
                 return;
             }
             sb.Remove(sb.Length - 2, 2);
@@ -252,22 +252,22 @@ namespace UndertaleModTool.Windows
                                                                             ? "unreferenced_assets.txt" : $"references_of_asset_{sourceObjName}.txt");
             if (filePath is null)
             {
-                this.ShowError("Failed to choose good output file name; directory escaped.");
+                this.ShowError("无法选择合适的输出文件名：路径越出了目录。");
                 return;
             }
             if (File.Exists(filePath))
-                if (this.ShowQuestion($"File \"{filePath}\" exists.\nOverwrite?") == MessageBoxResult.No)
+                if (this.ShowQuestion($"文件“{filePath}”已存在。\n是否覆盖？") == MessageBoxResult.No)
                     return;
 
             File.WriteAllText(filePath, sb.ToString());
-            this.ShowMessage($"The results were successfully saved at path\n\"{filePath}\".");
+            this.ShowMessage($"结果已成功保存到路径\n“{filePath}”。");
         }
 
         private void Open(object obj, bool inNewTab = false)
         {
             if (data.FORM is null)
             {
-                this.ShowError($"The object reference is stale - a different game data was loaded.");
+                this.ShowError("对象引用已失效——已加载了其他游戏数据。");
                 return;
             }
 
@@ -288,7 +288,7 @@ namespace UndertaleModTool.Windows
                 {
                     if (!mainWindow.HasEditorForAsset(inst[^1]))
                     {
-                        this.ShowError("The type of this object reference doesn't have an editor/viewer.");
+                        this.ShowError("此对象引用的类型没有对应的编辑器/查看器。");
                         return;
                     }
                 }
@@ -297,7 +297,7 @@ namespace UndertaleModTool.Windows
             {
                 if (!mainWindow.HasEditorForAsset(obj))
                 {
-                    this.ShowError("The type of this object reference doesn't have an editor/viewer.");
+                    this.ShowError("此对象引用的类型没有对应的编辑器/查看器。");
                     return;
                 }
 
@@ -313,7 +313,7 @@ namespace UndertaleModTool.Windows
             foreach (var item in menu.Items)
             {
                 var menuItem = item as MenuItem;
-                if ((menuItem.Header as string) == "Find all references")
+                if ((menuItem.Header as string) == "查找所有引用")
                 {
                     Type objType = menu.DataContext is object[] inst
                                    ? inst[^1].GetType() : menu.DataContext.GetType();
@@ -348,8 +348,8 @@ namespace UndertaleModTool.Windows
                 }
                 catch (Exception ex)
                 {
-                    this.ShowError("Can't copy the item name to clipboard due to this error:\n" +
-                                   ex.Message + ".\nYou probably should try again.");
+                    this.ShowError("由于以下错误，无法将项目名称复制到剪贴板：\n" +
+                                   ex.Message + "。\n请重试。");
                 }
             }
         }
@@ -365,7 +365,7 @@ namespace UndertaleModTool.Windows
 
             if (res is null)
             {
-                this.ShowError("The selected object is not an \"UndertaleResource\".");
+                this.ShowError("所选对象不是“UndertaleResource”。");
                 return;
             }
 
@@ -377,8 +377,8 @@ namespace UndertaleModTool.Windows
             }
             catch (Exception ex)
             {
-                this.ShowError("An error occurred in the object references related window.\n" +
-                               $"Please report this on GitHub.\n\n{ex}");
+                this.ShowError("对象引用相关窗口发生错误。\n" +
+                               $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {

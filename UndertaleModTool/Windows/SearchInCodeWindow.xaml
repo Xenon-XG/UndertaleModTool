@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:UndertaleModTool"
         xmlns:UndertaleModTool="clr-namespace:UndertaleModTool" x:Class="UndertaleModTool.Windows.SearchInCodeWindow"
         mc:Ignorable="d"
-        Title="Search in code" Height="500" Width="800" Closing="Window_Closing" IsVisibleChanged="Window_IsVisibleChanged" WindowStartupLocation="CenterScreen"
+        Title="在代码中搜索" Height="500" Width="800" Closing="Window_Closing" IsVisibleChanged="Window_IsVisibleChanged" WindowStartupLocation="CenterScreen"
         FocusManager.FocusedElement="{Binding ElementName=SearchTextBox}" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <local:ContextMenuDark x:Key="ListViewItemContextMenu">
-            <MenuItem Header="Open" Click="MenuItemOpen_Click"/>
-            <MenuItem Header="Open in new tab" Click="MenuItemOpenInNewTab_Click"/>
-            <MenuItem Header="Copy" Command="Copy"/>
-            <MenuItem Header="Copy all" Click="MenuItemCopyAll_Click"/>
+            <MenuItem Header="打开" Click="MenuItemOpen_Click"/>
+            <MenuItem Header="在新标签页中打开" Click="MenuItemOpenInNewTab_Click"/>
+            <MenuItem Header="复制" Command="Copy"/>
+            <MenuItem Header="全部复制" Click="MenuItemCopyAll_Click"/>
         </local:ContextMenuDark>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     </Window.Resources>
@@ -32,22 +32,22 @@
             </Grid.RowDefinitions>
             <UndertaleModTool:TextBoxDark x:Name="SearchTextBox" Grid.Row="0" TextWrapping="Wrap" AcceptsReturn="True" Height="36" VerticalScrollBarVisibility="Auto" PreviewKeyDown="SearchTextBox_PreviewKeyDown"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,5,0,0">
-                <CheckBox Name="CaseSensitiveCheckBox" Content="Case sensitive" Height="15" Margin="0,0,5,0"/>
-                <CheckBox Name="RegexSearchCheckBox" Content="Regex search" Height="15" Margin="0,0,5,0"/>
-                <CheckBox Name="MultilineRegexCheckBox" Content="Multiline regex" Height="15" Margin="0,0,5,0"
+                <CheckBox Name="CaseSensitiveCheckBox" Content="区分大小写" Height="15" Margin="0,0,5,0"/>
+                <CheckBox Name="RegexSearchCheckBox" Content="正则搜索" Height="15" Margin="0,0,5,0"/>
+                <CheckBox Name="MultilineRegexCheckBox" Content="多行正则" Height="15" Margin="0,0,5,0"
                           Visibility="{Binding IsChecked, ElementName=RegexSearchCheckBox, Converter={StaticResource BoolToVisConverter}}"/>
-                <CheckBox Name="InAssemblyCheckBox" Content="In assembly" Height="15" Margin="0,0,12,0"/>
+                <CheckBox Name="InAssemblyCheckBox" Content="在汇编中搜索" Height="15" Margin="0,0,12,0"/>
             </StackPanel>
-            <Expander Name="FilterByNameExpander" Grid.Row="2" Margin="0,0,0,6" Header="Filter by code name" IsExpanded="False">
+            <Expander Name="FilterByNameExpander" Grid.Row="2" Margin="0,0,0,6" Header="按代码名称筛选" IsExpanded="False">
                 <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
                     <UndertaleModTool:TextBoxDark x:Name="NameFilterTextBox" AcceptsReturn="False" Height="18" Width="280" HorizontalAlignment="Left" Margin="0,0,10,0"
                                                   IsEnabled="{Binding IsExpanded, ElementName=FilterByNameExpander}"/>
-                    <CheckBox Name="NameCaseSensitiveCheckBox" Content="Case sensitive" Height="15" Margin="0,0,5,0" IsEnabled="{Binding IsExpanded, ElementName=FilterByNameExpander}"/>
-                    <CheckBox Name="NameRegexSearchCheckBox" Content="Regex search" Height="15" Margin="0,0,5,0" IsEnabled="{Binding IsExpanded, ElementName=FilterByNameExpander}"/>
+                    <CheckBox Name="NameCaseSensitiveCheckBox" Content="区分大小写" Height="15" Margin="0,0,5,0" IsEnabled="{Binding IsExpanded, ElementName=FilterByNameExpander}"/>
+                    <CheckBox Name="NameRegexSearchCheckBox" Content="正则搜索" Height="15" Margin="0,0,5,0" IsEnabled="{Binding IsExpanded, ElementName=FilterByNameExpander}"/>
                 </StackPanel>
             </Expander>
 
-            <UndertaleModTool:ButtonDark x:Name="SearchButton" Grid.Row="1" Content="Search" Width="68" Margin="0,5,0,0" FontSize="14"
+            <UndertaleModTool:ButtonDark x:Name="SearchButton" Grid.Row="1" Content="搜索" Width="68" Margin="0,5,0,0" FontSize="14"
                                          Click="SearchButton_Click" HorizontalAlignment="Right" IsDefault="True"/>
 
             <ListView ItemsSource="{Binding Results}" Name="ResultsListView" Grid.Row="3" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
@@ -93,9 +93,9 @@
                                 <Setter Property="Foreground" Value="Black" />
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>
-                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}" Width="auto"/>
-                        <GridViewColumn Header="Line" DisplayMemberBinding="{Binding LineNumber}" Width="auto"/>
-                        <GridViewColumn Header="Text" DisplayMemberBinding="{Binding LineText}" Width="auto"/>
+                        <GridViewColumn Header="代码" DisplayMemberBinding="{Binding Code}" Width="auto"/>
+                        <GridViewColumn Header="行" DisplayMemberBinding="{Binding LineNumber}" Width="auto"/>
+                        <GridViewColumn Header="文本" DisplayMemberBinding="{Binding LineText}" Width="auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>

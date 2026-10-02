@@ -33,15 +33,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Type</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">类型</TextBlock>
         <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource ShaderType}}" SelectedItem="{Binding Path=Type}"
                             Grid.Row="1" Grid.Column="1" Margin="3"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">GLSL ES vertex source</TextBlock>
-        <Expander Grid.Row="2" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">GLSL ES 顶点着色器源码</TextBlock>
+        <Expander Grid.Row="2" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding GLSL_ES_Vertex}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -52,8 +52,8 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">GLSL ES fragment source</TextBlock>
-        <Expander Grid.Row="3" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">GLSL ES 片段着色器源码</TextBlock>
+        <Expander Grid.Row="3" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding GLSL_ES_Fragment}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -64,8 +64,8 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">GLSL vertex source</TextBlock>
-        <Expander Grid.Row="4" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">GLSL 顶点着色器源码</TextBlock>
+        <Expander Grid.Row="4" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding GLSL_Vertex}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -76,8 +76,8 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">GLSL fragment source</TextBlock>
-        <Expander Grid.Row="5" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">GLSL 片段着色器源码</TextBlock>
+        <Expander Grid.Row="5" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding GLSL_Fragment}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -88,8 +88,8 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">HLSL9 vertex source</TextBlock>
-        <Expander Grid.Row="6" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">HLSL9 顶点着色器源码</TextBlock>
+        <Expander Grid.Row="6" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding HLSL9_Vertex}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -100,8 +100,8 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">HLSL9 fragment source</TextBlock>
-        <Expander Grid.Row="7" Grid.Column="1" Margin="3" Header="Code">
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">HLSL9 片段着色器源码</TextBlock>
+        <Expander Grid.Row="7" Grid.Column="1" Margin="3" Header="代码">
             <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 DataContext="{Binding HLSL9_Fragment}"
                 FontFamily="Consolas" WordWrap="True" FontSize="10pt"
@@ -112,7 +112,7 @@
                 DataContextChanged="TextEditor_DataContextChanged"/>
         </Expander>
 
-        <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Vertex shader attributes</TextBlock>
+        <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">顶点着色器属性</TextBlock>
         <local:DataGridDark Grid.Row="8" Grid.Column="1" Margin="3" ItemsSource="{Binding VertexShaderAttributes}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="Column" SelectionMode="Single" SelectionUnit="FullRow">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF26A0DA"/>
@@ -131,7 +131,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -140,7 +140,7 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Name" Width="*">
+                <DataGridTemplateColumn Header="名称" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <local:UndertaleStringReference Margin="20,0,0,0" ObjectReference="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -151,7 +151,7 @@
         </local:DataGridDark>
         
         <Border Grid.Row="9" Grid.Column="1" Margin="20" Background="LightPink" BorderBrush="Red" BorderThickness="3">
-            <TextBlock TextWrapping="Wrap" Margin="3" Foreground="Red">WARNING: Editing shader data directly in the above fields is not recommended, as some of the data is compiled in binary form. Instead, use the shader import/export scripts to move shaders between existing games (including any of your own), or use the project system to do the same.</TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="3" Foreground="Red">警告：不建议直接在上方字段中编辑着色器数据，因为其中部分数据是以二进制形式编译的。请改用着色器导入/导出脚本在现有游戏（包括你自己的游戏）之间迁移着色器，或使用项目系统来完成同样的操作。</TextBlock>
         </Border>
     </Grid>
 </local:DataUserControl>

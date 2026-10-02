@@ -69,17 +69,17 @@ namespace UndertaleModTool
 
         public string TitleMain { get; set; }
 
-        public static readonly RoutedUICommand CloseTabCommand = new RoutedUICommand("Close current tab", "CloseTab", typeof(MainWindow));
-        public static readonly RoutedUICommand CloseAllTabsCommand = new RoutedUICommand("Close all tabs", "CloseAllTabs", typeof(MainWindow));
-        public static readonly RoutedUICommand RestoreClosedTabCommand = new RoutedUICommand("Restore last closed tab", "RestoreClosedTab", typeof(MainWindow));
-        public static readonly RoutedUICommand SwitchToNextTabCommand = new RoutedUICommand("Switch to the next tab", "SwitchToNextTab", typeof(MainWindow));
-        public static readonly RoutedUICommand SwitchToPrevTabCommand = new RoutedUICommand("Switch to the previous tab", "SwitchToPrevTab", typeof(MainWindow));
-        public static readonly RoutedUICommand SearchInCodeCommand = new("Search in code", "SearchInCode", typeof(MainWindow));
-        public static readonly RoutedUICommand NewProjectCommand = new("New project", "NewProject", typeof(MainWindow));
-        public static readonly RoutedUICommand OpenProjectCommand = new("Open project", "OpenProject", typeof(MainWindow));
-        public static readonly RoutedUICommand SaveProjectCommand = new("Save project", "SaveProject", typeof(MainWindow));
-        public static readonly RoutedUICommand ViewProjectAssetsCommand = new("View project assets", "ViewProjectAssets", typeof(MainWindow));
-        public static readonly RoutedUICommand CloseProjectCommand = new("Close project", "CloseProject", typeof(MainWindow));
+        public static readonly RoutedUICommand CloseTabCommand = new RoutedUICommand("关闭当前标签页", "CloseTab", typeof(MainWindow));
+        public static readonly RoutedUICommand CloseAllTabsCommand = new RoutedUICommand("关闭所有标签页", "CloseAllTabs", typeof(MainWindow));
+        public static readonly RoutedUICommand RestoreClosedTabCommand = new RoutedUICommand("恢复最近关闭的标签页", "RestoreClosedTab", typeof(MainWindow));
+        public static readonly RoutedUICommand SwitchToNextTabCommand = new RoutedUICommand("切换到下一个标签页", "SwitchToNextTab", typeof(MainWindow));
+        public static readonly RoutedUICommand SwitchToPrevTabCommand = new RoutedUICommand("切换到上一个标签页", "SwitchToPrevTab", typeof(MainWindow));
+        public static readonly RoutedUICommand SearchInCodeCommand = new("在代码中搜索", "SearchInCode", typeof(MainWindow));
+        public static readonly RoutedUICommand NewProjectCommand = new("新建项目", "NewProject", typeof(MainWindow));
+        public static readonly RoutedUICommand OpenProjectCommand = new("打开项目", "OpenProject", typeof(MainWindow));
+        public static readonly RoutedUICommand SaveProjectCommand = new("保存项目", "SaveProject", typeof(MainWindow));
+        public static readonly RoutedUICommand ViewProjectAssetsCommand = new("查看项目资源", "ViewProjectAssets", typeof(MainWindow));
+        public static readonly RoutedUICommand CloseProjectCommand = new("关闭项目", "CloseProject", typeof(MainWindow));
 
         public ObservableCollection<Tab> Tabs { get; set; } = new();
         public Tab CurrentTab
@@ -238,18 +238,18 @@ namespace UndertaleModTool
         };
 
         // Filters for all data files, and for only main data files
-        private const string DataFileFilter = "GameMaker data files (.win, .unx, .ios, .droid, audiogroup*.dat)|*.win;*.unx;*.ios;*.droid;audiogroup*.dat|All files|*";
-        private const string MainDataFileFilter = "GameMaker main data files (.win, .unx, .ios, .droid)|*.win;*.unx;*.ios;*.droid|All files|*";
+        private const string DataFileFilter = "GameMaker 数据文件 (.win, .unx, .ios, .droid, audiogroup*.dat)|*.win;*.unx;*.ios;*.droid;audiogroup*.dat|所有文件|*";
+        private const string MainDataFileFilter = "GameMaker 主数据文件 (.win, .unx, .ios, .droid)|*.win;*.unx;*.ios;*.droid|所有文件|*";
 
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
 
-            Highlighted = new DescriptionView("Welcome to UndertaleModTool!", "Open a data.win file to get started, then double click on the items on the left to view them.");
+            Highlighted = new DescriptionView("欢迎使用 UndertaleModTool！", "打开一个 data.win 文件开始使用，然后双击左侧的项目即可查看。");
             OpenInTab(Highlighted);
 
-            TitleMain = "UndertaleModTool by krzys_h v:" + Version;
+            TitleMain = "UndertaleModTool 简体中文版 (by krzys_h) v:" + Version;
 
             CanSave = false;
             CanSafelySave = false;
@@ -385,7 +385,7 @@ namespace UndertaleModTool
                     }
                     if (shouldAssociate && Settings.ShouldPromptForAssociations)
                     {
-                        if (this.ShowQuestion("First-time setup: Would you like to associate GameMaker data files (like .win) with UndertaleModTool?", MessageBoxImage.Question, "File associations") != MessageBoxResult.Yes)
+                        if (this.ShowQuestion("首次设置：是否将 GameMaker 数据文件（如 .win）与 UndertaleModTool 关联？", MessageBoxImage.Question, "文件关联") != MessageBoxResult.Yes)
                         {
                             shouldAssociate = false;
                         }
@@ -437,7 +437,7 @@ namespace UndertaleModTool
                             foreach (Process instance in updaterInstances)
                             {
                                 if (!instance.WaitForExit(5000))
-                                    this.ShowWarning("UndertaleModToolUpdater app didn't exit.\nCan't delete its temp folder.");
+                                    this.ShowWarning("UndertaleModToolUpdater 程序未退出。\n无法删除其临时文件夹。");
                                 else
                                     updaterClosed = true;
                             }
@@ -448,7 +448,7 @@ namespace UndertaleModTool
                         if (updaterClosed)
                         {
                             bool deleted = false;
-                            string exMessage = "(error message is missing)";
+                            string exMessage = "（缺少错误信息）";
                             string tempFolder = Path.Join(Path.GetTempPath(), "UndertaleModTool");
 
                             for (int i = 0; i <= 5; i++)
@@ -469,7 +469,7 @@ namespace UndertaleModTool
                             }
 
                             if (!deleted)
-                                this.ShowWarning($"The updater temp folder can't be deleted.\nError - {exMessage}.");
+                                this.ShowWarning($"无法删除更新程序的临时文件夹。\n错误：{exMessage}");
                         }
                     });
                 }
@@ -489,23 +489,23 @@ namespace UndertaleModTool
                     string gameExeName = Data?.GeneralInfo?.FileName?.Content;
                     if (gameExeName is null || FilePath is null)
                     {
-                        ScriptError("Null game executable name or location");
+                        ScriptError("游戏可执行文件的名称或位置为空");
                         Environment.Exit(0);
                     }
                     string gameExePath = Paths.TryJoinVerifyWithinDirectory(Path.GetDirectoryName(FilePath), gameExeName + ".exe");
                     if (gameExePath is null)
                     {
-                        ScriptError("Failed to find valid game executable path; escaped directory");
+                        ScriptError("未能找到有效的游戏可执行文件路径；路径越出了目录范围");
                         Environment.Exit(0);
                     }
                     if (!File.Exists(gameExePath))
                     {
-                        ScriptError("Cannot find game executable path, expected: " + gameExePath);
+                        ScriptError("找不到游戏可执行文件，预期路径：" + gameExePath);
                         Environment.Exit(0);
                     }
                     if (!File.Exists(FilePath))
                     {
-                        ScriptError("Cannot find data file path, expected: " + FilePath);
+                        ScriptError("找不到数据文件，预期路径：" + FilePath);
                         Environment.Exit(0);
                     }
                     Process.Start(new ProcessStartInfo(gameExePath, ["-game", FilePath, "-debugoutput", Path.ChangeExtension(FilePath, ".gamelog.txt")]));
@@ -546,7 +546,7 @@ namespace UndertaleModTool
             string childFilePath = Paths.TryJoinVerifyWithinDirectory(dir, filename);
             if (childFilePath is null)
             {
-                ScriptError("Failed to open child data file; escaped directory.");
+                ScriptError("无法打开子数据文件；路径越出了目录范围。");
                 return;
             }
             Process.Start(new ProcessStartInfo(Environment.ProcessPath, [childFilePath, key]));
@@ -582,7 +582,7 @@ namespace UndertaleModTool
                     throw new Exception("ummmmm");
                 if (thingToOpen[0] != "AUDO") // Just pretend I'm not hacking it together that poorly
                     throw new Exception("errrrr");
-                OpenInTab(Data.EmbeddedAudio[Int32.Parse(thingToOpen[1])], false, "Embedded Audio");
+                OpenInTab(Data.EmbeddedAudio[Int32.Parse(thingToOpen[1])], false, "内嵌音频");
                 Activate();
             }
         }
@@ -692,7 +692,7 @@ namespace UndertaleModTool
         {
             if (Data != null)
             {
-                if (this.ShowQuestion("Warning: you currently have a project open.\nAre you sure you want to make a new project?") == MessageBoxResult.No)
+                if (this.ShowQuestion("警告：你当前已打开了一个项目。\n确定要新建项目吗？") == MessageBoxResult.No)
                     return false;
             }
             this.Dispatcher.Invoke(() =>
@@ -711,9 +711,9 @@ namespace UndertaleModTool
             OnPropertyChanged("FilePath");
             OnPropertyChanged("IsGMS2");
 
-            BackgroundsItemsList.Header = IsGMS2 == Visibility.Visible ? "Tile sets" : "Backgrounds & Tile sets";
+            BackgroundsItemsList.Header = IsGMS2 == Visibility.Visible ? "图块集" : "背景与图块集";
 
-            Highlighted = new DescriptionView("Welcome to UndertaleModTool!", "New file created, have fun making a game out of nothing\nI TOLD YOU to open a data.win, not create a new file! :P");
+            Highlighted = new DescriptionView("欢迎使用 UndertaleModTool！", "已创建新文件，祝你从零开始做游戏玩得开心\n我说过让你打开 data.win，而不是新建文件！:P");
             OpenInTab(Highlighted);
 
             CanSave = true;
@@ -735,12 +735,12 @@ namespace UndertaleModTool
 
                     if (fileext == ".csx")
                     {
-                        if (this.ShowQuestion($"Run {filepath} as a script?") == MessageBoxResult.Yes)
+                        if (this.ShowQuestion($"要将 {filepath} 作为脚本运行吗？") == MessageBoxResult.Yes)
                             await RunScript(filepath);
                     }
                     else if (FileAssociations.Extensions.Contains(fileext) || fileext == ".dat" /* audiogroup */)
                     {
-                        if (this.ShowQuestion($"Open {filepath} as a data file?") == MessageBoxResult.Yes)
+                        if (this.ShowQuestion($"要将 {filepath} 作为数据文件打开吗？") == MessageBoxResult.Yes)
                             await LoadFile(filepath, true);
                     }
                     // else, do something?
@@ -768,7 +768,7 @@ namespace UndertaleModTool
             // If a project is open, save to its save data file specifically
             if (Project is not null)
             {
-                if (this.ShowQuestionWithCancel("Save to the project's designated data file for saving?") == MessageBoxResult.Yes)
+                if (this.ShowQuestionWithCancel("保存到项目指定的保存用数据文件吗？") == MessageBoxResult.Yes)
                 {
                     await SaveFile(Project.SaveDataPath, suppressDebug);
                     return true;
@@ -831,7 +831,7 @@ namespace UndertaleModTool
         {
             if (Project is not null)
             {
-                if (this.ShowQuestionWithCancel("A project is currently open - open another data file and discard all unsaved changes?", MessageBoxImage.Warning, "Project currently open") != MessageBoxResult.Yes)
+                if (this.ShowQuestionWithCancel("当前有一个项目处于打开状态——要打开另一个数据文件并放弃所有未保存的更改吗？", MessageBoxImage.Warning, "项目已打开") != MessageBoxResult.Yes)
                 {
                     // Abort opening new file
                     return;
@@ -846,13 +846,13 @@ namespace UndertaleModTool
             if (CanSave)
             {
                 if (!CanSafelySave)
-                    this.ShowWarning("Errors occurred during loading. High chance of data loss! Proceed at your own risk.");
+                    this.ShowWarning("加载过程中发生了错误，极有可能丢失数据！请自行承担风险。");
 
                 var result = await SaveCodeChanges();
                 if (result == SaveResult.NotSaved)
                     _ = DoSaveDialog();
                 else if (result == SaveResult.Error)
-                    this.ShowError("The changes in code editor weren't saved due to some error in \"SaveCodeChanges()\".");
+                    this.ShowError("由于 \"SaveCodeChanges()\" 中发生错误，代码编辑器中的更改未能保存。");
             }
         }
         private async void DataWindow_Closing(object sender, CancelEventArgs e)
@@ -865,7 +865,7 @@ namespace UndertaleModTool
 
                 if (Project is not null && Project.HasUnexportedAssets)
                 {
-                    MessageBoxResult result = this.ShowQuestionWithCancel("There are assets marked to be exported in the current project.\nReally quit?", MessageBoxImage.Warning, "Warning");
+                    MessageBoxResult result = this.ShowQuestionWithCancel("当前项目中仍有标记为待导出的资源。\n确定要退出吗？", MessageBoxImage.Warning, "警告");
 
                     if (result != MessageBoxResult.Yes)
                     {
@@ -874,7 +874,7 @@ namespace UndertaleModTool
                 }
                 else if (SettingsWindow.WarnOnClose)
                 {
-                    MessageBoxResult result = this.ShowQuestionWithCancel("Save changes before quitting?");
+                    MessageBoxResult result = this.ShowQuestionWithCancel("退出前保存更改吗？");
 
                     if (result == MessageBoxResult.Cancel)
                     {
@@ -883,7 +883,7 @@ namespace UndertaleModTool
 
                     if (result == MessageBoxResult.Yes)
                     {
-                        if (scriptDialog is null || (this.ShowQuestion("Script still runs. Save anyway?\nIt can corrupt the data file that you'll save.") == MessageBoxResult.Yes))
+                        if (scriptDialog is null || (this.ShowQuestion("脚本仍在运行。仍要保存吗？\n这可能会损坏你将要保存的数据文件。") == MessageBoxResult.Yes))
                             save = true;
                     }
                 }
@@ -898,7 +898,7 @@ namespace UndertaleModTool
                     }
                     else if (saveRes == SaveResult.Error)
                     {
-                        this.ShowError("The changes in code editor weren't saved due to some error in \"SaveCodeChanges()\".");
+                        this.ShowError("由于 \"SaveCodeChanges()\" 中发生错误，代码编辑器中的更改未能保存。");
                         return;
                     }
                 }
@@ -936,15 +936,15 @@ namespace UndertaleModTool
         }
         private void Command_CloseAllTabs(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Tabs.Count == 1 && CurrentTab.TabTitle == "Welcome!")
+            if (Tabs.Count == 1 && CurrentTab.TabTitle == "欢迎！")
                 return;
 
             ClosedTabsHistory.Clear();
             Tabs.Clear();
             CurrentTab = null;
 
-            OpenInTab(new DescriptionView("Welcome to UndertaleModTool!",
-                                          "Open data.win file to get started, then double click on the items on the left to view them"));
+            OpenInTab(new DescriptionView("欢迎使用 UndertaleModTool！",
+                                          "打开 data.win 文件开始使用，然后双击左侧的项目即可查看"));
             CurrentTab = Tabs[CurrentTabIndex];
 
             UpdateObjectLabel(CurrentTab.CurrentObject);
@@ -1039,7 +1039,7 @@ namespace UndertaleModTool
         }
         private async Task LoadFile(string filename, bool preventClose = false, bool onlyGeneralInfo = false)
         {
-            LoaderDialog dialog = new LoaderDialog("Loading", "Loading, please wait...");
+            LoaderDialog dialog = new LoaderDialog("加载中", "正在加载，请稍候...");
             dialog.PreventClose = preventClose;
             this.Dispatcher.Invoke(() =>
             {
@@ -1048,7 +1048,7 @@ namespace UndertaleModTool
             dialog.Owner = this;
 
             DisposeGameData();
-            Highlighted = new DescriptionView("Welcome to UndertaleModTool!", "Double click on the items on the left to view them!");
+            Highlighted = new DescriptionView("欢迎使用 UndertaleModTool！", "双击左侧的项目即可查看！");
             OpenInTab(Highlighted);
 
             GameSpecificResolver.BaseDirectory = ExePath;
@@ -1063,7 +1063,7 @@ namespace UndertaleModTool
                     {
                         data = UndertaleIO.Read(stream, (string warning, bool isImportant) =>
                         {
-                            this.ShowWarning(warning, "Loading warning");
+                            this.ShowWarning(warning, "加载警告");
                             if (isImportant)
                             {
                                 hadImportantWarnings = true;
@@ -1079,7 +1079,7 @@ namespace UndertaleModTool
 #if DEBUG
                     Debug.WriteLine(e);
 #endif
-                    this.ShowError("An error occurred while trying to load:\n" + e.Message, "Load error");
+                    this.ShowError("尝试加载时发生错误：\n" + e.Message, "加载错误");
                 }
 
                 if (onlyGeneralInfo)
@@ -1100,13 +1100,13 @@ namespace UndertaleModTool
                     {
                         if (data.UnsupportedBytecodeVersion)
                         {
-                            this.ShowWarning("Only bytecode versions 13 to 17 are supported for now, you are trying to load " + data.GeneralInfo.BytecodeVersion + ". A lot of code is disabled and will likely break something. Saving/exporting is disabled.", "Unsupported bytecode version");
+                            this.ShowWarning("目前仅支持字节码版本 13 到 17，而你正在尝试加载版本 " + data.GeneralInfo.BytecodeVersion + "。大量功能已被禁用，很可能会出问题。保存/导出已被禁用。", "不支持的字节码版本");
                             CanSave = false;
                             CanSafelySave = false;
                         }
                         else if (hadImportantWarnings)
                         {
-                            this.ShowWarning("Warnings occurred during loading. Data loss will likely occur when trying to save!", "Loading problems");
+                            this.ShowWarning("加载过程中出现了警告。尝试保存时很可能会丢失数据！", "加载问题");
                             CanSave = true;
                             CanSafelySave = false;
                         }
@@ -1119,13 +1119,13 @@ namespace UndertaleModTool
                         }
                         if (data.IsYYC())
                         {
-                            this.ShowWarning("This game uses YYC (YoYo Compiler), which means the code is embedded into the game executable. This configuration is currently not fully supported; continue at your own risk.", "YYC");
+                            this.ShowWarning("此游戏使用了 YYC（YoYo Compiler），这意味着代码被嵌入在游戏可执行文件中。目前尚未完全支持这种配置；请自行承担风险。", "YYC");
                         }
                         if (data.GeneralInfo is not null)
                         {
                             if (!data.GeneralInfo.IsDebuggerDisabled)
                             {
-                                this.ShowWarning("This game is set to run with the GameMaker Studio debugger and the normal runtime will simply hang after loading if the debugger is not running. You can turn this off in General Info by checking the \"Disable Debugger\" box and saving.", "GMS Debugger");
+                                this.ShowWarning("此游戏被设置为使用 GameMaker Studio 调试器运行，如果调试器未运行，普通运行时在加载后会直接卡住。你可以在常规信息中勾选\"禁用 GMS 调试器\"并保存来关闭此设置。", "GMS 调试器");
                             }
                         }
                         if (data.EmbeddedTextures is not null)
@@ -1134,7 +1134,7 @@ namespace UndertaleModTool
                             {
                                 if (tex?.TextureData?.Image?.Format == GMImage.ImageFormat.Unknown)
                                 {
-                                    this.ShowWarning("This game contains texture(s) with unknown or unsupported image formats. These will save/load, but will not display in editors, and many operations will fail regarding them. Proceed with caution.", "Unsupported textures");
+                                    this.ShowWarning("此游戏包含图像格式未知或不受支持的纹理。它们可以正常保存/加载，但不会在编辑器中显示，且许多相关操作会失败。请谨慎操作。", "不支持的纹理");
                                     break;
                                 }
                             }
@@ -1156,7 +1156,7 @@ namespace UndertaleModTool
                         OnPropertyChanged("FilePath");
                         OnPropertyChanged("IsGMS2");
 
-                        BackgroundsItemsList.Header = IsGMS2 == Visibility.Visible ? "Tile sets" : "Backgrounds & Tile sets";
+                        BackgroundsItemsList.Header = IsGMS2 == Visibility.Visible ? "图块集" : "背景与图块集";
 
                         UndertaleCodeEditor.gettext = null;
                         UndertaleCodeEditor.gettextJSON = null;
@@ -1183,7 +1183,7 @@ namespace UndertaleModTool
 
             bool isDifferentPath = FilePath != filename;
 
-            LoaderDialog dialog = new LoaderDialog("Saving", "Saving, please wait...");
+            LoaderDialog dialog = new LoaderDialog("保存中", "正在保存，请稍候...");
             dialog.PreventClose = true;
             IProgress<Tuple<int, string>> progress = new Progress<Tuple<int, string>>(i => { dialog.ReportProgress(i.Item2, i.Item1); });
             IProgress<double?> setMax = new Progress<double?>(i => { dialog.Maximum = i; });
@@ -1197,7 +1197,7 @@ namespace UndertaleModTool
 
             DebugDataDialog.DebugDataMode debugMode = DebugDataDialog.DebugDataMode.NoDebug;
             if (!suppressDebug && Data.GeneralInfo != null && !Data.GeneralInfo.IsDebuggerDisabled)
-                this.ShowWarning("You are saving the game in GameMaker Studio debug mode. Unless the debugger is running, the normal runtime will simply hang after loading. You can turn this off in General Info by checking the \"Disable Debugger\" box and saving.", "GMS Debugger");
+                this.ShowWarning("你正在以 GameMaker Studio 调试模式保存游戏。除非调试器正在运行，否则普通运行时在加载后会直接卡住。你可以在常规信息中勾选\"禁用 GMS 调试器\"并保存来关闭此设置。", "GMS 调试器");
             Task<bool> t = Task.Run(() =>
             {
                 // Recompile code sources before doing anything, if needed
@@ -1207,9 +1207,9 @@ namespace UndertaleModTool
                     {
                         if (Project is not null)
                         {
-                            FileMessageEvent?.Invoke("Recompiling GML code, please wait...");
+                            FileMessageEvent?.Invoke("正在重新编译 GML 代码，请稍候...");
                             Project.RecompileAllCodeSources();
-                            FileMessageEvent?.Invoke("Saving data file, please wait...");
+                            FileMessageEvent?.Invoke("正在保存数据文件，请稍候...");
                         }
                     }
                     catch (ProjectException e)
@@ -1217,7 +1217,7 @@ namespace UndertaleModTool
                         Dispatcher.Invoke(() =>
                         {
                             dialog.TryClose();
-                            this.ShowError(e.Message, "Recompile error");
+                            this.ShowError(e.Message, "重新编译错误");
                         });
                         return false;
                     }
@@ -1226,7 +1226,7 @@ namespace UndertaleModTool
                         Dispatcher.Invoke(() =>
                         {
                             dialog.TryClose();
-                            this.ShowError("An error occurred while trying to recompile code sources:\n" + e.Message, "Recompile error");
+                            this.ShowError("尝试重新编译代码源时发生错误：\n" + e.Message, "重新编译错误");
                         });
                         return false;
                     }
@@ -1246,7 +1246,7 @@ namespace UndertaleModTool
 
                     if (debugMode != DebugDataDialog.DebugDataMode.NoDebug)
                     {
-                        FileMessageEvent?.Invoke("Generating debugger data...");
+                        FileMessageEvent?.Invoke("正在生成调试器数据...");
 
                         UndertaleDebugData debugData = UndertaleDebugData.CreateNew();
 
@@ -1333,7 +1333,7 @@ namespace UndertaleModTool
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        this.ShowError("An error occurred while trying to save:\n" + e.Message, "Save error");
+                        this.ShowError("尝试保存时发生错误：\n" + e.Message, "保存错误");
                     });
 
                     saveSucceeded = false;
@@ -1360,7 +1360,7 @@ namespace UndertaleModTool
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        this.ShowError("An error occurred while trying to save:\n" + exc.Message, "Save error");
+                        this.ShowError("尝试保存时发生错误：\n" + exc.Message, "保存错误");
                     });
 
                     saveSucceeded = false;
@@ -1401,25 +1401,25 @@ namespace UndertaleModTool
             {
                 string item = (e.NewValue as TreeViewItem).Header?.ToString();
 
-                if (item == "Data")
+                if (item == "数据")
                 {
-                    Highlighted = new DescriptionView("Welcome to UndertaleModTool!", Data != null ? "Double click on the items on the left to view them" : "Open data.win file to get started");
+                    Highlighted = new DescriptionView("欢迎使用 UndertaleModTool！", Data != null ? "双击左侧的项目即可查看" : "打开 data.win 文件开始使用");
                     return;
                 }
 
                 if (Data == null)
                 {
-                    Highlighted = new DescriptionView(item, "Load data.win file first");
+                    Highlighted = new DescriptionView(item, "请先加载 data.win 文件");
                     return;
                 }
 
                 Highlighted = item switch
                 {
-                    "General info" => new GeneralInfoEditor(Data?.GeneralInfo, Data?.Options, Data?.Language),
-                    "Global init" => new GlobalInitEditor(Data?.GlobalInitScripts),
-                    "Game End scripts" => new GameEndEditor(Data?.GameEndScripts),
-                    "Variables" => Data.FORM.Chunks["VARI"],
-                    _ => new DescriptionView(item, "Expand the list on the left to edit items"),
+                    "常规信息" => new GeneralInfoEditor(Data?.GeneralInfo, Data?.Options, Data?.Language),
+                    "全局初始化" => new GlobalInitEditor(Data?.GlobalInitScripts),
+                    "游戏结束脚本" => new GameEndEditor(Data?.GameEndScripts),
+                    "变量" => Data.FORM.Chunks["VARI"],
+                    _ => new DescriptionView(item, "展开左侧的列表以编辑项目"),
                 };
             }
             else
@@ -1607,7 +1607,7 @@ namespace UndertaleModTool
             object source = container.ItemsSource;
             IList list = ((source as ICollectionView)?.SourceCollection as IList) ?? (source as IList);
             bool isLast = list.IndexOf(obj) == list.Count - 1;
-            if (this.ShowQuestion("Delete " + obj + "?" + (!isLast ? "\n\nNote that the code often references objects by ID, so this operation is likely to break stuff because other items will shift up!" : ""), isLast ? MessageBoxImage.Question : MessageBoxImage.Warning, "Confirmation" ) == MessageBoxResult.Yes)
+            if (this.ShowQuestion("要删除 " + obj + " 吗？" + (!isLast ? "\n\n注意：代码通常通过 ID 引用对象，此操作会使其他项目向前移位，因此很可能导致出错！" : ""), isLast ? MessageBoxImage.Question : MessageBoxImage.Warning, "确认" ) == MessageBoxResult.Yes)
             {
                 // Remove object from list
                 list.Remove(obj);
@@ -1684,12 +1684,12 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    this.ShowError("Can't copy the item name to clipboard due to this error:\n" +
-                                   ex.Message + ".\nYou probably should try again.");
+                    this.ShowError("由于以下错误，无法将项目名称复制到剪贴板：\n" +
+                                   ex.Message + "\n你可以再试一次。");
                 }
             }
             else
-                this.ShowWarning("Item name is null.");
+                this.ShowWarning("项目名称为空。");
         }
 
         private void MainTree_KeyDown(object sender, KeyEventArgs e)
@@ -1780,8 +1780,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                this.ShowError("An error occurred in the object references related window.\n" +
-                               $"Please report this on GitHub.\n\n{ex}");
+                this.ShowError("对象引用相关窗口中发生错误。\n" +
+                               $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {
@@ -1826,7 +1826,7 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                ScriptError("An error occurred while trying to add the menu item. No action has been taken.\r\n\r\nError:\r\n\r\n" + ex.ToString());
+                ScriptError("尝试添加项目时发生错误。未执行任何操作。\r\n\r\n错误：\r\n\r\n" + ex.ToString());
                 return;
             }
             IList list = ((source as ICollectionView)?.SourceCollection as IList) ?? (source as IList);
@@ -1854,7 +1854,7 @@ namespace UndertaleModTool
                 {
                     string assetTypeName = obj.GetType().Name.Replace("Undertale", "").Replace("GameObject", "Object").ToLower();
                     string newName = $"{assetTypeName}{list.Count}";
-                    string userNewName = ScriptInputDialog($"Choose new {assetTypeName} name", "Name of new asset:", newName, "Cancel", "Create", false, false);
+                    string userNewName = ScriptInputDialog($"为新的 {assetTypeName} 命名", "新资源的名称：", newName, "取消", "创建", false, false);
                     if (userNewName is null)
                     {
                         // Presume user canceled the action
@@ -1866,8 +1866,8 @@ namespace UndertaleModTool
                     }
                     else
                     {
-                        if (this.ShowQuestionWithCancel($"Asset name \"{userNewName}\" is not a valid identifier. Add a new asset using an auto-generated name instead?",
-                            MessageBoxImage.Warning, "Invalid name") != MessageBoxResult.Yes)
+                        if (this.ShowQuestionWithCancel($"资源名称 \"{userNewName}\" 不是有效的标识符。改用自动生成的名称来添加新资源吗？",
+                            MessageBoxImage.Warning, "无效的名称") != MessageBoxResult.Yes)
                         {
                             return;
                         }
@@ -1898,7 +1898,7 @@ namespace UndertaleModTool
                             roomResource.Caption = Data.Strings.MakeString("");
                         }
 
-                        if (this.ShowQuestion("Add the new room to the end of the room order list?", MessageBoxImage.Question, "Add to room order list") == MessageBoxResult.Yes)
+                        if (this.ShowQuestion("将新房间添加到房间顺序列表的末尾吗？", MessageBoxImage.Question, "添加到房间顺序列表") == MessageBoxResult.Yes)
                         {
                             Data.GeneralInfo.RoomOrder.Add(new(roomResource));
                         }
@@ -1998,11 +1998,11 @@ namespace UndertaleModTool
                 // exit out early if the path does not exist.
                 if (!directory.Exists)
                 {
-                    item.Items.Add(new MenuItem {Header = $"(Path {folderDir} does not exist, cannot search for files!)", IsEnabled = false});
+                    item.Items.Add(new MenuItem {Header = $"(路径 {folderDir} 不存在，无法搜索文件！)", IsEnabled = false});
 
                     if (item.Name == "RootScriptItem")
                     {
-                        var otherScripts1 = new MenuItem {Header = "Run _other script..."};
+                        var otherScripts1 = new MenuItem {Header = "运行其他脚本(_O)..."};
                         otherScripts1.Click += MenuItem_RunOtherScript_Click;
                         item.Items.Add(otherScripts1);
                     }
@@ -2029,13 +2029,13 @@ namespace UndertaleModTool
 
                     var subDirName = subDirectory.Name;
                     // In addition to the _ comment from above, we also need to add at least one item, so that WPF uses this as a submenuitem
-                    MenuItemDark subItem = new() {Header = subDirName.Replace("_", "__"), Items = {new MenuItem {Header = "(loading...)", IsEnabled = false}}};
+                    MenuItemDark subItem = new() {Header = subDirName.Replace("_", "__"), Items = {new MenuItem {Header = "(加载中...)", IsEnabled = false}}};
                     subItem.SubmenuOpened += (o, args) => MenuItem_RunScript_SubmenuOpened(o, args, subDirectory.FullName);
                     item.Items.Add(subItem);
                 }
 
                 if (item.Items.Count == 0)
-                    item.Items.Add(new MenuItem {Header = "(No scripts found!)", IsEnabled = false});
+                    item.Items.Add(new MenuItem {Header = "(未找到脚本！)", IsEnabled = false});
             }
             catch (Exception err)
             {
@@ -2056,7 +2056,7 @@ namespace UndertaleModTool
             // If we're at the complete root, we need to add the "Run other script" button as well
             if (item.Name != "RootScriptItem") return;
 
-            var otherScripts = new MenuItem {Header = "Run _other script..."};
+            var otherScripts = new MenuItem {Header = "运行其他脚本(_O)..."};
             otherScripts.Click += MenuItem_RunOtherScript_Click;
             item.Items.Add(otherScripts);
         }
@@ -2070,7 +2070,7 @@ namespace UndertaleModTool
             if (File.Exists(path))
                 await RunScript(path);
             else
-                this.ShowError("The script file doesn't exist.");
+                this.ShowError("脚本文件不存在。");
         }
 
         private async void MenuItem_RunOtherScript_Click(object sender, RoutedEventArgs e)
@@ -2078,7 +2078,7 @@ namespace UndertaleModTool
             OpenFileDialog dlg = new OpenFileDialog();
 
             dlg.DefaultExt = "csx";
-            dlg.Filter = "Scripts (.csx)|*.csx|All files|*";
+            dlg.Filter = "脚本 (.csx)|*.csx|所有文件|*";
 
             if (dlg.ShowDialog() == true)
             {
@@ -2203,7 +2203,7 @@ namespace UndertaleModTool
         public void StartProgressBarUpdater()
         {
             if (cts is not null)
-                ScriptWarning("Warning - there is another progress bar updater task running (hangs) in the background.\nRestart the application to prevent some unexpected behavior.");
+                ScriptWarning("警告：后台还有另一个进度条更新任务正在运行（已挂起）。\n请重启应用程序以避免意外行为。");
 
             cts = new CancellationTokenSource();
             cToken = cts.Token;
@@ -2217,8 +2217,8 @@ namespace UndertaleModTool
             cts.Cancel();
 
             if (await Task.Run(() => !updater.Wait(2000))) //if ProgressUpdater isn't responding
-                ScriptError("Stopping the progress bar updater task is failed.\nIt's highly recommended to restart the application.",
-                            "Script error", false);
+                ScriptError("停止进度条更新任务失败。\n强烈建议重启应用程序。",
+                            "脚本错误", false);
             else
             {
                 cts.Dispose();
@@ -2226,8 +2226,8 @@ namespace UndertaleModTool
             }
 
             if (!updater.IsCompleted)
-                ScriptError("Stopping the progress bar updater task is failed.\nIt's highly recommended to restart the application.",
-                            "Script error", false);
+                ScriptError("停止进度条更新任务失败。\n强烈建议重启应用程序。",
+                            "脚本错误", false);
             else
                 updater.Dispose();
         }
@@ -2284,7 +2284,7 @@ namespace UndertaleModTool
             }
             else
             {
-                this.ShowError($"Can't find code entry \"{name}\".\n(probably, different game data was loaded)");
+                this.ShowError($"找不到代码条目 \"{name}\"。\n（可能是加载了不同的游戏数据）");
             }
         }
 
@@ -2315,7 +2315,7 @@ namespace UndertaleModTool
         {
             string scriptText = $"#line 1 \"{path}\"\n" + File.ReadAllText(path, Encoding.UTF8);
 
-            Dispatcher.Invoke(() => CommandBox.Text = "Running " + Path.GetFileName(path) + " ...");
+            Dispatcher.Invoke(() => CommandBox.Text = "正在运行 " + Path.GetFileName(path) + " ...");
             try
             {
                 if (!scriptSetupTask.IsCompleted)
@@ -2329,7 +2329,7 @@ namespace UndertaleModTool
 
                 if (FinishedMessageEnabled)
                 {
-                    Dispatcher.Invoke(() => CommandBox.Text = result != null ? result.ToString() : Path.GetFileName(path) + " finished!");
+                    Dispatcher.Invoke(() => CommandBox.Text = result != null ? result.ToString() : Path.GetFileName(path) + " 已完成！");
                 }
                 else
                 {
@@ -2340,7 +2340,7 @@ namespace UndertaleModTool
             {
                 Console.WriteLine(exc.ToString());
                 Dispatcher.Invoke(() => CommandBox.Text = exc.Message);
-                this.ShowError(exc.Message, "Script compile error");
+                this.ShowError(exc.Message, "脚本编译错误");
                 ScriptExecutionSuccess = false;
                 ScriptErrorMessage = exc.Message;
                 ScriptErrorType = "CompilationErrorException";
@@ -2351,7 +2351,7 @@ namespace UndertaleModTool
 
                 Console.WriteLine(exc.ToString());
                 Dispatcher.Invoke(() => CommandBox.Text = exc.Message);
-                this.ShowError(ScriptingUtil.PrettifyException(in exc), "Script error");
+                this.ShowError(ScriptingUtil.PrettifyException(in exc), "脚本错误");
                 ScriptExecutionSuccess = false;
                 ScriptErrorMessage = exc.Message;
                 ScriptErrorType = "Exception";
@@ -2416,7 +2416,7 @@ namespace UndertaleModTool
         {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.DefaultExt = defaultExt ?? "win";
-            dlg.Filter = filter ?? "GameMaker data files (.win, .unx, .ios, .droid, audiogroup*.dat)|*.win;*.unx;*.ios;*.droid;audiogroup*.dat|All files|*";
+            dlg.Filter = filter ?? "GameMaker 数据文件 (.win, .unx, .ios, .droid, audiogroup*.dat)|*.win;*.unx;*.ios;*.droid;audiogroup*.dat|所有文件|*";
             return dlg.ShowDialog() == true ? dlg.FileName : null;
         }
 
@@ -2435,18 +2435,18 @@ namespace UndertaleModTool
 
         public void ScriptMessage(string message)
         {
-            this.ShowMessage(message, "Script message");
+            this.ShowMessage(message, "脚本消息");
         }
         public bool ScriptQuestion(string message)
         {
             PlayInformationSound();
-            return this.ShowQuestion(message, MessageBoxImage.Question, "Script Question") == MessageBoxResult.Yes;
+            return this.ShowQuestion(message, MessageBoxImage.Question, "脚本询问") == MessageBoxResult.Yes;
         }
         public void ScriptWarning(string message)
         {
-            this.ShowWarning(message, "Script warning");
+            this.ShowWarning(message, "脚本警告");
         }
-        public void ScriptError(string error, string title = "Error", bool SetConsoleText = true)
+        public void ScriptError(string error, string title = "错误", bool SetConsoleText = true)
         {
             this.ShowError(error, title);
             if (SetConsoleText)
@@ -2552,9 +2552,14 @@ namespace UndertaleModTool
             OpenBrowser("https://github.com/UnderminersTeam/UndertaleModTool");
         }
 
+        private void MenuItem_GitHubZhCN_Click(object sender, RoutedEventArgs e)
+        {
+            OpenBrowser("https://github.com/Xenon-XG/UndertaleModTool");
+        }
+
         private void MenuItem_About_Click(object sender, RoutedEventArgs e)
         {
-            this.ShowMessage("UndertaleModTool by krzys_h and the Underminers team\nVersion " + Version, "About");
+            this.ShowMessage("UndertaleModTool 简体中文版\n作者：krzys_h 与 Underminers 团队\n版本 " + Version, "关于");
         }
 
         /// From https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Dialogs/AboutAvaloniaDialog.xaml.cs
@@ -2589,7 +2594,7 @@ namespace UndertaleModTool
             }
             catch (Exception e)
             {
-                Application.Current.MainWindow.ShowError("Failed to open browser!\n" + e);
+                Application.Current.MainWindow.ShowError("打开浏览器失败！\n" + e);
             }
         }
 
@@ -2609,7 +2614,7 @@ namespace UndertaleModTool
             }
             catch (Exception e)
             {
-                Application.Current.MainWindow.ShowError("Failed to open folder!\n" + e);
+                Application.Current.MainWindow.ShowError("打开文件夹失败！\n" + e);
             }
         }
 
@@ -2644,11 +2649,11 @@ namespace UndertaleModTool
 
             if (!Environment.Is64BitOperatingSystem)
             {
-                this.ShowWarning("Your operating system is 32-bit.\n" +
-                                  "The 32-bit (x86) version of UndertaleModTool is obsolete.\n" +
-                                  "If you wish to continue using the 32-bit version of UndertaleModTool, either use the GitHub Actions Artifacts, " +
-                                  "the Nightly builds if you don't have a GitHub account, or compile UTMT yourself.\n" +
-                                  "For any questions or more information, ask in the Underminers Discord server.");
+                this.ShowWarning("你的操作系统是 32 位的。\n" +
+                                  "32 位（x86）版本的 UndertaleModTool 已停止维护。\n" +
+                                  "如果你希望继续使用 32 位版本的 UndertaleModTool，可以使用 GitHub Actions 的构建产物，" +
+                                  "或者在没有 GitHub 账号时使用每夜构建，或者自行编译 UTMT。\n" +
+                                  "如有任何疑问或需要更多信息，请在 Underminers Discord 服务器中提问。");
                 window.UpdateButtonEnabled = true;
                     return;
 
@@ -2657,7 +2662,7 @@ namespace UndertaleModTool
             string sysDriveLetter = Path.GetTempPath()[0].ToString();
             if ((new DriveInfo(sysDriveLetter).AvailableFreeSpace / bytesToMB) < 500)
             {
-                this.ShowError($"Not enough space on the system drive {sysDriveLetter} - at least 500 MB is required.");
+                this.ShowError($"系统驱动器 {sysDriveLetter} 的空间不足——至少需要 500 MB。");
                 window.UpdateButtonEnabled = true;
                 return;
             }
@@ -2676,8 +2681,8 @@ namespace UndertaleModTool
             var result = await HttpGetAsync(baseUrl + "runs?branch=master&status=success&per_page=20");
             if (result?.IsSuccessStatusCode != true)
             {
-                string errText = $"{(result is null ? "Check your internet connection." : $"HTTP error - {result.ReasonPhrase}.")}";
-                this.ShowError($"Failed to fetch latest build!\n{errText}");
+                string errText = $"{(result is null ? "请检查你的网络连接。" : $"HTTP 错误：{result.ReasonPhrase}。")}";
+                this.ShowError($"获取最新构建失败！\n{errText}");
                 window.UpdateButtonEnabled = true;
                 return;
             }
@@ -2697,7 +2702,7 @@ namespace UndertaleModTool
             }
             if (action == null)
             {
-                this.ShowError($"Failed to find latest build!\nDetected action name - {detectedActionName}");
+                this.ShowError($"未能找到最新构建！\n检测的工作流名称：{detectedActionName}");
                 window.UpdateButtonEnabled = true;
                 return;
             }
@@ -2705,7 +2710,7 @@ namespace UndertaleModTool
             DateTime currDate = File.GetLastWriteTime(Path.Join(ExePath, "UndertaleModTool.exe"));
             DateTime lastDate = (DateTime)action["updated_at"];
             if (lastDate.Subtract(currDate).TotalMinutes <= 10)
-                if (this.ShowQuestion("UndertaleModTool is already up to date.\nUpdate anyway?") != MessageBoxResult.Yes)
+                if (this.ShowQuestion("UndertaleModTool 已是最新版本。\n仍要更新吗？") != MessageBoxResult.Yes)
                 {
                     window.UpdateButtonEnabled = true;
                     return;
@@ -2714,8 +2719,8 @@ namespace UndertaleModTool
             var result2 = await HttpGetAsync($"{baseUrl}runs/{action["id"]}/artifacts"); // Grab information about the artifacts
             if (result2?.IsSuccessStatusCode != true)
             {
-                string errText = $"{(result2 is null ? "Check your internet connection." : $"HTTP error - {result2.ReasonPhrase}.")}";
-                this.ShowError($"Failed to fetch latest build!\n{errText}");
+                string errText = $"{(result2 is null ? "请检查你的网络连接。" : $"HTTP 错误：{result2.ReasonPhrase}。")}";
+                this.ShowError($"获取最新构建失败！\n{errText}");
                 window.UpdateButtonEnabled = true;
                 return;
             }
@@ -2725,9 +2730,9 @@ namespace UndertaleModTool
 
             if (Environment.Is64BitOperatingSystem && !Environment.Is64BitProcess)
             {
-                if (this.ShowQuestion("Detected 32-bit (x86) version of UndertaleModTool on an 64-bit operating system.\n" +
-                                 "It's highly recommended to use the 64-bit version instead.\n" +
-                                 "Do you wish to download it?") != MessageBoxResult.Yes)
+                if (this.ShowQuestion("检测到在 64 位操作系统上运行的是 32 位（x86）版本的 UndertaleModTool。\n" +
+                                 "强烈建议改用 64 位版本。\n" +
+                                 "是否要下载 64 位版本？") != MessageBoxResult.Yes)
                 {
                     window.UpdateButtonEnabled = true;
                     return;
@@ -2746,7 +2751,7 @@ namespace UndertaleModTool
             }
             if (artifact is null)
             {
-                this.ShowError("Failed to find the artifact!");
+                this.ShowError("未能找到构建产物！");
                 window.UpdateButtonEnabled = true;
                 return;
             }
@@ -2762,11 +2767,11 @@ namespace UndertaleModTool
             string downloadOutput = Path.Join(tempFolder, "Update.zip.zip");
 
             // It's time to download; let's use a cool progress bar
-            scriptDialog = new("Downloading", "Downloading new version...")
+            scriptDialog = new("下载中", "正在下载新版本...")
             {
                 PreventClose = true,
                 Owner = this,
-                StatusText = "Downloaded MB: 0.00"
+                StatusText = "已下载 MB：0.00"
             };
             SetProgressBar();
 
@@ -2805,7 +2810,7 @@ namespace UndertaleModTool
                                 if (bytesToProgressCounter >= bytesToUpdateProgress)
                                 {
                                     bytesToProgressCounter -= bytesToUpdateProgress;
-                                    UpdateProgressStatus($"Downloaded MB: {(totalBytesDownloaded / bytesToMB).ToString("F2", CultureInfo.InvariantCulture)}");
+                                    UpdateProgressStatus($"已下载 MB：{(totalBytesDownloaded / bytesToMB).ToString("F2", CultureInfo.InvariantCulture)}");
                                 }
 
                                 // Read next bytes
@@ -2830,7 +2835,7 @@ namespace UndertaleModTool
                         string updaterFolder = Path.Join(ExePath, "Updater");
                         if (!File.Exists(Path.Join(updaterFolder, "UndertaleModToolUpdater.exe")))
                         {
-                            this.ShowError("Updater not found! Aborting update, report this to the devs!\nLocation checked: " + updaterFolder);
+                            this.ShowError("未找到更新程序！已中止更新，请将此问题报告给开发者！\n已检查的位置：" + updaterFolder);
                             return;
                         }
 
@@ -2847,7 +2852,7 @@ namespace UndertaleModTool
                         }
                         catch (Exception ex)
                         {
-                            this.ShowError($"Can't copy the updater app to the temporary folder.\n{ex}");
+                            this.ShowError($"无法将更新程序复制到临时文件夹。\n{ex}");
                             return;
                         }
                         File.WriteAllText(Path.Join(updaterFolderTemp, "actualAppFolder"), ExePath);
@@ -2866,7 +2871,7 @@ namespace UndertaleModTool
                     // Move back to UI thread to perform final actions
                     Dispatcher.Invoke(() =>
                     {
-                        this.ShowMessage("UndertaleModTool will now close to finish the update.");
+                        this.ShowMessage("UndertaleModTool 现在将关闭以完成更新。");
 
                         // Invoke updater
                         Process.Start(new ProcessStartInfo(Path.Join(updaterFolderTemp, "UndertaleModToolUpdater.exe"))
@@ -2891,7 +2896,7 @@ namespace UndertaleModTool
                 else
                     errMsg = e.Message;
 
-                this.ShowError($"Failed to download new version of UndertaleModTool.\nError - {errMsg}.");
+                this.ShowError($"下载新版本的 UndertaleModTool 失败。\n错误：{errMsg}");
                 window.UpdateButtonEnabled = true;
             }
         }
@@ -2900,7 +2905,7 @@ namespace UndertaleModTool
         {
             if (Data is null || FilePath is null)
             {
-                ScriptError("Nothing to run!");
+                ScriptError("没有可运行的内容！");
                 return;
             }
 
@@ -2908,7 +2913,7 @@ namespace UndertaleModTool
             string gameExeName = Data?.GeneralInfo?.FileName?.Content;
             if (gameExeName is null)
             {
-                ScriptError("Null game executable name or location");
+                ScriptError("游戏可执行文件的名称或位置为空");
                 return;
             }
 
@@ -2922,12 +2927,12 @@ namespace UndertaleModTool
                 gameExePath = Paths.TryJoinVerifyWithinDirectory(Path.GetDirectoryName(saveDataFilePath), $"{gameExeName}.exe");
                 if (gameExePath is null)
                 {
-                    ScriptError("Failed to find valid game executable path; escaped directory");
+                    ScriptError("未能找到有效的游戏可执行文件路径；路径越出了目录范围");
                     return;
                 }
                 if (!File.Exists(gameExePath))
                 {
-                    ScriptError($"Cannot find game executable path, expected to find it at: {gameExePath}");
+                    ScriptError($"找不到游戏可执行文件，预期路径：{gameExePath}");
                     return;
                 }
 
@@ -2939,12 +2944,11 @@ namespace UndertaleModTool
                 // No project loaded - warn about temp run not permanently saving anything
                 if (!WasWarnedAboutTempRun && SettingsWindow.TempRunMessageShow)
                 {
-                    ScriptMessage(@"WARNING:
-Temp running the game does not permanently 
-save your changes. Please ""Save"" the game
-to save your changes. Closing UndertaleModTool
-without using the ""Save"" option can
-result in loss of work.");
+                    ScriptMessage(@"警告：
+临时运行游戏并不会永久保存你的更改。
+请使用""保存""功能来保存更改。
+如果不使用""保存""选项就关闭 UndertaleModTool，
+可能会导致工作成果丢失。");
                     WasWarnedAboutTempRun = true;
                 }
 
@@ -2952,12 +2956,12 @@ result in loss of work.");
                 gameExePath = Paths.TryJoinVerifyWithinDirectory(Path.GetDirectoryName(FilePath), $"{gameExeName}.exe");
                 if (gameExePath is null)
                 {
-                    ScriptError("Failed to find valid game executable path; escaped directory");
+                    ScriptError("未能找到有效的游戏可执行文件路径；路径越出了目录范围");
                     return;
                 }
                 if (!File.Exists(gameExePath))
                 {
-                    ScriptError($"Cannot find game executable path, expected to find it at: {gameExePath}");
+                    ScriptError($"找不到游戏可执行文件，预期路径：{gameExePath}");
                     return;
                 }
 
@@ -2977,7 +2981,7 @@ result in loss of work.");
             {
                 if (!File.Exists(saveDataFilePath))
                 {
-                    ScriptError($"Cannot find game path, expected to find it at: {saveDataFilePath}");
+                    ScriptError($"找不到游戏数据文件，预期路径：{saveDataFilePath}");
                     return;
                 }
                 // TODO: possibly have a setting to add debug output via
@@ -2986,7 +2990,7 @@ result in loss of work.");
             }
             else
             {
-                this.ShowWarning("Save failed, cannot run.");
+                this.ShowWarning("保存失败，无法运行。");
             }
         }
         private async void Command_RunSpecial(object sender, ExecutedRoutedEventArgs e)
@@ -2997,32 +3001,32 @@ result in loss of work.");
             bool saveOk = true;
             if (!Data.GeneralInfo.IsDebuggerDisabled)
             {
-                if (this.ShowQuestion("The game has the debugger enabled. Would you like to disable it so the game will run?") == MessageBoxResult.Yes)
+                if (this.ShowQuestion("该游戏启用了调试器。是否禁用它以便游戏能够运行？") == MessageBoxResult.Yes)
                 {
                     Data.GeneralInfo.IsDebuggerDisabled = true;
                     if (!await DoSaveDialog())
                     {
-                        this.ShowError("You must save your changes to run.");
+                        this.ShowError("必须先保存更改才能运行。");
                         Data.GeneralInfo.IsDebuggerDisabled = false;
                         return;
                     }
                 }
                 else
                 {
-                    this.ShowError("Use the \"Run game using debugger\" option to run this game.");
+                    this.ShowError("请使用\"使用 GMS 调试器运行游戏\"选项来运行此游戏。");
                     return;
                 }
             }
             else
             {
                 Data.GeneralInfo.IsDebuggerDisabled = true;
-                if (this.ShowQuestion("Save changes first?") == MessageBoxResult.Yes)
+                if (this.ShowQuestion("先保存更改吗？") == MessageBoxResult.Yes)
                     saveOk = await DoSaveDialog();
             }
 
             if (FilePath == null)
             {
-                this.ShowWarning("The file must be saved in order to be run.");
+                this.ShowWarning("必须先保存文件才能运行。");
             }
             else if (saveOk)
             {
@@ -3041,8 +3045,8 @@ result in loss of work.");
             if (Data == null)
                 return;
 
-            var result = this.ShowQuestion("Are you sure that you want to run the game with GMS debugger?\n" +
-                                           "If you want to enable a debug mode in some game, then you need to use one of the scripts.");
+            var result = this.ShowQuestion("确定要使用 GMS 调试器运行游戏吗？\n" +
+                                           "如果你想启用某个游戏内置的调试模式，则需要使用相应的脚本。");
             if (result != MessageBoxResult.Yes)
                 return;
 
@@ -3052,7 +3056,7 @@ result in loss of work.");
             bool saveOk = await DoSaveDialog(true);
             if (FilePath == null)
             {
-                this.ShowWarning("The file must be saved in order to be run.");
+                this.ShowWarning("必须先保存文件才能运行。");
             }
             else if (saveOk)
             {
@@ -3063,7 +3067,7 @@ result in loss of work.");
                     return;
                 if (runtime.DebuggerPath == null)
                 {
-                    this.ShowError("The selected runtime does not support debugging.", "Run error");
+                    this.ShowError("所选运行时不支持调试。", "运行错误");
                     return;
                 }
 
@@ -3116,11 +3120,11 @@ result in loss of work.");
 			string idString;
             if (foundIndex == -2)
 			{	
-                idString = "None";
+                idString = "无";
         	}
             else if (foundIndex == -1)
             {
-                idString = "N/A";
+                idString = "不适用";
             }
             else
             {
@@ -3180,7 +3184,7 @@ result in loss of work.");
             UndertaleResource res = obj as UndertaleResource;
             if (res is null)
             {
-                string msg = $"Can't highlight the object - it's null or isn't an UndertaleResource.";
+                string msg = $"无法高亮该对象——它为空或不是 UndertaleResource。";
                 if (silent)
                     Debug.WriteLine(msg);
                 else
@@ -3210,7 +3214,7 @@ result in loss of work.");
             }
             catch (Exception ex)
             {
-                string msg = $"Can't highlight the object \"{objName}\".\nError - {ex.Message}";
+                string msg = $"无法高亮对象 \"{objName}\"。\n错误：{ex.Message}";
                 if (silent)
                     Debug.WriteLine(msg);
                 else
@@ -3221,7 +3225,7 @@ result in loss of work.");
 
             if (resListView is null)
             {
-                string msg = $"Can't highlight the object \"{objName}\" - element with object list not found.";
+                string msg = $"无法高亮对象 \"{objName}\"——未找到包含对象列表的元素。";
                 if (silent)
                     Debug.WriteLine(msg);
                 else
@@ -3301,7 +3305,7 @@ result in loss of work.");
         {
             if (Data is null)
             {
-                throw new ScriptException("No data file is currently loaded!");
+                throw new ScriptException("当前没有加载任何数据文件！");
             }
         }
 
@@ -3317,12 +3321,12 @@ result in loss of work.");
                 SaveFileDialog dlgout = new SaveFileDialog();
 
                 dlgout.DefaultExt = "txt";
-                dlgout.Filter = "Text files (.txt)|*.txt|All files|*";
+                dlgout.Filter = "文本文件 (.txt)|*.txt|所有文件|*";
                 dlgout.FileName = dlg.FileName + ".offsetmap.txt";
 
                 if (dlgout.ShowDialog() == true)
                 {
-                    LoaderDialog dialog = new LoaderDialog("Generating", "Loading, please wait...");
+                    LoaderDialog dialog = new LoaderDialog("生成中", "正在加载，请稍候...");
                     dialog.Owner = this;
                     Task t = Task.Run(() =>
                     {
@@ -3342,7 +3346,7 @@ result in loss of work.");
                         }
                         catch (Exception ex)
                         {
-                            this.ShowError("An error occurred while trying to load:\n" + ex.Message, "Load error");
+                            this.ShowError("尝试加载时发生错误：\n" + ex.Message, "加载错误");
                         }
 
                         Dispatcher.Invoke(() =>
@@ -3438,8 +3442,8 @@ result in loss of work.");
 
                     if (addDefaultTab)
                     {
-                        OpenInTab(new DescriptionView("Welcome to UndertaleModTool!",
-                                                      "Open a data.win file to get started, then double click on the items on the left to view them"));
+                        OpenInTab(new DescriptionView("欢迎使用 UndertaleModTool！",
+                                                      "打开一个 data.win 文件开始使用，然后双击左侧的项目即可查看"));
                         CurrentTab = Tabs[CurrentTabIndex];
 
                         UpdateObjectLabel(CurrentTab.CurrentObject);
@@ -3671,7 +3675,7 @@ result in loss of work.");
                 if (tab is null)
                     return;
 
-                if (tab.TabTitle != "Welcome!")
+                if (tab.TabTitle != "欢迎！")
                     CloseTab(tab.TabIndex);
             }
         }
@@ -3810,7 +3814,7 @@ result in loss of work.");
             {
                 DefaultExt = "win",
                 Filter = MainDataFileFilter,
-                Title = "Choose destination data file"
+                Title = "选择目标数据文件"
             };
             if (saveDataDialog.ShowDialog(this) != true)
             {
@@ -3822,7 +3826,7 @@ result in loss of work.");
             if (Path.GetFullPath(Path.GetDirectoryName(saveFilePath)).Equals(
                     Path.GetFullPath(Path.GetDirectoryName(sourceFilePath)), StringComparison.OrdinalIgnoreCase))
             {
-                if (this.ShowQuestionWithCancel("The destination data file is in the same directory as the source data file. This may permanently overwrite external data files. Proceed?", MessageBoxImage.Warning, "Destination file in same directory as source file") != MessageBoxResult.Yes)
+                if (this.ShowQuestionWithCancel("目标数据文件与源数据文件位于同一目录。这可能会永久覆盖外部数据文件。是否继续？", MessageBoxImage.Warning, "目标文件与源文件位于同一目录") != MessageBoxResult.Yes)
                 {
                     // Abort
                     return null;
@@ -3834,7 +3838,7 @@ result in loss of work.");
             {
                 if (!Directory.EnumerateFileSystemEntries(Path.GetDirectoryName(saveFilePath)).Any())
                 {
-                    this.ShowWarning("Currently, the destination data file's directory is empty. You will likely want to copy all other game files to the destination directory, so that external assets can be loaded correctly (both in-game and in this tool), and so the game can be started.");
+                    this.ShowWarning("目标数据文件所在的目录当前为空。你可能需要将其他所有游戏文件复制到目标目录，这样外部资源才能被正确加载（无论是在游戏中还是在本工具中），游戏也才能启动。");
                 }
             }
             catch (Exception)
@@ -3849,7 +3853,7 @@ result in loss of work.");
         {
             if (Project is not null && Project.HasUnexportedAssets)
             {
-                if (this.ShowQuestionWithCancel("There are assets marked to be exported in the current project - create a new project and discard all unexported changes?", MessageBoxImage.Warning, "Project already open") != MessageBoxResult.Yes)
+                if (this.ShowQuestionWithCancel("当前项目中仍有标记为待导出的资源——要新建项目并放弃所有未导出的更改吗？", MessageBoxImage.Warning, "项目已打开") != MessageBoxResult.Yes)
                 {
                     // Abort new project creation
                     return;
@@ -3863,7 +3867,7 @@ result in loss of work.");
                 {
                     DefaultExt = "win",
                     Filter = DataFileFilter,
-                    Title = "Choose source data file"
+                    Title = "选择源数据文件"
                 };
                 if (sourceDialog.ShowDialog(this) != true)
                 {
@@ -3879,11 +3883,11 @@ result in loss of work.");
             }
 
             // Ask for name
-            string projectName = SimpleTextInput("Choose project name", "Choose a name for the new project", $"{Data.GeneralInfo?.DisplayName?.Content ?? "New"} Mod", false, true);
+            string projectName = SimpleTextInput("选择项目名称", "为新项目选择一个名称", $"{Data.GeneralInfo?.DisplayName?.Content ?? "New"} Mod", false, true);
             if (projectName is null)
             {
                 // Name prompt was canceled
-                SetUMTConsoleText("Cancelled new project creation.");
+                SetUMTConsoleText("已取消新建项目。");
                 return;
             }
             projectName = projectName.Trim();
@@ -3893,7 +3897,7 @@ result in loss of work.");
             if (directory is null)
             {
                 // Directory prompt was canceled
-                SetUMTConsoleText("Cancelled new project creation.");
+                SetUMTConsoleText("已取消新建项目。");
                 return;
             }
 
@@ -3913,27 +3917,27 @@ result in loss of work.");
             }
             catch (ProjectException ex)
             {
-                this.ShowError(ex.Message, "Failed to create new project");
-                SetUMTConsoleText("Project creation failed.");
+                this.ShowError(ex.Message, "新建项目失败");
+                SetUMTConsoleText("项目创建失败。");
                 return;
             }
             catch (Exception ex)
             {
-                this.ShowError($"Error occurred when creating new project:\n{ex}");
-                SetUMTConsoleText("Project creation failed.");
+                this.ShowError($"新建项目时发生错误：\n{ex}");
+                SetUMTConsoleText("项目创建失败。");
                 return;
             }
 
             // Start using new project context
             AssignNewProject(newProjectContext);
-            SetUMTConsoleText($"Project \"{projectName}\" created successfully!");
+            SetUMTConsoleText($"项目 \"{projectName}\" 创建成功！");
         }
 
         private async void Command_OpenProject(object sender, ExecutedRoutedEventArgs e)
         {
             if (Project is not null && Project.HasUnexportedAssets)
             {
-                if (this.ShowQuestionWithCancel("There are assets marked to be exported in the current project - open another new project and discard all unexported changes?", MessageBoxImage.Warning, "Project already open") != MessageBoxResult.Yes)
+                if (this.ShowQuestionWithCancel("当前项目中仍有标记为待导出的资源——要打开另一个项目并放弃所有未导出的更改吗？", MessageBoxImage.Warning, "项目已打开") != MessageBoxResult.Yes)
                 {
                     // Abort opening project
                     return;
@@ -3944,8 +3948,8 @@ result in loss of work.");
             OpenFileDialog openProjectDialog = new()
             {
                 DefaultExt = "json",
-                Filter = "UndertaleModTool project files (.json)|*.json|All files|*",
-                Title = "Open project file"
+                Filter = "UndertaleModTool 项目文件 (.json)|*.json|所有文件|*",
+                Title = "打开项目文件"
             };
             if (openProjectDialog.ShowDialog(this) != true)
             {
@@ -3960,7 +3964,7 @@ result in loss of work.");
                 {
                     DefaultExt = "win",
                     Filter = DataFileFilter,
-                    Title = "Choose source data file"
+                    Title = "选择源数据文件"
                 };
                 if (sourceDialog.ShowDialog(this) != true)
                 {
@@ -4006,12 +4010,12 @@ result in loss of work.");
                 catch (ProjectException ex)
                 {
                     newProjectContext = null;
-                    this.ShowError(ex.Message, "Failed to load project");
+                    this.ShowError(ex.Message, "加载项目失败");
                 }
                 catch (Exception ex)
                 {
                     newProjectContext = null;
-                    this.ShowError($"Error occurred when loading project:\n{ex}");
+                    this.ShowError($"加载项目时发生错误：\n{ex}");
                 }
             });
             IsEnabled = true;
@@ -4019,13 +4023,13 @@ result in loss of work.");
             // Don't assign new project context if load failed
             if (newProjectContext is null)
             {
-                SetUMTConsoleText("Project failed to open.");
+                SetUMTConsoleText("项目打开失败。");
                 return;
             }
 
             // Start using new project context
             AssignNewProject(newProjectContext);
-            SetUMTConsoleText($"Opened project \"{newProjectContext.Name}\".");
+            SetUMTConsoleText($"已打开项目 \"{newProjectContext.Name}\"。");
         }
         private async void Command_SaveProject(object sender, ExecutedRoutedEventArgs e)
         {
@@ -4052,15 +4056,15 @@ result in loss of work.");
                 }
                 catch (ProjectException ex)
                 {
-                    this.ShowError(ex.Message, "Failed to save project");
+                    this.ShowError(ex.Message, "保存项目失败");
                 }
                 catch (Exception ex)
                 {
-                    this.ShowError($"Error occurred when saving project:\n{ex}");
+                    this.ShowError($"保存项目时发生错误：\n{ex}");
                 }
             });
             IsEnabled = true;
-            SetUMTConsoleText(success ? "Saved project successfully." : "Project failed to save.");
+            SetUMTConsoleText(success ? "项目保存成功。" : "项目保存失败。");
         }
 
         private void Command_ViewProjectAssets(object sender, ExecutedRoutedEventArgs e)
@@ -4111,7 +4115,7 @@ result in loss of work.");
             // Ensure user really wants to do this
             if (Project is not null && Project.HasUnexportedAssets)
             {
-                MessageBoxResult result = this.ShowQuestionWithCancel("There are assets marked to be exported in the current project. Really close?");
+                MessageBoxResult result = this.ShowQuestionWithCancel("当前项目中仍有标记为待导出的资源。确定要关闭吗？");
 
                 if (result != MessageBoxResult.Yes)
                 {
@@ -4121,7 +4125,7 @@ result in loss of work.");
 
             UnloadProject();
             UpdateObjectLabel(Selected);
-            SetUMTConsoleText("Project closed.");
+            SetUMTConsoleText("项目已关闭。");
         }
     }
 

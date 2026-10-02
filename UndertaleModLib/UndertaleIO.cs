@@ -120,7 +120,7 @@ namespace UndertaleModLib
                 }
                 if (CachedId >= list.Count)
                 {
-                    reader.SubmitWarning("Invalid value for resource ID of type " + typeof(ChunkT).Name + ": " + CachedId + " (there are only " + list.Count + ")");
+                    reader.SubmitWarning("类型为 " + typeof(ChunkT).Name + " 的资源 ID 无效：" + CachedId + "（总共只有 " + list.Count + " 个）");
                     return;
                 }
                 Resource = CachedId >= 0 ? list[CachedId] : default;
@@ -135,7 +135,7 @@ namespace UndertaleModLib
                     }
                     else
                     {
-                        reader.SubmitWarning("ID reference to null object found on file built with GMS pre-2!");
+                        reader.SubmitWarning("在 GMS 2 之前版本构建的文件中发现了指向空对象的 ID 引用！");
                     }
                 }
             }
@@ -305,7 +305,7 @@ namespace UndertaleModLib
             lenReader.ToHere();
 
             // Resolve resource IDs
-            SubmitMessage("Resolving resource IDs...");
+            SubmitMessage("正在解析资源 ID...");
             foreach (UndertaleResourceRef res in _resourceRefsToResolve)
             {
                 res.PostUnserialize(this);
@@ -325,7 +325,7 @@ namespace UndertaleModLib
                 }
                 catch (Exception e)
                 {
-                    SubmitWarning($"Error initializing game-specific data resolver:\n{e.GetType().FullName}: {e.Message}", false);
+                    SubmitWarning($"初始化游戏特定数据解析器时出错：\n{e.GetType().FullName}: {e.Message}", false);
                     data.GameSpecificRegistry = new(); // Use a blank registry...
                 }
 
@@ -401,9 +401,9 @@ namespace UndertaleModLib
                                       + countUnserializeExc.Message + "\n"
                                       + countUnserializeExc.StackTrace);
 
-                    SubmitWarning("Warning - there was an error while trying to unserialize total object count.\n" +
-                                  "The error log is saved to \"unserializeCountError.txt\"." +
-                                  "Please report that error to UndertaleModTool GitHub.");
+                    SubmitWarning("警告：统计对象总数时发生错误。\n" +
+                                  "错误日志已保存到 \"unserializeCountError.txt\"。" +
+                                  "请将该错误报告到 UndertaleModTool 的 GitHub。");
                 }
                 catch { }
 
@@ -414,9 +414,9 @@ namespace UndertaleModLib
 
             if (poolSize != 0 && poolSize != objectPool.Count)
             {
-                SubmitWarning("Warning - the estimated object pool size differs from the actual size.\n" +
-                             $"Estimated: {poolSize}, Actual: {objectPool.Count}\n" +
-                              "Please report this on UndertaleModTool GitHub.", false);
+                SubmitWarning("警告：估算的对象池大小与实际大小不一致。\n" +
+                             $"估算值：{poolSize}，实际值：{objectPool.Count}\n" +
+                              "请将此问题报告到 UndertaleModTool 的 GitHub。", false);
             }
 
             return false;
@@ -647,7 +647,7 @@ namespace UndertaleModLib
                     return;
                 if (expectedAddress != AbsPosition)
                 {
-                    SubmitWarning($"Reading misaligned at {AbsPosition:X8}, realigning back to {expectedAddress:X8}\nHIGH RISK OF DATA LOSS! The file is probably corrupted, or uses unsupported features\nProceed at your own risk");
+                    SubmitWarning($"读取位置在 {AbsPosition:X8} 处发生错位，正在重新对齐到 {expectedAddress:X8}\n数据丢失风险极高！文件可能已损坏，或使用了不受支持的特性\n请自行承担继续操作的风险");
                     AbsPosition = expectedAddress;
                 }
                 unreadObjects.Remove((uint)AbsPosition);
@@ -733,7 +733,7 @@ namespace UndertaleModLib
                 if (length != expectedLength)
                 {
                     int diff = (int)expectedLength - (int)length;
-                    reader.SubmitWarning("WARNING: File specified length " + expectedLength + ", but read only " + length + " (" + diff + " padding?)");
+                    reader.SubmitWarning("警告：文件声明的长度为 " + expectedLength + "，但实际只读取了 " + length + "（" + diff + " 字节的填充？）");
                     if (diff > 0)
                         reader.Position += (uint)diff;
                     else
@@ -831,7 +831,7 @@ namespace UndertaleModLib
                 }
             }
 
-            SubmitMessage("Flushing remaining buffer data...");
+            SubmitMessage("正在写入剩余的缓冲数据...");
             base.Flush();
         }
 

@@ -49,7 +49,7 @@ namespace UndertaleModTool.Windows
 
             if (data.GeneralInfo is null)
             {
-                this.ShowError("Cannot determine GameMaker version - \"General Info\" is null.");
+                this.ShowError("无法确定 GameMaker 版本——“常规信息”为空。");
                 dontShowWindow = true;
                 return;
             }
@@ -57,7 +57,7 @@ namespace UndertaleModTool.Windows
             (Type, string)[] sourceTypes = UndertaleResourceReferenceMap.GetTypeMapForVersion(obj.GetType(), data);
             if (sourceTypes is null)
             {
-                this.ShowError($"Cannot get the source types for object of type \"{obj.GetType()}\".");
+                this.ShowError($"无法获取类型为“{obj.GetType()}”的对象的来源类型。");
                 dontShowWindow = true;
                 return;
             }
@@ -81,7 +81,7 @@ namespace UndertaleModTool.Windows
 
             if (data.GeneralInfo is null)
             {
-                this.ShowError("Cannot determine GameMaker version - \"General Info\" is null.");
+                this.ShowError("无法确定 GameMaker 版本——“常规信息”为空。");
                 dontShowWindow = true;
                 return;
             }
@@ -125,8 +125,8 @@ namespace UndertaleModTool.Windows
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
                 dialog?.Close();
                 return false;
             }
@@ -165,7 +165,7 @@ namespace UndertaleModTool.Windows
 
                 if (typesList.Count == 0)
                 {
-                    this.ShowError("At least one type should be selected.");
+                    this.ShowError("至少应选择一种类型。");
                     return;
                 }
 
@@ -185,16 +185,16 @@ namespace UndertaleModTool.Windows
 
                 if (typesDict.Count == 0)
                 {
-                    this.ShowError("At least one type should be selected.");
+                    this.ShowError("至少应选择一种类型。");
                     return;
                 }
 
                 if (typesDict.Count > 1 && typesDict.ContainsKey(typeof(UndertaleString))
                     && data.Strings.Count > 5000)
                 {
-                    var res = this.ShowQuestion("You have selected the \"Strings\" when there are a lot of strings.\n" +
-                                                "That could make the search process noticeably longer.\n" +
-                                                "Do you want to proceed?");
+                    var res = this.ShowQuestion("字符串数量很多，而你选择了“字符串”类型。\n" +
+                                                "这可能会使搜索过程明显变长。\n" +
+                                                "是否继续？");
                     if (res != MessageBoxResult.Yes)
                         return;
                 }
@@ -210,8 +210,8 @@ namespace UndertaleModTool.Windows
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                         $"Please report this on GitHub.\n\n{ex}");
+                    mainWindow.ShowError("对象引用相关窗口发生错误。\n" +
+                                         $"请在 GitHub 上报告此问题。\n\n{ex}");
                     dialog?.Close();
                 }
             }

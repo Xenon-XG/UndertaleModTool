@@ -12,7 +12,7 @@
     </UserControl.Resources>
     <StackPanel>
         <TextBox Text="{Binding Value, ElementName=flagsBox}" />
-        <Expander Header="Flags">
+        <Expander Header="标志">
             <ItemsControl ItemsSource="{Binding Value, ElementName=flagsBox, Converter={StaticResource enumToValuesConverter}}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

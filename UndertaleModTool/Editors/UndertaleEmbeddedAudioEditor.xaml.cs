@@ -26,7 +26,7 @@ namespace UndertaleModTool
             {
                 if (DataContext is not UndertaleEmbeddedAudio target)
                 {
-                    return "Unknown";
+                    return "未知";
                 }
 
                 if (IsWav(target.Data))
@@ -37,7 +37,7 @@ namespace UndertaleModTool
                 {
                     return "OGG";
                 }
-                return "Unknown";
+                return "未知";
             }
         }
 
@@ -62,20 +62,20 @@ namespace UndertaleModTool
 
             OpenFileDialog dlg = new();
 
-            if (IsWav(target.Data)) 
+            if (IsWav(target.Data))
             {
                 dlg.DefaultExt = ".wav";
-                dlg.Filter = "WAV files|*.wav|All files|*";
-            } 
-            else if (IsOgg(target.Data)) 
+                dlg.Filter = "WAV 文件|*.wav|所有文件|*";
+            }
+            else if (IsOgg(target.Data))
             {
                 dlg.DefaultExt = ".ogg";
-                dlg.Filter = "OGG files|*.ogg|All files|*";
-            } 
-            else 
+                dlg.Filter = "OGG 文件|*.ogg|所有文件|*";
+            }
+            else
             {
                 dlg.DefaultExt = "";
-                dlg.Filter = "All files|*";
+                dlg.Filter = "所有文件|*";
             }
 
             if (dlg.ShowDialog() == true)
@@ -85,7 +85,7 @@ namespace UndertaleModTool
                     byte[] data = File.ReadAllBytes(dlg.FileName);
                     if (!IsWav(data) && !IsOgg(data)) 
                     {
-                        if (mainWindow.ShowQuestionWithCancel("Warning: File being imported is not a WAV or OGG. Import anyway?\r\n\r\nThis may corrupt the sound.", MessageBoxImage.Warning, "Unknown format") != MessageBoxResult.Yes)
+                        if (mainWindow.ShowQuestionWithCancel("警告：要导入的文件不是 WAV 或 OGG 格式。仍要导入吗？\r\n\r\n这可能会损坏该声音。", MessageBoxImage.Warning, "未知格式") != MessageBoxResult.Yes)
                         {
                             return;
                         }
@@ -93,8 +93,8 @@ namespace UndertaleModTool
                     else if ((IsWav(target.Data) && IsOgg(data)) || (IsOgg(target.Data) && IsWav(data)))
                     {
                         if (mainWindow.ShowQuestionWithCancel(
-                            "Warning: Filetype being imported does not match existing filetype. Import anyway?\r\n\r\n" +
-                            "This may corrupt the sound, unless sound asset compression settings are adjusted as well.", MessageBoxImage.Warning, "Format mismatch") != MessageBoxResult.Yes)
+                            "警告：要导入的文件类型与现有文件类型不匹配。仍要导入吗？\r\n\r\n" +
+                            "除非同时调整声音资源的压缩设置，否则这可能会损坏该声音。", MessageBoxImage.Warning, "格式不匹配") != MessageBoxResult.Yes)
                         {
                             return;
                         }
@@ -104,7 +104,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to import file: " + ex.Message, "Failed to import file");
+                    mainWindow.ShowError("导入文件失败：" + ex.Message, "导入文件失败");
                 }
             }
         }
@@ -115,20 +115,20 @@ namespace UndertaleModTool
 
             SaveFileDialog dlg = new SaveFileDialog();
 
-            if (IsWav(target.Data)) 
+            if (IsWav(target.Data))
             {
                 dlg.DefaultExt = ".wav";
-                dlg.Filter = "WAV files|*.wav|All files|*";
-            } 
-            else if (IsOgg(target.Data)) 
+                dlg.Filter = "WAV 文件|*.wav|所有文件|*";
+            }
+            else if (IsOgg(target.Data))
             {
                 dlg.DefaultExt = ".ogg";
-                dlg.Filter = "OGG files|*.ogg|All files|*";
-            } 
-            else 
+                dlg.Filter = "OGG 文件|*.ogg|所有文件|*";
+            }
+            else
             {
                 dlg.DefaultExt = "";
-                dlg.Filter = "All files|*";
+                dlg.Filter = "所有文件|*";
             }
 
             if (dlg.ShowDialog() == true)
@@ -139,7 +139,7 @@ namespace UndertaleModTool
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.ShowError("Failed to export file: " + ex.Message, "Failed to export file");
+                    mainWindow.ShowError("导出文件失败：" + ex.Message, "导出文件失败");
                 }
             }
         }
@@ -178,13 +178,13 @@ namespace UndertaleModTool
                 }
                 else
                 {
-                    mainWindow.ShowError("Failed to play audio!\r\nNot a WAV or OGG.", "Audio failure");
+                    mainWindow.ShowError("播放音频失败！\r\n不是 WAV 或 OGG 格式。", "音频错误");
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 waveOut = null;
-                mainWindow.ShowError("Failed to play audio!\r\n" + ex.Message, "Audio failure");
+                mainWindow.ShowError("播放音频失败！\r\n" + ex.Message, "音频错误");
             }
         }
 

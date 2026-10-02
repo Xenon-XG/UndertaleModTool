@@ -125,7 +125,7 @@ namespace UndertaleModTool
             } 
             catch (Exception e)
             {
-                MessageBox.Show($"Failed to load settings.json! Using default values.\n{e.Message}");
+                MessageBox.Show($"加载 settings.json 失败！将使用默认值。\n{e.Message}");
                 new Settings() { DecompilerSettings = existingDecompilerSettings ?? new() };
             }
         }
@@ -141,7 +141,7 @@ namespace UndertaleModTool
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Failed to save settings.json!\n{e.Message}");
+                MessageBox.Show($"保存 settings.json 失败！\n{e.Message}");
             }
         }
     }

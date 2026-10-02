@@ -123,11 +123,11 @@ namespace UndertaleModTool
                 bool hasAlpha = bool.Parse((string)parameter);
 
                 if (val[0] != '#')
-                    return new ValidationResult(false, "Invalid color string");
+                    return new ValidationResult(false, "无效的颜色字符串");
 
                 val = val[1..];
                 if (val.Length != (hasAlpha ? 8 : 6))
-                    return new ValidationResult(false, "Invalid color string");
+                    return new ValidationResult(false, "无效的颜色字符串");
 
                 if (!hasAlpha)
                     val = "FF" + val; // add alpha (255)

@@ -73,7 +73,7 @@ namespace UndertaleModTool
             if (!File.Exists(gameExePath))
                 return;
 
-            Runtimes.Add(new Runtime() { Version = "Game EXE", Path = gameExePath });
+            Runtimes.Add(new Runtime() { Version = "游戏 EXE", Path = gameExePath });
         }
 
         private void DiscoverGMS1()
@@ -118,7 +118,7 @@ namespace UndertaleModTool
             DiscoverRuntimes(dataFilePath, data);
             if (Runtimes.Count == 0)
             {
-                this.ShowError("Unable to find game EXE or any installed Studio runtime", "Run error");
+                this.ShowError("找不到游戏 EXE，也未找到任何已安装的 Studio 运行时", "运行错误");
                 return null;
             }
             else if (Runtimes.Count == 1)

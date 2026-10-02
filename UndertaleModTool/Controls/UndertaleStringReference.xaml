@@ -8,8 +8,8 @@
              d:DesignHeight="20" d:DesignWidth="300">
     <UserControl.Resources>
         <local:ContextMenuDark x:Key="contextMenu" Opened="MenuItem_ContextMenuOpened">
-            <MenuItem Header="Open in new tab" Click="OpenInNewTabItem_Click"/>
-            <MenuItem Header="Find all references" Click="FindAllReferencesItem_Click"/>
+            <MenuItem Header="在新标签页中打开" Click="OpenInNewTabItem_Click"/>
+            <MenuItem Header="查找所有引用" Click="FindAllReferencesItem_Click"/>
         </local:ContextMenuDark>
     </UserControl.Resources>
     <Grid>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <local:TextBoxDark Grid.Column="0" x:Name="ObjectText" AllowDrop="True"
-                           ToolTip="This is an string reference. Change the value here to edit this just this value of all referenced values, or drag and drop another string instance from the tree on the left to change the reference"
+                           ToolTip="这是一个字符串引用。可在此处直接修改字符串的值（可选择只修改此处的值，或修改所有引用处的值），也可以从左侧的树中拖放另一个字符串到此处以更改引用"
                            Text="{Binding ObjectReference.Content, RelativeSource={RelativeSource AncestorType=UserControl}, UpdateSourceTrigger=Explicit}"
                            PreviewDragOver="TextBox_DragOver" PreviewDrop="TextBox_Drop" LostFocus="TextBox_LostFocus" PreviewMouseDown="Details_MouseDown">
             <TextBox.Style>
@@ -26,12 +26,12 @@
                     <Style.Resources>
                         <VisualBrush x:Key="EmptyBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Padding="2, 0" Content="(empty)" Foreground="DarkGray"/>
+                                <Label Padding="2, 0" Content="(空字符串)" Foreground="DarkGray"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                         <VisualBrush x:Key="NullBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Padding="2, 0" Content="(null)" Foreground="DarkGray"/>
+                                <Label Padding="2, 0" Content="(空引用)" Foreground="DarkGray"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>
@@ -51,7 +51,7 @@
                 </Style>
             </TextBox.Style>
         </local:TextBoxDark>
-        <local:ButtonDark Grid.Column="1" Click="Details_Click" MouseDown="Details_MouseDown" Content=" ... " ToolTip="Open referenced object">
+        <local:ButtonDark Grid.Column="1" Click="Details_Click" MouseDown="Details_MouseDown" Content=" ... " ToolTip="打开引用的对象">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Style.Triggers>

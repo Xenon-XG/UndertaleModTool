@@ -24,7 +24,7 @@ namespace UndertaleModLib
                 writer.Write(Name.ToCharArray());
                 var lenWriter = writer.WriteLengthHere();
 
-                writer.SubmitMessage("Writing chunk " + Name);
+                writer.SubmitMessage("正在写入区块 " + Name);
                 lenWriter.FromHere();
                 SerializeChunk(writer);
                 
@@ -82,7 +82,7 @@ namespace UndertaleModLib
                 chunk.Length = length;
 
                 // Read chunk contents
-                reader.SubmitMessage("Reading chunk " + chunk.Name);
+                reader.SubmitMessage("正在读取区块 " + chunk.Name);
                 EnsureLengthOperation lenReader = reader.EnsureLengthFromHere(chunk.Length);
                 reader.CopyChunkToBuffer(length);
                 chunk.UnserializeChunk(reader);
@@ -150,7 +150,7 @@ namespace UndertaleModLib
 
                 // Count objects in chunk
                 long chunkStart = reader.Position;
-                reader.SubmitMessage("Counting objects of chunk " + chunk.Name);
+                reader.SubmitMessage("正在统计区块 " + chunk.Name + " 的对象数量");
                 reader.CopyChunkToBuffer(length);
                 uint count = chunk.UnserializeObjectCount(reader);
 
@@ -339,7 +339,7 @@ namespace UndertaleModLib
 
                 if (reader.undertaleData.GeneralInfo.BytecodeVersion >= 13 && !reader.undertaleData.IsVersionAtLeast(2024, 11))
                 {
-                    reader.SubmitWarning("Zero values in an AlignUpdatedListChunk encountered on potential pre-2024.11 Bytecode 13+!");
+                    reader.SubmitWarning("在可能为 2024.11 之前版本的 Bytecode 13+ 文件的 AlignUpdatedListChunk 中遇到了零值！");
                 }
                 count--;
             }

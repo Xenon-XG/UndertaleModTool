@@ -49,7 +49,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleGameObject), "Game objects")
+                            (typeof(UndertaleGameObject), "游戏对象")
                         }
                     },
                     new TypesForVersion
@@ -57,9 +57,9 @@ namespace UndertaleModTool.Windows
                         Version = (2, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.Tile), "Room tiles"),
-                            (typeof(UndertaleRoom.SpriteInstance), "Room sprite instances"),
-                            (typeof(UndertaleRoom.Layer.LayerBackgroundData), "Room background layers")
+                            (typeof(UndertaleRoom.Tile), "房间图块"),
+                            (typeof(UndertaleRoom.SpriteInstance), "房间精灵实例"),
+                            (typeof(UndertaleRoom.Layer.LayerBackgroundData), "房间背景图层")
                         }
                     },
                     new TypesForVersion
@@ -67,7 +67,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 2, 1),
                         Types = new[]
                         {
-                            (typeof(UndertaleTextureGroupInfo), "Texture groups")
+                            (typeof(UndertaleTextureGroupInfo), "纹理组")
                         }
                     },
                     new TypesForVersion
@@ -75,7 +75,7 @@ namespace UndertaleModTool.Windows
                         Version = (2023, 2, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleParticleSystemEmitter), "Particle system emitters")
+                            (typeof(UndertaleParticleSystemEmitter), "粒子系统发射器")
                         }
                     }
                 }
@@ -89,8 +89,8 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.Background), "Room backgrounds"),
-                            (typeof(UndertaleRoom.Tile), "Room tiles")
+                            (typeof(UndertaleRoom.Background), "房间背景"),
+                            (typeof(UndertaleRoom.Tile), "房间图块")
                         }
                     },
                     new TypesForVersion
@@ -100,7 +100,7 @@ namespace UndertaleModTool.Windows
                         {
                             (typeof(UndertaleRoom.Background), null),
                             (typeof(UndertaleRoom.Tile), null),
-                            (typeof(UndertaleRoom.Layer), "Room tile layers")
+                            (typeof(UndertaleRoom.Layer), "房间图块图层")
                         }
                     },
                     new TypesForVersion
@@ -108,7 +108,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 2, 1),
                         Types = new[]
                         {
-                            (typeof(UndertaleTextureGroupInfo), "Texture groups")
+                            (typeof(UndertaleTextureGroupInfo), "纹理组")
                         }
                     }
                 }
@@ -122,7 +122,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleTexturePageItem), "Texture page items")
+                            (typeof(UndertaleTexturePageItem), "纹理页项")
                         }
                     },
                     new TypesForVersion
@@ -130,7 +130,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 2, 1),
                         Types = new[]
                         {
-                            (typeof(UndertaleTextureGroupInfo), "Texture groups")
+                            (typeof(UndertaleTextureGroupInfo), "纹理组")
                         }
                     },
                 }
@@ -144,7 +144,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 2, 1),
                         Types = new[]
                         {
-                            (typeof(UndertaleTextureGroupInfo), "Texture groups")
+                            (typeof(UndertaleTextureGroupInfo), "纹理组")
                         }
                     }
                 }
@@ -158,9 +158,9 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleSprite), "Sprites"),
-                            (typeof(UndertaleBackground), "Backgrounds"),
-                            (typeof(UndertaleFont), "Fonts")
+                            (typeof(UndertaleSprite), "精灵"),
+                            (typeof(UndertaleBackground), "背景"),
+                            (typeof(UndertaleFont), "字体")
                         }
                     },
                     new TypesForVersion()
@@ -168,8 +168,8 @@ namespace UndertaleModTool.Windows
                         Version = (2, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleBackground), "Tile sets"),
-                            (typeof(UndertaleEmbeddedImage), "Embedded images")
+                            (typeof(UndertaleBackground), "图块集"),
+                            (typeof(UndertaleEmbeddedImage), "内嵌图像")
                         }
                     }
                 }
@@ -183,26 +183,26 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleBackground), "Backgrounds"),
-                            (typeof(UndertaleCode), "Code entries (name and contents)"),
-                            (typeof(UndertaleVariable), "Variables"),
-                            (typeof(UndertaleFunction), "Functions"),
-                            (typeof(UndertaleSound), "Sounds"),
-                            (typeof(UndertaleAudioGroup), "Audio groups"),
-                            (typeof(UndertaleSprite), "Sprites"),
-                            (typeof(UndertaleExtension), "Extensions"),
-                            (typeof(UndertaleExtensionFile), "Extension files"),
-                            (typeof(UndertaleExtensionOption), "Extension options"),
-                            (typeof(UndertaleExtensionFunction), "Extension functions"),
-                            (typeof(UndertaleFont), "Fonts"),
-                            (typeof(UndertaleGameObject), "Game objects"),
-                            (typeof(UndertaleGeneralInfo), "General info"),
-                            (typeof(UndertaleOptions.Constant), "Game options constants"),
-                            (typeof(UndertalePath), "Paths"),
-                            (typeof(UndertaleRoom), "Rooms"),
-                            (typeof(UndertaleScript), "Scripts"),
-                            (typeof(UndertaleShader), "Shaders"),
-                            (typeof(UndertaleTimeline), "Timelines")
+                            (typeof(UndertaleBackground), "背景"),
+                            (typeof(UndertaleCode), "代码条目（名称和内容）"),
+                            (typeof(UndertaleVariable), "变量"),
+                            (typeof(UndertaleFunction), "函数"),
+                            (typeof(UndertaleSound), "声音"),
+                            (typeof(UndertaleAudioGroup), "音频组"),
+                            (typeof(UndertaleSprite), "精灵"),
+                            (typeof(UndertaleExtension), "扩展"),
+                            (typeof(UndertaleExtensionFile), "扩展文件"),
+                            (typeof(UndertaleExtensionOption), "扩展选项"),
+                            (typeof(UndertaleExtensionFunction), "扩展函数"),
+                            (typeof(UndertaleFont), "字体"),
+                            (typeof(UndertaleGameObject), "游戏对象"),
+                            (typeof(UndertaleGeneralInfo), "常规信息"),
+                            (typeof(UndertaleOptions.Constant), "游戏选项常量"),
+                            (typeof(UndertalePath), "路径"),
+                            (typeof(UndertaleRoom), "房间"),
+                            (typeof(UndertaleScript), "脚本"),
+                            (typeof(UndertaleShader), "着色器"),
+                            (typeof(UndertaleTimeline), "时间轴")
                         }
                     },
                     new TypesForVersion
@@ -212,7 +212,7 @@ namespace UndertaleModTool.Windows
                         BeforeVersion = (2024, 8, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleCodeLocals), "Code locals")
+                            (typeof(UndertaleCodeLocals), "代码局部变量")
                         }
                     },
                     new TypesForVersion
@@ -221,7 +221,7 @@ namespace UndertaleModTool.Windows
                         Version = (16, uint.MaxValue, uint.MaxValue),
                         Types = new[]
                         {
-                            (typeof(UndertaleLanguage), "Languages"),
+                            (typeof(UndertaleLanguage), "语言"),
                         }
                     },
                     new TypesForVersion
@@ -229,10 +229,10 @@ namespace UndertaleModTool.Windows
                         Version = (2, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleBackground), "Tile sets"),
-                            (typeof(UndertaleEmbeddedImage), "Embedded images"),
-                            (typeof(UndertaleRoom.Layer), "Room layers"),
-                            (typeof(UndertaleRoom.SpriteInstance), "Room sprite instances")
+                            (typeof(UndertaleBackground), "图块集"),
+                            (typeof(UndertaleEmbeddedImage), "内嵌图像"),
+                            (typeof(UndertaleRoom.Layer), "房间图层"),
+                            (typeof(UndertaleRoom.SpriteInstance), "房间精灵实例")
                         }
                     },
                     new TypesForVersion
@@ -240,7 +240,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 2, 1),
                         Types = new[]
                         {
-                            (typeof(UndertaleTextureGroupInfo), "Texture groups")
+                            (typeof(UndertaleTextureGroupInfo), "纹理组")
                         }
                     },
                     new TypesForVersion
@@ -248,14 +248,14 @@ namespace UndertaleModTool.Windows
                         Version = (2, 3, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleAnimationCurve), "Animation curves"),
-                            (typeof(UndertaleAnimationCurve.Channel), "Animation curve channels"),
-                            (typeof(UndertaleRoom.SequenceInstance), "Room sequence instances"),
-                            (typeof(UndertaleSequence), "Sequences"),
-                            (typeof(UndertaleSequence.Track), "Sequence tracks"),
-                            (typeof(UndertaleSequence.BroadcastMessage), "Sequence broadcast messages"),
-                            (typeof(UndertaleSequence.Moment), "Sequence moments"),
-                            (typeof(UndertaleSequence.StringKeyframes), "Sequence string keyframes")
+                            (typeof(UndertaleAnimationCurve), "动画曲线"),
+                            (typeof(UndertaleAnimationCurve.Channel), "动画曲线通道"),
+                            (typeof(UndertaleRoom.SequenceInstance), "房间序列实例"),
+                            (typeof(UndertaleSequence), "序列"),
+                            (typeof(UndertaleSequence.Track), "序列轨道"),
+                            (typeof(UndertaleSequence.BroadcastMessage), "序列广播消息"),
+                            (typeof(UndertaleSequence.Moment), "序列时刻"),
+                            (typeof(UndertaleSequence.StringKeyframes), "序列字符串关键帧")
                         }
                     },
                     new TypesForVersion
@@ -263,7 +263,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 3, 6),
                         Types = new[]
                         {
-                            (typeof(UndertaleFilterEffect), "Filter effects")
+                            (typeof(UndertaleFilterEffect), "滤镜效果")
                         }
                     },
                     new TypesForVersion
@@ -271,7 +271,7 @@ namespace UndertaleModTool.Windows
                         Version = (2022, 1, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.EffectProperty), "Room effect properties")
+                            (typeof(UndertaleRoom.EffectProperty), "房间效果属性")
                         }
                     },
                     new TypesForVersion
@@ -279,7 +279,7 @@ namespace UndertaleModTool.Windows
                         Version = (2022, 2, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleSequence.TextKeyframes), "Sequence track text keyframes")
+                            (typeof(UndertaleSequence.TextKeyframes), "序列轨道文本关键帧")
                         }
                     },
                     new TypesForVersion
@@ -287,9 +287,9 @@ namespace UndertaleModTool.Windows
                         Version = (2023, 2, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleParticleSystem), "Particle systems"),
-                            (typeof(UndertaleParticleSystemEmitter), "Particle system emitters"),
-                            (typeof(UndertaleRoom.ParticleSystemInstance), "Room particle system instances")
+                            (typeof(UndertaleParticleSystem), "粒子系统"),
+                            (typeof(UndertaleParticleSystemEmitter), "粒子系统发射器"),
+                            (typeof(UndertaleRoom.ParticleSystemInstance), "房间粒子系统实例")
                         }
                     }
                 }
@@ -303,8 +303,8 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleGameObject), "Game objects (children)"),
-                            (typeof(UndertaleRoom.GameObject), "Room object instance")
+                            (typeof(UndertaleGameObject), "游戏对象（子对象）"),
+                            (typeof(UndertaleRoom.GameObject), "房间对象实例")
                         }
                     },
                     new TypesForVersion
@@ -312,7 +312,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 3, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleSequence.InstanceKeyframes), "Sequence instance keyframes")
+                            (typeof(UndertaleSequence.InstanceKeyframes), "序列实例关键帧")
                         }
                     },
                 }
@@ -326,11 +326,11 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleGameObject), "Game objects"),
-                            (typeof(UndertaleRoom), "Rooms"),
-                            (typeof(UndertaleRoom.GameObject), "Room object instances (creation code)"),
-                            (typeof(UndertaleGlobalInit), "Global initialization and game end scripts"),
-                            (typeof(UndertaleScript), "Scripts")
+                            (typeof(UndertaleGameObject), "游戏对象"),
+                            (typeof(UndertaleRoom), "房间"),
+                            (typeof(UndertaleRoom.GameObject), "房间对象实例（创建代码）"),
+                            (typeof(UndertaleGlobalInit), "全局初始化与游戏结束脚本"),
+                            (typeof(UndertaleScript), "脚本")
                         }
                     },
                     new TypesForVersion()
@@ -339,7 +339,7 @@ namespace UndertaleModTool.Windows
                         Version = (16, uint.MaxValue, uint.MaxValue),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.GameObject), "Room object instances (creation or pre create code)")
+                            (typeof(UndertaleRoom.GameObject), "房间对象实例（创建代码或预创建代码）")
                         }
                     }
                 }
@@ -353,7 +353,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleSound), "Sounds")
+                            (typeof(UndertaleSound), "声音")
                         }
                     }
                 }
@@ -367,7 +367,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleSound), "Sounds")
+                            (typeof(UndertaleSound), "声音")
                         }
                     }
                 }
@@ -381,7 +381,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleCode), "Code")
+                            (typeof(UndertaleCode), "代码")
                         }
                     }
                 }
@@ -395,7 +395,7 @@ namespace UndertaleModTool.Windows
                         Version = (1, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleCode), "Code")
+                            (typeof(UndertaleCode), "代码")
                         }
                     }
                 }
@@ -409,7 +409,7 @@ namespace UndertaleModTool.Windows
                         Version = (2, 0, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.Layer), "Room tile layer")
+                            (typeof(UndertaleRoom.Layer), "房间图块图层")
                         }
                     }
                 }
@@ -423,7 +423,7 @@ namespace UndertaleModTool.Windows
                         Version = (2023, 2, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleRoom.ParticleSystemInstance), "Room particle system instances")
+                            (typeof(UndertaleRoom.ParticleSystemInstance), "房间粒子系统实例")
                         }
                     }
                 }
@@ -437,8 +437,8 @@ namespace UndertaleModTool.Windows
                         Version = (2023, 2, 0),
                         Types = new[]
                         {
-                            (typeof(UndertaleParticleSystem), "Particle systems"),
-                            (typeof(UndertaleParticleSystemEmitter), "Particle system emitters")
+                            (typeof(UndertaleParticleSystem), "粒子系统"),
+                            (typeof(UndertaleParticleSystemEmitter), "粒子系统发射器")
                         }
                     }
                 }
@@ -448,20 +448,20 @@ namespace UndertaleModTool.Windows
         // From `typeMap`
         private static readonly Dictionary<Type, (string, GameVersion)> referenceableTypesOrig = new()
         {
-            { typeof(UndertaleSprite), ("Sprites", (1, 0, 0)) },
-            { typeof(UndertaleBackground), ("Backgrounds", (1, 0, 0)) },
-            { typeof(UndertaleEmbeddedTexture), ("Embedded textures", (1, 0, 0)) },
-            { typeof(UndertaleFont), ("Fonts", (1, 0, 0)) },
-            { typeof(UndertaleTexturePageItem), ("Texture page items", (1, 0, 0)) },
-            { typeof(UndertaleString), ("Strings", (1, 0, 0)) },
-            { typeof(UndertaleGameObject), ("Game objects", (1, 0, 0)) },
-            { typeof(UndertaleCode), ("Code entries", (1, 0, 0)) },
-            { typeof(UndertaleFunction), ("Functions", (1, 0, 0)) },
-            { typeof(UndertaleVariable), ("Variables", (1, 0, 0)) },
-            { typeof(UndertaleEmbeddedAudio), ("Embedded audio", (1, 0, 0)) },
-            { typeof(UndertaleAudioGroup), ("Audio groups", (1, 0, 0)) },
-            { typeof(UndertaleParticleSystem), ("Particle systems", (2023, 2, 0)) },
-            { typeof(UndertaleParticleSystemEmitter), ("Particle system emitters", (2023, 2, 0)) }
+            { typeof(UndertaleSprite), ("精灵", (1, 0, 0)) },
+            { typeof(UndertaleBackground), ("背景", (1, 0, 0)) },
+            { typeof(UndertaleEmbeddedTexture), ("内嵌纹理", (1, 0, 0)) },
+            { typeof(UndertaleFont), ("字体", (1, 0, 0)) },
+            { typeof(UndertaleTexturePageItem), ("纹理页项", (1, 0, 0)) },
+            { typeof(UndertaleString), ("字符串", (1, 0, 0)) },
+            { typeof(UndertaleGameObject), ("游戏对象", (1, 0, 0)) },
+            { typeof(UndertaleCode), ("代码条目", (1, 0, 0)) },
+            { typeof(UndertaleFunction), ("函数", (1, 0, 0)) },
+            { typeof(UndertaleVariable), ("变量", (1, 0, 0)) },
+            { typeof(UndertaleEmbeddedAudio), ("内嵌音频", (1, 0, 0)) },
+            { typeof(UndertaleAudioGroup), ("音频组", (1, 0, 0)) },
+            { typeof(UndertaleParticleSystem), ("粒子系统", (2023, 2, 0)) },
+            { typeof(UndertaleParticleSystemEmitter), ("粒子系统发射器", (2023, 2, 0)) }
         };
         private static Dictionary<Type, string> referenceableTypes;
         private static GameVersion currVersion;
@@ -527,7 +527,7 @@ namespace UndertaleModTool.Windows
                 return referenceableTypes;
             
             referenceableTypes[typeof(UndertaleBackground)] = version.CompareTo((2, 0, 0)) >= 0
-                                                              ? "Tile sets" : "Backgrounds";
+                                                              ? "图块集" : "背景";
 
             return referenceableTypes;
         }

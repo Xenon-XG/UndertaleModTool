@@ -73,14 +73,14 @@ public partial class Program : IScriptInterface
     public void EnsureDataLoaded()
     {
         if (Data is null)
-            throw new ScriptException("No data file is currently loaded!");
+            throw new ScriptException("当前未加载任何数据文件！");
     }
 
     /// <inheritdoc/>
     public bool MakeNewDataFile()
     {
         Data = UndertaleData.CreateNew();
-        Console.WriteLine("New file created.");
+        Console.WriteLine("已创建新文件。");
         return true;
     }
 
@@ -94,7 +94,7 @@ public partial class Program : IScriptInterface
     /// <inheritdoc/>
     public void ScriptWarning(string message)
     {
-        Console.WriteLine($"WARNING: {message}");
+        Console.WriteLine($"警告：{message}");
         if (IsInteractive) Pause();
     }
 
@@ -111,11 +111,11 @@ public partial class Program : IScriptInterface
     {
         while (true)
         {
-            Console.Write($"{message} (Y/N): ");
+            Console.Write($"{message} (Y/N)：");
             string input = ReadLineWithFallback()?.Trim().ToLower();
 
             if (string.IsNullOrEmpty(input))
-                Console.WriteLine("Please enter Y or N.");
+                Console.WriteLine("请输入 Y 或 N。");
 
             if (input == "y" || input == "yes")
                 return true;
@@ -123,23 +123,23 @@ public partial class Program : IScriptInterface
             if (input == "n" || input == "no")
                 return false;
 
-            Console.WriteLine("Invalid input. Please enter Y or N.");
+            Console.WriteLine("输入无效。请输入 Y 或 N。");
         }
     }
 
     /// <inheritdoc/>
-    public void ScriptError(string error, string title = "Error", bool setConsoleText = true)
+    public void ScriptError(string error, string title = "错误", bool setConsoleText = true)
     {
         // No need to care about setConsoleText if we're in CLI.
 
         Console.Error.WriteLine("--------------------------------------------------");
-        Console.Error.WriteLine("----------------------ERROR!----------------------");
+        Console.Error.WriteLine("----------------------错误！----------------------");
         Console.Error.WriteLine("--------------------------------------------------");
         Console.Error.WriteLine(title);
         Console.Error.WriteLine("--------------------------------------------------");
         Console.Error.WriteLine(error);
         Console.Error.WriteLine("--------------------------------------------------");
-        Console.Error.WriteLine("----------------------ERROR!----------------------");
+        Console.Error.WriteLine("----------------------错误！----------------------");
         Console.Error.WriteLine("--------------------------------------------------");
         if (IsInteractive) { Pause(); }
     }
@@ -151,13 +151,13 @@ public partial class Program : IScriptInterface
         if (!allowMultiline)
             defaultText = defaultText.Remove(defaultText.IndexOf('\n'));
 
-        Console.WriteLine("----------------------OUTPUT----------------------");
+        Console.WriteLine("-----------------------输出-----------------------");
         Console.WriteLine(title);
         Console.WriteLine(label);
         Console.WriteLine("--------------------------------------------------");
         Console.WriteLine(defaultText);
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine("----------------------OUTPUT----------------------");
+        Console.WriteLine("-----------------------输出-----------------------");
         Console.WriteLine("--------------------------------------------------");
 
         if (IsInteractive) Pause();
@@ -182,7 +182,7 @@ public partial class Program : IScriptInterface
         }
         else
         {
-            throw new InvalidOperationException("Unable to open the browser on this OS: " + RuntimeInformation.OSDescription);
+            throw new InvalidOperationException("无法在此操作系统上打开浏览器：" + RuntimeInformation.OSDescription);
         }
 
         p?.Dispose();
@@ -232,7 +232,7 @@ public partial class Program : IScriptInterface
     public void UpdateProgressBar(string message, string status, double currentValue, double maxValue)
     {
         string evaluatedMessage = !String.IsNullOrEmpty(message) ? $"{message}|" : "";
-        Console.WriteLine($"[{evaluatedMessage}{status}] {currentValue} out of {maxValue}");
+        Console.WriteLine($"[{evaluatedMessage}{status}] {currentValue}/{maxValue}");
     }
 
     /// <inheritdoc/>
@@ -331,7 +331,7 @@ public partial class Program : IScriptInterface
     public void StartProgressBarUpdater()
     {
         if (cTokenSource is not null)
-            Console.WriteLine("Warning - there is another progress updater task running (hangs) in the background.");
+            Console.WriteLine("警告 - 后台已有另一个进度更新任务正在运行（可能已挂起）。");
 
         cTokenSource = new CancellationTokenSource();
         cToken = cTokenSource.Token;
@@ -348,7 +348,7 @@ public partial class Program : IScriptInterface
         cTokenSource.Cancel();
 
         if (await Task.Run(() => !updater.Wait(2000))) // if ProgressUpdater isn't responding
-            Console.WriteLine("Error - stopping the progress updater task is failed.");
+            Console.WriteLine("错误 - 停止进度更新任务失败。");
         else
         {
             cTokenSource.Dispose();
@@ -380,7 +380,7 @@ public partial class Program : IScriptInterface
         do
         {
             Console.WriteLine(promptMessage);
-            Console.Write("Path: ");
+            Console.Write("路径：");
 
             string input = ReadLineWithFallback();
             if (string.IsNullOrEmpty(input))
@@ -413,18 +413,18 @@ public partial class Program : IScriptInterface
     public string PromptChooseDirectory()
     {
         return PromptPath(
-            "Please enter a path (or drag and drop) to a valid directory:",
-            "Error: Path cannot be whitespace. Please enter a valid directory path.",
+            "请输入（或拖放）一个有效目录的路径：",
+            "错误：路径不能为空白。请输入有效的目录路径。",
             path =>
             {
                 try
                 {
                     DirectoryInfo directoryInfo = new(path);
-                    return directoryInfo.Exists ? null : $"Error: Directory '{path}' does not exist. Please try again.";
+                    return directoryInfo.Exists ? null : $"错误：目录 '{path}' 不存在。请重试。";
                 }
                 catch (Exception ex) when (ex is ArgumentException or PathTooLongException or System.Security.SecurityException)
                 {
-                    return $"Error: Invalid path '{path}'. {ex.Message}";
+                    return $"错误：路径 '{path}' 无效。{ex.Message}";
                 }
             });
     }
@@ -433,18 +433,18 @@ public partial class Program : IScriptInterface
     public string PromptLoadFile(string defaultExt, string filter)
     {
         return PromptPath(
-            "Please enter a path (or drag and drop) to a valid file:",
-            "Error: Path cannot be whitespace. Please enter a valid file path.",
+            "请输入（或拖放）一个有效文件的路径：",
+            "错误：路径不能为空白。请输入有效的文件路径。",
             path =>
             {
                 try
                 {
                     FileInfo fileInfo = new(path);
-                    return fileInfo.Exists ? null : $"Error: File '{path}' does not exist. Please try again.";
+                    return fileInfo.Exists ? null : $"错误：文件 '{path}' 不存在。请重试。";
                 }
                 catch (Exception ex) when (ex is ArgumentException or PathTooLongException or System.Security.SecurityException or NotSupportedException)
                 {
-                    return $"Error: Invalid path '{path}'. {ex.Message}";
+                    return $"错误：路径 '{path}' 无效。{ex.Message}";
                 }
             });
     }
@@ -453,18 +453,18 @@ public partial class Program : IScriptInterface
     public string PromptSaveFile(string defaultExt, string filter)
     {
         return PromptPath(
-            "Please enter a path (or drag and drop) to save the file:",
-            "Error: Path cannot be whitespace. Please enter a valid file path.",
+            "请输入（或拖放）用于保存文件的路径：",
+            "错误：路径不能为空白。请输入有效的文件路径。",
             path =>
             {
                 try
                 {
                     string fullPath = Path.GetFullPath(path);
-                    return Directory.Exists(fullPath) ? "Error: Directory exists at that path." : null;
+                    return Directory.Exists(fullPath) ? "错误：该路径已存在一个目录。" : null;
                 }
                 catch (Exception ex) when (ex is ArgumentException or PathTooLongException or System.Security.SecurityException or NotSupportedException)
                 {
-                    return $"Error: Invalid path '{path}'. {ex.Message}";
+                    return $"错误：路径 '{path}' 无效。{ex.Message}";
                 }
             });
     }
@@ -530,9 +530,9 @@ public partial class Program : IScriptInterface
 
         string result = "";
 
-        Console.WriteLine("-----------------------INPUT----------------------");
+        Console.WriteLine("-----------------------输入-----------------------");
         Console.WriteLine(title);
-        Console.WriteLine(label + (allowMultiline ? " (Multiline, hit SHIFT+ENTER to insert newline)" : ""));
+        Console.WriteLine(label + (allowMultiline ? "（多行输入，按 SHIFT+ENTER 插入换行）" : ""));
         Console.WriteLine("--------------------------------------------------");
 
         if (!allowMultiline)
@@ -577,7 +577,7 @@ public partial class Program : IScriptInterface
         }
 
         Console.WriteLine("--------------------------------------------------");
-        Console.WriteLine("-----------------------INPUT----------------------");
+        Console.WriteLine("-----------------------输入-----------------------");
         Console.WriteLine("--------------------------------------------------");
 
         return result;
@@ -603,9 +603,9 @@ public partial class Program : IScriptInterface
             // ...Print them all out
             Console.ForegroundColor = ConsoleColor.Red;
             if (failedArray.Length == 1)
-                Console.Error.WriteLine("There is 1 code entry that encountered an error while searching:");
+                Console.Error.WriteLine("有 1 个代码条目在搜索时出错：");
             else
-                Console.Error.WriteLine($"There are {failedArray.Length} code entries that encountered an error while searching");
+                Console.Error.WriteLine($"有 {failedArray.Length} 个代码条目在搜索时出错：");
 
             foreach (string failedEntry in failedArray)
                 Console.Error.WriteLine(failedEntry);
@@ -614,7 +614,7 @@ public partial class Program : IScriptInterface
             Console.WriteLine();
         }
 
-        Console.WriteLine($"{resultsCount} results in {resultsDict.Count} code entries for \"{query}\".");
+        Console.WriteLine($"在 {resultsDict.Count} 个代码条目中找到 \"{query}\" 的 {resultsCount} 条结果。");
         Console.WriteLine();
 
         // Print in a pattern of:
@@ -626,9 +626,9 @@ public partial class Program : IScriptInterface
         // etc.
         foreach (var dictEntry in resultsDict)
         {
-            Console.WriteLine($"Results in {dictEntry.Key}:");
+            Console.WriteLine($"{dictEntry.Key} 中的结果：");
             foreach (var resultEntry in dictEntry.Value)
-                Console.WriteLine($"Line {resultEntry.lineNum}: {resultEntry.codeLine}");
+                Console.WriteLine($"第 {resultEntry.lineNum} 行：{resultEntry.codeLine}");
 
             Console.WriteLine();
         }
@@ -642,7 +642,7 @@ public partial class Program : IScriptInterface
         // By Grossley
         if (!File.Exists(path))
         {
-            ScriptError(path + " does not exist!");
+            ScriptError(path + " 不存在！");
             return false;
         }
         try
@@ -653,7 +653,7 @@ public partial class Program : IScriptInterface
         }
         catch (CompilationErrorException exc)
         {
-            ScriptError(exc.Message, "Script compile error");
+            ScriptError(exc.Message, "脚本编译错误");
             ScriptExecutionSuccess = false;
             ScriptErrorMessage = exc.Message;
             ScriptErrorType = "CompilationErrorException";
@@ -708,8 +708,8 @@ public partial class Program : IScriptInterface
             uint objIndex = 0;
             while (!objFound)
             {
-                string objectIndex = SimpleTextInput("Object could not be found. Please enter it below:",
-                    "Object enter box.", "", false).ToLower();
+                string objectIndex = SimpleTextInput("未找到对象。请在下方输入对象名称：",
+                    "对象名称输入框", "", false).ToLower();
                 for (int i = 0; i < Data.GameObjects.Count; i++)
                 {
                     if (Data.GameObjects[i].Name.Content.Equals(objectIndex, StringComparison.InvariantCultureIgnoreCase))
@@ -734,8 +734,8 @@ public partial class Program : IScriptInterface
             uint objIndex = 0;
             while (!objFound)
             {
-                string objectIndex = SimpleTextInput("Multiple objects were found. Select only one object below from the set, or, if none below match, some other object name:",
-                    "Object enter box.", gameObjectNames, true).ToLower();
+                string objectIndex = SimpleTextInput("找到多个对象。请从下列对象中选择一个；若均不匹配，也可输入其他对象名称：",
+                    "对象名称输入框", gameObjectNames, true).ToLower();
                 for (int i = 0; i < Data.GameObjects.Count; i++)
                 {
                     if (Data.GameObjects[i].Name.Content.Equals(objectIndex, StringComparison.InvariantCultureIgnoreCase))

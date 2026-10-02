@@ -28,21 +28,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">FileName</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">文件名</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Filename}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Cleanup function name</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">清理函数名</TextBlock>
         <local:UndertaleStringReference Grid.Row="1" Grid.Column="1" Margin="3" ObjectReference="{Binding CleanupScript}"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Init function name</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">初始化函数名</TextBlock>
         <local:UndertaleStringReference Grid.Row="2" Grid.Column="1" Margin="3" ObjectReference="{Binding InitScript}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Kind</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">种类</TextBlock>
 
         <local:ComboBoxDark ItemsSource="{Binding Source={StaticResource ExtensionKind}}" SelectedItem="{Binding Kind}"
                         Grid.Row="3" Grid.Column="1" Margin="3"/>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Functions</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">函数</TextBlock>
         <local:DataGridDark Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Functions}" x:Name="FunctionsList" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow" AddingNewItem="DataGrid_AddingNewItem" IsSynchronizedWithCurrentItem="True">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF26A0DA"/>
@@ -61,7 +61,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>

@@ -193,7 +193,7 @@ namespace UndertaleModTool
 
             objRef.ClearRemoveClickHandler();
             objRef.RemoveButton.Click += Remove_Click_Override;
-            objRef.RemoveButton.ToolTip = "Remove action";
+            objRef.RemoveButton.ToolTip = "移除动作";
             objRef.RemoveButton.IsEnabled = true;
         }
         private void Remove_Click_Override(object sender, RoutedEventArgs e)
@@ -235,7 +235,7 @@ namespace UndertaleModTool
                     var originalCont = button.Content;
 
                     showingNoChildrenFoundMessage = true;
-                    button.Content = "(no children were found)";
+                    button.Content = "（未找到子对象）";
                     await Task.Delay(2000);
 
                     button.Content = originalCont;
@@ -244,8 +244,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occurred in the object references related window.\n" +
-                                     $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口发生错误。\n" +
+                                     $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {

@@ -16,7 +16,7 @@ namespace UndertaleModTool
                 return null;
 
             if (str.Length == 0)
-                return "(empty string)";
+                return "(空字符串)";
 
             if (str.Length > 256)
                 str = str[..256] + "...";

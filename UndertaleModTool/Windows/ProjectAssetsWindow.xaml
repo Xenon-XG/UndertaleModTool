@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="Unexported project assets" Height="450" Width="800" IsVisibleChanged="Window_IsVisibleChanged" WindowStartupLocation="CenterOwner"
+        Title="未导出的项目资源" Height="450" Width="800" IsVisibleChanged="Window_IsVisibleChanged" WindowStartupLocation="CenterOwner"
         Closing="Window_Closing"
         DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <local:ContextMenuDark x:Key="ListViewItemContextMenu">
-            <MenuItem Header="Open" Click="MenuItemOpen_Click"/>
-            <MenuItem Header="Open in new tab" Click="MenuItemOpenInNewTab_Click"/>
-            <MenuItem Header="Unmark for export" Click="MenuItemUnmarkForExport_Click"/>
+            <MenuItem Header="打开" Click="MenuItemOpen_Click"/>
+            <MenuItem Header="在新标签页中打开" Click="MenuItemOpenInNewTab_Click"/>
+            <MenuItem Header="取消导出标记" Click="MenuItemUnmarkForExport_Click"/>
             <!--MenuItem Header="Copy" Command="Copy"/-->
             <!--MenuItem Header="Copy all" Click="MenuItemCopyAll_Click"/-->
         </local:ContextMenuDark>
@@ -25,10 +25,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0">
-                Below is a list of all assets currently waiting to be exported to disk for the current project, once it is next saved.
+                下方列出了当前项目中所有等待在下次保存时导出到磁盘的资源。
             </Label>
             <Label Grid.Row="1">
-                To quickly add or remove assets from being part of the project, you can drag and drop assets here, or delete them.
+                要快速将资源加入项目或从项目中移除，可以将资源拖放到此处，或在此将其删除。
             </Label>
             <ListView Grid.Row="2" Margin="0,8,0,0" ItemsSource="{x:Null}" MinHeight="300" x:Name="AssetsListView" Foreground="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}">
                 <ListView.CommandBindings>
@@ -57,8 +57,8 @@
                                 <Setter Property="Foreground" Value="Black" />
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
-                        <GridViewColumn Header="Asset Type" DisplayMemberBinding="{Binding AssetType}" Width="Auto"/>
+                        <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                        <GridViewColumn Header="资源类型" DisplayMemberBinding="{Binding AssetType}" Width="Auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>

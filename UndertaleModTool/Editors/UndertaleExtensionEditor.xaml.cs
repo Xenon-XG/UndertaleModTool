@@ -177,13 +177,13 @@ namespace UndertaleModTool
             {
                 case "boolean":
                     if (value is not bool b)
-                        return new ValidationResult(false, "Invalid boolean value");
+                        return new ValidationResult(false, "布尔值无效");
                     return (b ? "True" : "False");
                 
                 case "number":
                     if (value is string s && Double.TryParse(s, NumberStyles.Any, CultureInfo.InvariantCulture, out double _))
                         return s;
-                    return new ValidationResult(false, "Invalid number string");
+                    return new ValidationResult(false, "数字字符串无效");
                 
                 default:
                     return null;

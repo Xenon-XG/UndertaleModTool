@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="Debug data" Height="Auto" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner">
+        Title="调试数据" Height="Auto" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,14 +19,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="3,3,3,18">The debugger is enabled. Do you want to generate debugger data?</TextBlock>
-        <local:ButtonDark Grid.Row="1" Margin="3" Click="Button1_Click">Decompiled</local:ButtonDark>
-        <TextBlock Grid.Row="2" Margin="3" TextWrapping="Wrap">Decompile whole source code when saving for display in the debugger</TextBlock>
-        <TextBlock Grid.Row="3" FontStyle="Italic" Foreground="DarkGray" Margin="3">NOTE: no breakpoint support yet! Except for the script entry point</TextBlock>
-        <local:ButtonDark Grid.Row="4" Margin="3" Click="Button2_Click">Disassembly, partial breakpoints</local:ButtonDark>
-        <TextBlock Grid.Row="5" Margin="3" TextWrapping="Wrap">Full disassembly, but you can set breakpoints only on B, BR, BT, POP, POPZ, RET and EXIT. This is still a lot more than that poor GM:S debugger was designed to handle, so allow up to 5 minutes for it to load the data file (yes, seriously)</TextBlock>
-        <local:ButtonDark Grid.Row="6" Margin="3" Click="Button3_Click">Disassembly, full breakpoints</local:ButtonDark>
-        <TextBlock Grid.Row="7" Margin="3" TextWrapping="Wrap">Gave up after like 15 minutes of waiting, don't even try this</TextBlock>
-        <local:ButtonDark Grid.Row="8" Margin="3" Click="Button4_Click">No debug data</local:ButtonDark>
+        <TextBlock Grid.Row="0" Margin="3,3,3,18">调试器已启用。是否要生成调试器数据？</TextBlock>
+        <local:ButtonDark Grid.Row="1" Margin="3" Click="Button1_Click">反编译结果</local:ButtonDark>
+        <TextBlock Grid.Row="2" Margin="3" TextWrapping="Wrap">保存时反编译全部源代码，以便在调试器中显示</TextBlock>
+        <TextBlock Grid.Row="3" FontStyle="Italic" Foreground="DarkGray" Margin="3">注意：尚不支持断点！脚本入口点除外</TextBlock>
+        <local:ButtonDark Grid.Row="4" Margin="3" Click="Button2_Click">反汇编，部分断点</local:ButtonDark>
+        <TextBlock Grid.Row="5" Margin="3" TextWrapping="Wrap">完整反汇编，但只能在 B、BR、BT、POP、POPZ、RET 和 EXIT 指令上设置断点。这仍然远超那个可怜的 GM:S 调试器的设计承受能力，因此加载数据文件可能需要长达 5 分钟（是的，真的）</TextBlock>
+        <local:ButtonDark Grid.Row="6" Margin="3" Click="Button3_Click">反汇编，完整断点</local:ButtonDark>
+        <TextBlock Grid.Row="7" Margin="3" TextWrapping="Wrap">等了大约 15 分钟后就放弃了，千万别尝试这个</TextBlock>
+        <local:ButtonDark Grid.Row="8" Margin="3" Click="Button4_Click">不生成调试数据</local:ButtonDark>
     </Grid>
 </Window>

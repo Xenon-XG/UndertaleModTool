@@ -54,7 +54,7 @@ namespace UndertaleModTool.Windows
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new System.Drawing.Size(569, 283);
             richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "Input Text Here";
+            richTextBox1.Text = "在此输入文本";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
             richTextBox1.KeyDown += richTextBox1_KeyDown;
             // 
@@ -71,7 +71,7 @@ namespace UndertaleModTool.Windows
             copyMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             copyMenuItem.Name = "copyMenuItem";
             copyMenuItem.Size = new System.Drawing.Size(92, 22);
-            copyMenuItem.Text = "Copy";
+            copyMenuItem.Text = "复制";
             copyMenuItem.Click += copyMenuItem_Click;
             // 
             // copyAllMenuItem
@@ -79,7 +79,7 @@ namespace UndertaleModTool.Windows
             copyAllMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             copyAllMenuItem.Name = "copyAllMenuItem";
             copyAllMenuItem.Size = new System.Drawing.Size(92, 22);
-            copyAllMenuItem.Text = "Copy all";
+            copyAllMenuItem.Text = "全部复制";
             copyAllMenuItem.Click += copyAllMenuItem_Click;
             // 
             // cutMenuItem
@@ -87,7 +87,7 @@ namespace UndertaleModTool.Windows
             cutMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             cutMenuItem.Name = "cutMenuItem";
             cutMenuItem.Size = new System.Drawing.Size(92, 22);
-            cutMenuItem.Text = "Cut";
+            cutMenuItem.Text = "剪切";
             cutMenuItem.Click += cutMenuItem_Click;
             // 
             // pasteMenuItem
@@ -95,7 +95,7 @@ namespace UndertaleModTool.Windows
             pasteMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             pasteMenuItem.Name = "pasteMenuItem";
             pasteMenuItem.Size = new System.Drawing.Size(92, 22);
-            pasteMenuItem.Text = "Paste";
+            pasteMenuItem.Text = "粘贴";
             pasteMenuItem.Click += pasteMenuItem_Click;
             // 
             // button1
@@ -105,7 +105,7 @@ namespace UndertaleModTool.Windows
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(189, 41);
             button1.TabIndex = 1;
-            button1.Text = "Done";
+            button1.Text = "完成";
             button1.UseCompatibleTextRendering = true;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -118,7 +118,7 @@ namespace UndertaleModTool.Windows
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(133, 17);
             label1.TabIndex = 2;
-            label1.Text = "Default Prompt Text";
+            label1.Text = "默认提示文本";
             label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             label1.Click += label1_Click;
             // 
@@ -135,7 +135,7 @@ namespace UndertaleModTool.Windows
             copyMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             copyMenuItem1.Name = "copyMenuItem1";
             copyMenuItem1.Size = new System.Drawing.Size(117, 22);
-            copyMenuItem1.Text = "Copy";
+            copyMenuItem1.Text = "复制";
             copyMenuItem1.Click += copyMenuItem_Click;
             // 
             // copyAllMenuItem1
@@ -143,7 +143,7 @@ namespace UndertaleModTool.Windows
             copyAllMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             copyAllMenuItem1.Name = "copyAllMenuItem1";
             copyAllMenuItem1.Size = new System.Drawing.Size(117, 22);
-            copyAllMenuItem1.Text = "Copy all";
+            copyAllMenuItem1.Text = "全部复制";
             copyAllMenuItem1.Click += copyAllMenuItem_Click;
             // 
             // TextInput
@@ -156,7 +156,7 @@ namespace UndertaleModTool.Windows
             Controls.Add(button1);
             Controls.Add(richTextBox1);
             Name = "TextInput";
-            Text = "Default Title Message";
+            Text = "默认标题";
             Load += TextInput_Load;
             textCommandsMenu.ResumeLayout(false);
             textCopyMenu.ResumeLayout(false);

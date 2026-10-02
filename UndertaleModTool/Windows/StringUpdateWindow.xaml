@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="String reference changed" Height="Auto" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner">
+        Title="字符串引用已更改" Height="Auto" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,9 +14,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="3">You edited a string reference! What do you want to do?</TextBlock>
-        <local:ButtonDark Grid.Row="1" Margin="3" Click="Button1_Click">Change only this one value</local:ButtonDark>
-        <local:ButtonDark Grid.Row="2" Margin="3" Click="Button2_Click">Change all occurrences of this value</local:ButtonDark>
-        <local:ButtonDark Grid.Row="3" Margin="3" Click="Button3_Click">Abort the change</local:ButtonDark>
+        <TextBlock Grid.Row="0" Margin="3">你编辑了一个字符串引用！要如何处理？</TextBlock>
+        <local:ButtonDark Grid.Row="1" Margin="3" Click="Button1_Click">仅更改这一处的值</local:ButtonDark>
+        <local:ButtonDark Grid.Row="2" Margin="3" Click="Button2_Click">更改此值的所有出现位置</local:ButtonDark>
+        <local:ButtonDark Grid.Row="3" Margin="3" Click="Button3_Click">放弃更改</local:ButtonDark>
     </Grid>
 </Window>

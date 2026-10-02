@@ -1,0 +1,179 @@
+name: Publish zh-CN release of UndertaleModTool
+
+on:
+  push:
+    branches: [ claude/lucid-ritchie-485a5g ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  UTMT_VERSION: 0.9.2.0
+  RELEASE_TAG: v0.9.2.0-zh-CN
+
+jobs:
+  build_gui:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+        configuration: [Release]
+        bundled: [true]
+        singlefile: [true, false]
+        include:
+          - singlefile: true
+            suffix: SingleFile
+          - singlefile: false
+            suffix: Normal
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        submodules: true
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: |
+        dotnet build UndertaleModTool --no-restore
+    - name: Publish ${{ matrix.os }} GUI
+      run: |
+        dotnet publish UndertaleModTool -c ${{ matrix.configuration }} -r win-x64 --self-contained ${{ matrix.bundled }} -p:PublishSingleFile=${{ matrix.singlefile }} --output ${{ matrix.os }}
+    - name: Copy external files
+      shell: bash
+      run: |
+        cp ./README.md ./${{ matrix.os }}
+        cp ./README_zh-CN.md ./${{ matrix.os }}
+        cp ./SCRIPTS.md ./${{ matrix.os }}
+        cp ./SCRIPTS_zh-CN.md ./${{ matrix.os }}
+        cp ./LICENSE.txt ./${{ matrix.os }}
+        rm -f ./${{ matrix.os }}/Underanalyzer.pdb
+    - name: Create zip for Windows GUI
+      run: |
+        7z a -tzip UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_GUI-Windows-x64-${{ matrix.suffix }}.zip ./${{ matrix.os }}/* -mx9
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: GUI-Windows-x64-${{ matrix.suffix }}
+        path: UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_GUI-Windows-x64-${{ matrix.suffix }}.zip
+        archive: false
+
+  build_cli:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Release]
+        bundled: [true]
+        target: [linux-x64, osx-arm64, osx-x64, win-x64]
+        include:
+          - target: linux-x64
+            os: ubuntu-latest
+            rid: linux-x64
+            output: CLI-Linux-x64
+          - target: osx-arm64
+            os: macOS-latest
+            rid: osx-arm64
+            output: CLI-macOS-arm64
+          - target: osx-x64
+            os: macOS-latest
+            rid: osx-x64
+            output: CLI-macOS-x64
+          - target: win-x64
+            os: windows-latest
+            rid: win-x64
+            output: CLI-Windows-x64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        submodules: true
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+    - name: Restore dependencies
+      run: dotnet restore UndertaleModCli
+    - name: Build
+      run: dotnet build UndertaleModCli --no-restore
+    - name: Publish ${{ matrix.os }} CLI
+      run: dotnet publish UndertaleModCli -c ${{ matrix.configuration }} -r ${{ matrix.rid }} --self-contained ${{ matrix.bundled }} -p:PublishSingleFile=false --output ${{ matrix.output }}
+    - name: Copy external files
+      shell: bash
+      run: |
+        cp ./README.md ./${{ matrix.output }}/
+        cp ./README_zh-CN.md ./${{ matrix.output }}/
+        cp ./SCRIPTS.md ./${{ matrix.output }}/
+        cp ./SCRIPTS_zh-CN.md ./${{ matrix.output }}/
+        cp ./LICENSE.txt ./${{ matrix.output }}/
+        cp -r ./UndertaleModTool/Scripts/ ./${{ matrix.output }}/Scripts/
+        rm -f ./${{ matrix.output }}/Underanalyzer.pdb
+    - name: Create zip for CLI
+      run: |
+        7z a -tzip UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_${{ matrix.output }}.zip ./${{ matrix.output }}/* -mx9
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ${{ matrix.output }}
+        path: UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_${{ matrix.output }}.zip
+        archive: false
+
+  release:
+
+    # 仅在手动触发，或提交信息包含 [release] 标记时才创建 Release；普通推送只做编译验证。
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release]')
+    needs: [build_gui, build_cli]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v8
+    - name: List files
+      run: ls -R
+    - name: Release
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: ${{ env.RELEASE_TAG }}
+        name: UndertaleModTool v${{ env.UTMT_VERSION }} 简体中文版
+        target_commitish: ${{ github.sha }}
+        prerelease: false
+        make_latest: true
+        fail_on_unmatched_files: true
+        files: |
+          */*.zip
+        body: |
+          ## UndertaleModTool v${{ env.UTMT_VERSION }} 简体中文版
+
+          本版本基于 [UnderminersTeam/UndertaleModTool](https://github.com/UnderminersTeam/UndertaleModTool) v${{ env.UTMT_VERSION }} 进行了完整的简体中文汉化，
+          包括主窗口、全部资源编辑器、设置、搜索/查找引用、房间编辑器、字体编辑器等所有图形界面文本，以及命令行版（CLI）与更新器的提示信息。
+
+          ### 下载说明
+
+          | 文件 | 说明 |
+          |---|---|
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_GUI-Windows-x64-Normal.zip` | **推荐**。Windows 图形界面版，自带 .NET 运行时，依赖文件与主程序放在同一目录。 |
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_GUI-Windows-x64-SingleFile.zip` | Windows 图形界面版，单文件可执行程序（所有依赖打包进 exe，个别情况下可能不够稳定）。 |
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_CLI-Windows-x64.zip` | Windows 命令行版。 |
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_CLI-Linux-x64.zip` | Linux 命令行版。 |
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_CLI-macOS-arm64.zip` | macOS（Apple 芯片）命令行版。 |
+          | `UndertaleModTool_v${{ env.UTMT_VERSION }}-zh-CN_CLI-macOS-x64.zip` | macOS（Intel）命令行版。 |
+
+          ### 使用方法
+
+          1. 下载对应的压缩包并**解压到一个文件夹**（不要在压缩包内直接运行）。
+          2. 运行 `UndertaleModTool.exe`。
+          3. 通过「文件 → 打开」打开游戏的数据文件（如 `data.win`、`game.ios`、`game.unx` 等）。
+
+          本项目遵循 GPLv3 协议开源，汉化版与原项目的 Underminers 团队无关，使用中遇到的问题请在本仓库的 Issues 中反馈。

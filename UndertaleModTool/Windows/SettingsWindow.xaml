@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UndertaleModTool"
         mc:Ignorable="d"
-        Title="Settings" Height="Auto" Width="800" SizeToContent="Height" WindowStartupLocation="CenterOwner" UseLayoutRounding="False">
+        Title="设置" Height="Auto" Width="800" SizeToContent="Height" WindowStartupLocation="CenterOwner" UseLayoutRounding="False">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,23 +38,23 @@
                 </Style>
             </Grid.Resources>
             <StackPanel Grid.IsSharedSizeScope="True">
-                <Grid ToolTip="Required only if you want to use the Studio runner rather than the .exe or run the game under debugger.">
+                <Grid ToolTip="仅当你想使用 Studio 运行器（而非 .exe）运行游戏，或在调试器下运行游戏时才需要填写。">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition SharedSizeGroup="g1" Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label>GameMaker: Studio 1.4 path:</Label>
+                    <Label>GameMaker: Studio 1.4 路径：</Label>
                     <local:TextBoxDark Grid.Column="1" Text="{Binding GameMakerStudioPath}"/>
                 </Grid>
 
-                <Grid ToolTip="Required only if you want to run GMS2 games using the Studio runner rather than the .exe">
+                <Grid ToolTip="仅当你想使用 Studio 运行器（而非 .exe）运行 GMS2 游戏时才需要填写">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition SharedSizeGroup="g1" Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label>GameMaker Studio 2 runtimes path:</Label>
+                    <Label>GameMaker Studio 2 运行时路径：</Label>
                     <local:TextBoxDark Grid.Column="1" Text="{Binding GameMakerStudio2RuntimesPath}"/>
                 </Grid>
 
@@ -65,17 +65,17 @@
                     </Grid.ColumnDefinitions>
                     
                     <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="{Binding AssetOrderSwappingEnabled}" Content="Enable asset order swapping" ToolTip="Toggles dragging &amp; dropping assets in the asset tabs to different positions in the list. Disabled by default."/>
-                        <CheckBox IsChecked="{Binding AutomaticFileAssociation}" Content="Automatically associate GameMaker data files" ToolTip="Automatic file association. Enabled by default."/>
-                        <CheckBox IsChecked="{Binding ShowDebuggerOption}" Content="Show &quot;Run game under GMS debugger&quot; file option" ToolTip="Whether to show the option in the &quot;File&quot; menu. Disabled by default."/>
-                        <CheckBox IsChecked="{Binding RememberWindowPlacements}" Content="Remember last window position and size" ToolTip="Whether to restore window position and size when launching a new tool instance. Disabled by default."/>
+                        <CheckBox IsChecked="{Binding AssetOrderSwappingEnabled}" Content="启用资源顺序调换" ToolTip="切换是否允许在资源标签页中通过拖放将资源移动到列表中的其他位置。默认禁用。"/>
+                        <CheckBox IsChecked="{Binding AutomaticFileAssociation}" Content="自动关联 GameMaker 数据文件" ToolTip="自动进行文件关联。默认启用。"/>
+                        <CheckBox IsChecked="{Binding ShowDebuggerOption}" Content="显示“在 GMS 调试器下运行游戏”文件选项" ToolTip="是否在“文件”菜单中显示该选项。默认禁用。"/>
+                        <CheckBox IsChecked="{Binding RememberWindowPlacements}" Content="记住上次的窗口位置和大小" ToolTip="启动新的工具实例时是否恢复窗口位置和大小。默认禁用。"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
-                        <CheckBox IsChecked="{Binding WarnOnClose}" Content="Warn about saving before closing" ToolTip="Warn about saving before closing. Enabled by default."/>
-                        <CheckBox IsChecked="{Binding TempRunMessageShow}" Content="Warn about temp running" ToolTip="Warn about temp running. Enabled by default."/>
-                        <CheckBox IsChecked="{Binding ShowNullEntriesInResourceTree}" Content="Show null entries in resource tree" ToolTip="Whether to show null entries in the resource tree, which in GM 2024.11+ games usually were unused assets removed by the compiler. Disabled by default due to limited support in the GUI."/>
-                        <CheckBox IsChecked="{Binding RecompileAllCodeSourcesOnProjectSave}" Content="Recompile all source GML when saving a project data file" ToolTip="Whether to recompile all GML source code included in the currently-loaded project, if one is loaded, whenever saving a data file (including temp runs). Disabled by default."/>
+                        <CheckBox IsChecked="{Binding WarnOnClose}" Content="关闭前提示保存" ToolTip="关闭前提示保存。默认启用。"/>
+                        <CheckBox IsChecked="{Binding TempRunMessageShow}" Content="临时运行时发出警告" ToolTip="临时运行时发出警告。默认启用。"/>
+                        <CheckBox IsChecked="{Binding ShowNullEntriesInResourceTree}" Content="在资源树中显示空条目" ToolTip="是否在资源树中显示空（null）条目；在 GM 2024.11 及更高版本的游戏中，这些通常是被编译器移除的未使用资源。由于图形界面对其支持有限，默认禁用。"/>
+                        <CheckBox IsChecked="{Binding RecompileAllCodeSourcesOnProjectSave}" Content="保存项目数据文件时重新编译所有 GML 源代码" ToolTip="每次保存数据文件（包括临时运行）时，是否重新编译当前已加载项目（如果有）中包含的所有 GML 源代码。默认禁用。"/>
                     </StackPanel>
                 </Grid>
 
@@ -88,9 +88,9 @@
                     </Grid.ColumnDefinitions>
                     
                     <StackPanel Grid.Column="0">
-                        <CheckBox IsChecked="{Binding EnableDarkMode}" Content="Enable dark mode" ToolTip="Makes the program interface dark. Disabled by default."/>
+                        <CheckBox IsChecked="{Binding EnableDarkMode}" Content="启用深色模式" ToolTip="使程序界面变为深色。默认禁用。"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Transparency grid colors:"/>
+                            <TextBlock Text="透明网格颜色："/>
                             <local:TextBoxDark Width="80" Text="{Binding TransparencyGridColor1}" />
                             <local:TextBoxDark Width="80" Text="{Binding TransparencyGridColor2}" />
                             <Canvas Margin="3" Width="16" Height="16" Background="{DynamicResource TransparencyGridBrushBrush}"></Canvas>
@@ -98,7 +98,7 @@
                     </StackPanel>
                     
                     <StackPanel Grid.Column="1">
-                        <local:ButtonDark Click="GMLSettingsButton_Click" Padding="8,2,8,2" HorizontalAlignment="Left" VerticalAlignment="Top">GML compiler/decompiler settings</local:ButtonDark>
+                        <local:ButtonDark Click="GMLSettingsButton_Click" Padding="8,2,8,2" HorizontalAlignment="Left" VerticalAlignment="Top">GML 编译器/反编译器设置</local:ButtonDark>
                     </StackPanel>
                 </Grid>
 
@@ -112,31 +112,31 @@
                         </Grid.ColumnDefinitions>
                         
                         <StackPanel Grid.Column="0">
-                            <Grid ToolTip="This option globally overrides the automatic assignment of a room's grid width based on the most used tile's width in that room.">
+                            <Grid ToolTip="此选项会全局覆盖“根据房间中最常用图块的宽度自动设置房间网格宽度”的行为。">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="g2" Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Name="gridWidthCheckbox" IsChecked="{Binding GridWidthEnabled}" Content="Global grid width" />
+                                <CheckBox Name="gridWidthCheckbox" IsChecked="{Binding GridWidthEnabled}" Content="全局网格宽度" />
                                 <local:TextBoxDark Grid.Column="1" IsEnabled="{Binding ElementName=gridWidthCheckbox, Path=IsChecked}" Text="{Binding GlobalGridWidth}"/>
                             </Grid>
-                            <Grid ToolTip="This option globally overrides the automatic assignment of a room's grid height based on the most used tile's height in that room.">
+                            <Grid ToolTip="此选项会全局覆盖“根据房间中最常用图块的高度自动设置房间网格高度”的行为。">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="g2" Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Name="gridHeightCheckbox" IsChecked="{Binding GridHeightEnabled}" Content="Global grid height"/>
+                                <CheckBox Name="gridHeightCheckbox" IsChecked="{Binding GridHeightEnabled}" Content="全局网格高度"/>
                                 <local:TextBoxDark  Grid.Column="1" IsEnabled="{Binding ElementName=gridHeightCheckbox, Path=IsChecked}" Text="{Binding GlobalGridHeight}"/>
                             </Grid>
                         </StackPanel>
                         
                         <StackPanel Grid.Column="1">
-                            <Grid ToolTip="This option globally overrides the automatic assignment of a room's grid thickness.">
+                            <Grid ToolTip="此选项会全局覆盖房间网格线粗细的自动设置。">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition SharedSizeGroup="g2" Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Name="gridThicknessCheckBox" IsChecked="{Binding GridThicknessEnabled}" Content="Global grid thickness"/>
+                                <CheckBox Name="gridThicknessCheckBox" IsChecked="{Binding GridThicknessEnabled}" Content="全局网格线粗细"/>
                                 <local:TextBoxDark Grid.Column="1" IsEnabled="{Binding ElementName=gridThicknessCheckBox, Path=IsChecked}" Text="{Binding GlobalGridThickness}"/>
                             </Grid>
                         </StackPanel>
@@ -151,8 +151,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <local:ButtonDark Grid.Column="0" Click="AppDataButton_Click" Padding="8,2,8,2" HorizontalAlignment="Left">Open application data folder</local:ButtonDark>
-                    <local:ButtonDark Grid.Column="1" Click="UpdateAppButton_Click" Padding="8,2,8,2" HorizontalAlignment="Right" x:Name="UpdateAppButton" Visibility="{Binding UpdaterButtonVisibility}">Update app to latest commit</local:ButtonDark>
+                    <local:ButtonDark Grid.Column="0" Click="AppDataButton_Click" Padding="8,2,8,2" HorizontalAlignment="Left">打开应用程序数据文件夹</local:ButtonDark>
+                    <local:ButtonDark Grid.Column="1" Click="UpdateAppButton_Click" Padding="8,2,8,2" HorizontalAlignment="Right" x:Name="UpdateAppButton" Visibility="{Binding UpdaterButtonVisibility}">将应用更新到最新提交</local:ButtonDark>
                 </Grid>
             </StackPanel>
         </Grid>

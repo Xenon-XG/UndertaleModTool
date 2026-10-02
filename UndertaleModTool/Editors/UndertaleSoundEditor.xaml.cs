@@ -132,15 +132,15 @@ namespace UndertaleModTool
                                 waveOut.Play();
                                 break;
                             default:
-                                throw new Exception("Unknown file type.");
+                                throw new Exception("未知的文件类型。");
                         }
                     }
                     else
-                        throw new Exception("Failed to find audio file.");
+                        throw new Exception("找不到音频文件。");
                 } catch (Exception ex)
                 {
                     waveOut = null;
-                    mainWindow.ShowError("Failed to play audio!\r\n" + ex.Message, "Audio failure");
+                    mainWindow.ShowError("播放音频失败！\r\n" + ex.Message, "音频错误");
                 }
                 return;
             }
@@ -177,11 +177,11 @@ namespace UndertaleModTool
                         target = audioGroupData.EmbeddedAudio[sound.AudioID];
                     }
                     else
-                        throw new Exception("Failed to find audio group file.");
+                        throw new Exception("找不到音频组文件。");
                 } catch (Exception ex)
                 {
                     waveOut = null;
-                    mainWindow.ShowError("Failed to play audio!\r\n" + ex.Message, "Audio failure");
+                    mainWindow.ShowError("播放音频失败！\r\n" + ex.Message, "音频错误");
                     return;
                 }
             } else
@@ -208,17 +208,17 @@ namespace UndertaleModTool
                             waveOut.Play();
                         }
                         else
-                            mainWindow.ShowError("Failed to play audio!\r\nNot a WAV or OGG.", "Audio failure");
+                            mainWindow.ShowError("播放音频失败！\r\n不是 WAV 或 OGG 格式。", "音频错误");
                     }
                     catch (Exception ex)
                     {
                         waveOut = null;
-                        mainWindow.ShowError("Failed to play audio!\r\n" + ex.Message, "Audio failure");
+                        mainWindow.ShowError("播放音频失败！\r\n" + ex.Message, "音频错误");
                     }
                 }
             }
             else
-                mainWindow.ShowError("Failed to play audio!\r\nNo options for playback worked.", "Audio failure");
+                mainWindow.ShowError("播放音频失败！\r\n所有播放方式均不可用。", "音频错误");
         }
 
 

@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance local:GameEndEditor}">
     <StackPanel>
-        <TextBlock Text="Game End scripts" FontWeight="Bold"/>
+        <TextBlock Text="游戏结束脚本" FontWeight="Bold"/>
         <Separator/>
         <local:DataGridDark Grid.Row="20" Grid.Column="1" Margin="3" ItemsSource="{Binding GameEnds}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow">
             <DataGrid.Resources>
@@ -29,7 +29,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate>
-                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                        <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>

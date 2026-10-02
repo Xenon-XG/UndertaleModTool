@@ -97,7 +97,7 @@
                                 <MultiBinding Mode="OneWay" Converter="{StaticResource GameObjectToStringConverter}">
                                     <Binding Path="." Mode="OneWay"/>
                                     <Binding Path="InstanceID" Mode="OneWay"/>
-                                    <Binding Path="ObjectDefinition.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptyInstance"/>
+                                    <Binding Path="ObjectDefinition.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空实例"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.Resources>
@@ -112,8 +112,8 @@
                             </TextBlock.Resources>
                             <TextBlock.ContextMenu>
                                 <local:ContextMenuDark>
-                                    <MenuItem Header="Copy object" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
-                                    <MenuItem Header="Delete object" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                    <MenuItem Header="复制对象" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
+                                    <MenuItem Header="删除对象" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                 </local:ContextMenuDark>
                             </TextBlock.ContextMenu>
                         </TextBlock>
@@ -121,15 +121,15 @@
                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+Tile}">
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding Mode="OneWay" StringFormat="{}Tile {0} of {1}">
+                                <MultiBinding Mode="OneWay" StringFormat="{}图块 {0}（{1}）">
                                     <Binding Path="InstanceID" Mode="OneWay"/>
-                                    <Binding Path="ObjectDefinition.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptyTile"/>
+                                    <Binding Path="ObjectDefinition.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空图块"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.ContextMenu>
                                 <local:ContextMenuDark>
-                                    <MenuItem Header="Copy tile" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
-                                    <MenuItem Header="Delete tile" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                    <MenuItem Header="复制图块" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
+                                    <MenuItem Header="删除图块" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                 </local:ContextMenuDark>
                             </TextBlock.ContextMenu>
                         </TextBlock>
@@ -137,15 +137,15 @@
                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+SpriteInstance}">
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding Mode="OneWay" StringFormat="{}Sprite {0} of {1}">
-                                    <Binding Path="Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptyName"/>
-                                    <Binding Path="Sprite.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptySprite"/>
+                                <MultiBinding Mode="OneWay" StringFormat="{}精灵 {0}（{1}）">
+                                    <Binding Path="Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空名称"/>
+                                    <Binding Path="Sprite.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空精灵"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.ContextMenu>
                                 <local:ContextMenuDark>
-                                    <MenuItem Header="Copy sprite instance" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
-                                    <MenuItem Header="Delete sprite instance" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                    <MenuItem Header="复制精灵实例" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
+                                    <MenuItem Header="删除精灵实例" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                 </local:ContextMenuDark>
                             </TextBlock.ContextMenu>
                         </TextBlock>
@@ -153,15 +153,15 @@
                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+ParticleSystemInstance}">
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding Mode="OneWay" StringFormat="{}Particle system {0} of {1}">
-                                    <Binding Path="Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptyName"/>
-                                    <Binding Path="ParticleSystem.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="EmptySystem"/>
+                                <MultiBinding Mode="OneWay" StringFormat="{}粒子系统 {0}（{1}）">
+                                    <Binding Path="Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空名称"/>
+                                    <Binding Path="ParticleSystem.Name.Content" Mode="OneWay" TargetNullValue="?" FallbackValue="空粒子系统"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                             <TextBlock.ContextMenu>
                                 <local:ContextMenuDark>
-                                    <MenuItem Header="Copy particle system instance" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
-                                    <MenuItem Header="Delete particle system instance" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                    <MenuItem Header="复制粒子系统实例" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+C"/>
+                                    <MenuItem Header="删除粒子系统实例" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                 </local:ContextMenuDark>
                             </TextBlock.ContextMenu>
                         </TextBlock>
@@ -169,15 +169,15 @@
                 </TreeView.Resources>
 
                 <TreeViewItem Header="{Binding Name.Content}" Name="RoomRootItem" IsExpanded="True">
-                    <TreeViewItem Name="BGItems" Header="Backgrounds" ItemsSource="{Binding Backgrounds, Mode=OneWay}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}" IsExpanded="True">
+                    <TreeViewItem Name="BGItems" Header="背景" ItemsSource="{Binding Backgrounds, Mode=OneWay}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}" IsExpanded="True">
                         <TreeViewItem.Resources>
                             <local:ContextMenuDark x:Key="bgContextMenu">
-                                <MenuItem Header="Delete background" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                <MenuItem Header="删除背景" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                             </local:ContextMenuDark>
                         </TreeViewItem.Resources>
                         <TreeViewItem.ItemTemplate>
                             <HierarchicalDataTemplate>
-                                <TextBlock Text="{Binding BackgroundDefinition, Mode=OneWay, TargetNullValue='(no name)'}">
+                                <TextBlock Text="{Binding BackgroundDefinition, Mode=OneWay, TargetNullValue='（无名称）'}">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="ContextMenu" Value="{StaticResource bgContextMenu}"/>
@@ -194,15 +194,15 @@
                             </HierarchicalDataTemplate>
                         </TreeViewItem.ItemTemplate>
                     </TreeViewItem>
-                    <TreeViewItem Name="ViewItems" Header="Views" ItemsSource="{Binding Views, Mode=OneWay}" IsExpanded="True">
+                    <TreeViewItem Name="ViewItems" Header="视图" ItemsSource="{Binding Views, Mode=OneWay}" IsExpanded="True">
                         <TreeViewItem.Resources>
                             <local:ContextMenuDark x:Key="viewContextMenu">
-                                <MenuItem Header="Disable view" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                <MenuItem Header="禁用视图" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                             </local:ContextMenuDark>
                         </TreeViewItem.Resources>
                         <TreeViewItem.ItemTemplate>
                             <HierarchicalDataTemplate>
-                                <TextBlock Text="View">
+                                <TextBlock Text="视图">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="ContextMenu" Value="{StaticResource viewContextMenu}"/>
@@ -220,11 +220,11 @@
                         </TreeViewItem.ItemTemplate>
                     </TreeViewItem>
                     <!-- GameObjItems header changes depending on GMS version -->
-                    <TreeViewItem Name="GameObjItems" Header="Game objects" ItemsSource="{Binding GameObjects, Mode=OneWay}">
+                    <TreeViewItem Name="GameObjItems" Header="游戏对象" ItemsSource="{Binding GameObjects, Mode=OneWay}">
                         <TreeViewItem.Resources>
                             <local:ContextMenuDark x:Key="cm">
-                                <MenuItem Header="New object instance" Click="MenuItem_NewObjectInstance_Click"/>
-                                <MenuItem Header="Paste object instance" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
+                                <MenuItem Header="新建对象实例" Click="MenuItem_NewObjectInstance_Click"/>
+                                <MenuItem Header="粘贴对象实例" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
                             </local:ContextMenuDark>
                         </TreeViewItem.Resources>
                         <TreeViewItem.Style>
@@ -242,20 +242,20 @@
                             </Style>
                         </TreeViewItem.Style>
                     </TreeViewItem>
-                    <TreeViewItem Name="TileItems" Header="Tiles" ItemsSource="{Binding Tiles, Mode=OneWay}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">
+                    <TreeViewItem Name="TileItems" Header="图块" ItemsSource="{Binding Tiles, Mode=OneWay}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">
                         <TreeViewItem.ItemTemplate>
                             <HierarchicalDataTemplate>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <MultiBinding Mode="OneWay" StringFormat="{}Tile {0} of {1} (UndertaleRoom+Tile)">
+                                        <MultiBinding Mode="OneWay" StringFormat="{}图块 {0}（{1}）(UndertaleRoom+Tile)">
                                             <Binding Path="InstanceID"/>
-                                            <Binding Path="ObjectDefinition.Name.Content" TargetNullValue="?" FallbackValue="EmptyTile"/>
+                                            <Binding Path="ObjectDefinition.Name.Content" TargetNullValue="?" FallbackValue="空图块"/>
                                         </MultiBinding>
                                     </TextBlock.Text>
                                     <TextBlock.ContextMenu>
                                         <local:ContextMenuDark>
-                                            <MenuItem Header="Delete tile" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
-                                            <MenuItem Header="Copy tile" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+V"/>
+                                            <MenuItem Header="删除图块" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                            <MenuItem Header="复制图块" Click="MenuItem_Copy_Click" InputGestureText="Ctrl+V"/>
                                         </local:ContextMenuDark>
                                     </TextBlock.ContextMenu>
                                 </TextBlock>
@@ -263,18 +263,18 @@
                         </TreeViewItem.ItemTemplate>
                         <TreeViewItem.ContextMenu>
                             <local:ContextMenuDark>
-                                <MenuItem Header="New tile" Click="MenuItem_NewGMS1Tile_Click"/>
-                                <MenuItem Header="Paste tile" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
+                                <MenuItem Header="新建图块" Click="MenuItem_NewGMS1Tile_Click"/>
+                                <MenuItem Header="粘贴图块" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
                             </local:ContextMenuDark>
                         </TreeViewItem.ContextMenu>
                     </TreeViewItem>
-                    <TreeViewItem Name="LayerItems" Header="Layers" ItemsSource="{Binding Layers, Mode=OneWay}" IsExpanded="True" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}, ConverterParameter=invert}">
+                    <TreeViewItem Name="LayerItems" Header="图层" ItemsSource="{Binding Layers, Mode=OneWay}" IsExpanded="True" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}, ConverterParameter=invert}">
                         <TreeViewItem.ContextMenu>
                             <local:ContextMenuDark>
-                                <MenuItem Header="New Instances layer" Click="MenuItem_NewLayerInstances_Click"/>
-                                <MenuItem Header="New Tiles layer" Click="MenuItem_NewLayerTiles_Click"/>
-                                <MenuItem Header="New Background layer" Click="MenuItem_NewLayerBackground_Click"/>
-                                <MenuItem Header="New Assets layer" Click="MenuItem_NewLayerAssets_Click"/>
+                                <MenuItem Header="新建实例图层" Click="MenuItem_NewLayerInstances_Click"/>
+                                <MenuItem Header="新建图块图层" Click="MenuItem_NewLayerTiles_Click"/>
+                                <MenuItem Header="新建背景图层" Click="MenuItem_NewLayerBackground_Click"/>
+                                <MenuItem Header="新建资源图层" Click="MenuItem_NewLayerAssets_Click"/>
                             </local:ContextMenuDark>
                         </TreeViewItem.ContextMenu>
                         <TreeViewItem.Resources>
@@ -299,9 +299,9 @@
                                         <TextBlock Text="{Binding LayerName.Content, Mode=OneWay}" Style="{StaticResource LayerItemStyle}">
                                             <TextBlock.ContextMenu>
                                                 <local:ContextMenuDark>
-                                                    <MenuItem Header="New object instance" Click="MenuItem_NewGMS2ObjectInstance_Click"/>
-                                                    <MenuItem Header="Paste object instance" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
-                                                    <MenuItem Header="Delete layer" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                                    <MenuItem Header="新建对象实例" Click="MenuItem_NewGMS2ObjectInstance_Click"/>
+                                                    <MenuItem Header="粘贴对象实例" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
+                                                    <MenuItem Header="删除图层" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                                 </local:ContextMenuDark>
                                             </TextBlock.ContextMenu>
                                         </TextBlock>
@@ -312,7 +312,7 @@
                                         <TextBlock Text="{Binding LayerName.Content, Mode=OneWay}" Style="{StaticResource LayerItemStyle}">
                                             <TextBlock.ContextMenu>
                                                 <local:ContextMenuDark>
-                                                    <MenuItem Header="Delete layer" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                                    <MenuItem Header="删除图层" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                                 </local:ContextMenuDark>
                                             </TextBlock.ContextMenu>
                                         </TextBlock>
@@ -336,10 +336,10 @@
                                         <TextBlock Text="{Binding LayerName.Content, Mode=OneWay}" Style="{StaticResource LayerItemStyle}">
                                             <TextBlock.ContextMenu>
                                                 <local:ContextMenuDark>
-                                                    <MenuItem Header="New legacy tile" Click="MenuItem_NewLegacyTile_Click"/>
-                                                    <MenuItem Header="New sprite instance" Click="MenuItem_NewSprite_Click"/>
-                                                    <MenuItem Header="Paste asset" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
-                                                    <MenuItem Header="Delete layer" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                                    <MenuItem Header="新建旧式图块" Click="MenuItem_NewLegacyTile_Click"/>
+                                                    <MenuItem Header="新建精灵实例" Click="MenuItem_NewSprite_Click"/>
+                                                    <MenuItem Header="粘贴资源" Click="MenuItem_Paste_Click" InputGestureText="Ctrl+V"/>
+                                                    <MenuItem Header="删除图层" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                                 </local:ContextMenuDark>
                                             </TextBlock.ContextMenu>
                                         </TextBlock>
@@ -350,7 +350,7 @@
                                         <TextBlock Text="{Binding LayerName.Content, Mode=OneWay}" Style="{StaticResource LayerItemStyle}">
                                             <TextBlock.ContextMenu>
                                                 <local:ContextMenuDark>
-                                                    <MenuItem Header="Delete layer" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                                    <MenuItem Header="删除图层" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                                 </local:ContextMenuDark>
                                             </TextBlock.ContextMenu>
                                         </TextBlock>
@@ -361,7 +361,7 @@
                                         <TextBlock Text="{Binding LayerName.Content, Mode=OneWay}" Style="{StaticResource LayerItemStyle}">
                                             <TextBlock.ContextMenu>
                                                 <local:ContextMenuDark>
-                                                    <MenuItem Header="Delete layer" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
+                                                    <MenuItem Header="删除图层" Click="MenuItem_Delete_Click" InputGestureText="Delete"/>
                                                 </local:ContextMenuDark>
                                             </TextBlock.ContextMenu>
                                         </TextBlock>
@@ -377,10 +377,10 @@
                     Height="Auto" VerticalAlignment="Top" Margin="-3,0,0,0">
                 <StackPanel Name="MoveButtonsPanel" Margin="1,1,1,1">
                     <local:RepeatButtonDark FontFamily="Marlett" FontSize="14" Content="5" Margin="0,0,0,2"
-                                            ToolTip="Move item up (-)" ToolTipService.InitialShowDelay="250"
+                                            ToolTip="上移项目 (-)" ToolTipService.InitialShowDelay="250"
                                             Click="TreeViewMoveUpButton_Click"/>
                     <local:RepeatButtonDark FontFamily="Marlett" FontSize="14" Content="6"
-                                            ToolTip="Move item down (+)" ToolTipService.InitialShowDelay="250"
+                                            ToolTip="下移项目 (+)" ToolTipService.InitialShowDelay="250"
                                             Click="TreeViewMoveDownButton_Click"/>
                 </StackPanel>
             </Border>
@@ -421,13 +421,13 @@
                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
                             <local:UndertaleStringReference Grid.Row="0" Grid.Column="2" Margin="3" ObjectReference="{Binding Name}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Caption</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">标题</TextBlock>
                             <local:UndertaleStringReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding Caption}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Size</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">尺寸</TextBlock>
                             <Grid Grid.Row="2" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -437,29 +437,29 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Height}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Speed</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">速度</TextBlock>
                             <local:TextBoxDark Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding Speed}"/>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Persistent</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">持久</TextBlock>
                             <CheckBox Grid.Row="4" Grid.Column="2" Margin="3" IsChecked="{Binding Persistent}"/>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">Background color</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">背景颜色</TextBlock>
                             <local:ColorPicker HasAlpha="False" Grid.Row="5" Grid.Column="2" Margin="3" Color="{Binding BackgroundColor}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}"/>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">Draw background color</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}">绘制背景颜色</TextBlock>
                             <CheckBox Grid.Row="6" Grid.Column="2" Margin="3" IsChecked="{Binding DrawBackgroundColor}" Visibility="{Binding Flags, Mode=OneTime, Converter={StaticResource IsGMS2Converter}}"/>
 
-                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Creation Code</TextBlock>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">创建代码</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="7" Grid.Column="2" Margin="3" ObjectReference="{Binding CreationCodeId}" ObjectType="{x:Type undertale:UndertaleCode}"
                                                             Room="{Binding}"/>
 
-                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Flags</TextBlock>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">标志</TextBlock>
                             <local:FlagsBox Grid.Row="8" Grid.Column="2" Margin="3" Value="{Binding Flags, Converter={StaticResource IsGMS2Converter}, ConverterParameter=flags}"/>
 
-                            <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">World</TextBlock>
+                            <TextBlock Grid.Row="9" Grid.Column="0" Margin="3">物理世界</TextBlock>
                             <local:TextBoxDark Grid.Row="9" Grid.Column="2" Margin="3" Text="{Binding World}"/>
 
-                            <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">Top/Left/Right/Bottom</TextBlock>
+                            <TextBlock Grid.Row="10" Grid.Column="0" Margin="3">上/左/右/下</TextBlock>
                             <Grid Grid.Row="10" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -473,7 +473,7 @@
                                 <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding Bottom}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">Gravity</TextBlock>
+                            <TextBlock Grid.Row="11" Grid.Column="0" Margin="3">重力</TextBlock>
                             <Grid Grid.Row="11" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -483,13 +483,13 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding GravityY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">Grid Width</TextBlock>
+                            <TextBlock Grid.Row="12" Grid.Column="0" Margin="3">网格宽度</TextBlock>
                             <local:TextBoxDark Grid.Row="12" Grid.Column="2" Margin="3" Text="{Binding GridWidth}"/>
 
-                            <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">Grid Height</TextBlock>
+                            <TextBlock Grid.Row="13" Grid.Column="0" Margin="3">网格高度</TextBlock>
                             <local:TextBoxDark Grid.Row="13" Grid.Column="2" Margin="3" Text="{Binding GridHeight}"/>
 
-                            <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">Grid Thickness</TextBlock>
+                            <TextBlock Grid.Row="14" Grid.Column="0" Margin="3">网格线粗细</TextBlock>
                             <local:TextBoxDark Grid.Row="14" Grid.Column="2" Margin="3" Text="{Binding GridThicknessPx}"/>
                         </Grid>
                     </DataTemplate>
@@ -517,16 +517,16 @@
                                 <Style TargetType="local:UndertaleObjectReference" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Enabled</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">启用</TextBlock>
                             <CheckBox Grid.Row="0" Grid.Column="2" Margin="3" IsChecked="{Binding Enabled}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Foreground</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">前景</TextBlock>
                             <CheckBox Grid.Row="1" Grid.Column="2" Margin="3" IsChecked="{Binding Foreground}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Definition</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">定义</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="2" Grid.Column="2" Margin="3" ObjectReference="{Binding BackgroundDefinition}" ObjectType="{x:Type undertale:UndertaleBackground}" CanRemove="True"/>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Position</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">位置</TextBlock>
                             <Grid Grid.Row="3" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -536,17 +536,17 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Y}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Tiling</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">平铺</TextBlock>
                             <Grid Grid.Row="4" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Grid.Column="0" Margin="3" IsChecked="{Binding TiledHorizontally}" ToolTip="Horizontal"/>
-                                <CheckBox Grid.Column="1" Margin="3" IsChecked="{Binding TiledVertically}" ToolTip="Vertical"/>
+                                <CheckBox Grid.Column="0" Margin="3" IsChecked="{Binding TiledHorizontally}" ToolTip="水平"/>
+                                <CheckBox Grid.Column="1" Margin="3" IsChecked="{Binding TiledVertically}" ToolTip="垂直"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Speed</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">速度</TextBlock>
                             <Grid Grid.Row="5" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -556,7 +556,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding SpeedY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Stretch</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">拉伸</TextBlock>
                             <CheckBox Grid.Row="6" Grid.Column="2" Margin="3" IsChecked="{Binding Stretch}"/>
                         </Grid>
                     </DataTemplate>
@@ -583,10 +583,10 @@
                                 <Style TargetType="local:UndertaleObjectReference" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Enabled</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">启用</TextBlock>
                             <CheckBox Grid.Row="0" Grid.Column="2" Margin="3" IsChecked="{Binding Enabled}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Pos/size</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">位置/尺寸</TextBlock>
                             <Grid Grid.Row="1" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -596,11 +596,11 @@
                                 </Grid.ColumnDefinitions>
                                 <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding ViewX}" ToolTip="X"/>
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding ViewY}" ToolTip="Y"/>
-                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding ViewWidth}" ToolTip="Width"/>
-                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding ViewHeight}" ToolTip="Height"/>
+                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding ViewWidth}" ToolTip="宽度"/>
+                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding ViewHeight}" ToolTip="高度"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Port pos/size</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">视口位置/尺寸</TextBlock>
                             <Grid Grid.Row="2" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -610,11 +610,11 @@
                                 </Grid.ColumnDefinitions>
                                 <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding PortX}" ToolTip="X"/>
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding PortY}" ToolTip="Y"/>
-                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding PortWidth}" ToolTip="Width"/>
-                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding PortHeight}" ToolTip="Height"/>
+                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding PortWidth}" ToolTip="宽度"/>
+                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding PortHeight}" ToolTip="高度"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Border</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">边界</TextBlock>
                             <Grid Grid.Row="3" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -624,7 +624,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding BorderY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Speed</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">速度</TextBlock>
                             <Grid Grid.Row="4" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -634,7 +634,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding SpeedY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Follows object</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">跟随对象</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="5" Grid.Column="2" Margin="3" ObjectReference="{Binding ObjectId}" ObjectType="{x:Type undertale:UndertaleGameObject}"/>
                         </Grid>
                     </DataTemplate>
@@ -671,7 +671,7 @@
                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Position</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">位置</TextBlock>
                             <Grid Grid.Row="0" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -681,20 +681,20 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Y}" ToolTip="Y" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Definition</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">定义</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding ObjectDefinition}" ObjectType="{x:Type undertale:UndertaleGameObject}" CanRemove="False" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Instance ID</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">实例 ID</TextBlock>
                             <local:TextBoxDark Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding InstanceID}" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Creation code</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">创建代码</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="3" Grid.Column="2" Margin="3" ObjectReference="{Binding CreationCode}" ObjectType="{x:Type undertale:UndertaleCode}"
                                                             Room="{Binding DataContext, RelativeSource={RelativeSource AncestorType=local:DataUserControl}}"
                                                             RoomGameObject="{Binding}"
                                                             IsPreCreate="False"
                                                             IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Scale</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">缩放</TextBlock>
                             <Grid Grid.Row="4" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -704,10 +704,10 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding ScaleY}" ToolTip="Y" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Color</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">颜色</TextBlock>
                             <local:ColorPicker Grid.Row="5" Grid.Column="2" Margin="3" Color="{Binding Color}" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Rotation</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">旋转</TextBlock>
                             <local:TextBoxDark Grid.Row="6" Grid.Column="2" Margin="3" Text="{Binding Rotation}" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
                             <Grid Grid.Row="7" Grid.ColumnSpan="3" Visibility="{Binding Mode=OneTime, Converter={StaticResource IsVersionAtLeastConverter},ConverterParameter=2.2.2.302}">
@@ -720,14 +720,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Frame index</TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">帧索引</TextBlock>
                                 <local:TextBoxDark Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding ImageIndex}" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
 
-                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Image speed</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">图像速度</TextBlock>
                                 <local:TextBoxDark Grid.Row="1" Grid.Column="2" Margin="3" Text="{Binding ImageSpeed}" IsEnabled="{Binding Nonexistent, Converter={StaticResource InvertBooleanConverter}}"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Pre Create code</TextBlock>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">预创建代码</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="9" Grid.Column="2" Margin="3" ObjectReference="{Binding PreCreateCode}" ObjectType="{x:Type undertale:UndertaleCode}"
                                                             Room="{Binding DataContext, RelativeSource={RelativeSource AncestorType=local:DataUserControl}}"
                                                             RoomGameObject="{Binding}"
@@ -762,7 +762,7 @@
                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Position</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">位置</TextBlock>
                             <Grid Grid.Row="0" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -772,7 +772,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Y}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Definition</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">定义</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding ObjectDefinition}" CanRemove="False">
                                 <local:UndertaleObjectReference.Style>
                                     <Style TargetType="{x:Type local:UndertaleObjectReference}">
@@ -792,7 +792,7 @@
                                 </local:UndertaleObjectReference.Style>
                             </local:UndertaleObjectReference>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Source</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">来源</TextBlock>
                             <Grid Grid.Row="2" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -802,13 +802,13 @@
                                 </Grid.ColumnDefinitions>
                                 <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding SourceX}" ToolTip="X"/>
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding SourceY}" ToolTip="Y"/>
-                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding Width}" ToolTip="Width"/>
-                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding Height}" ToolTip="Height"/>
+                                <local:TextBoxDark Grid.Column="2" Margin="3" Text="{Binding Width}" ToolTip="宽度"/>
+                                <local:TextBoxDark Grid.Column="3" Margin="3" Text="{Binding Height}" ToolTip="高度"/>
                             </Grid>
 
                             <TextBlock Grid.Row="3" Grid.Column="2" Margin="3" HorizontalAlignment="Center" Foreground="DarkGray" FontStyle="Italic" TextWrapping="Wrap">
-                                Hint: You can select a tile by clicking on it.<LineBreak/>
-                                To select a <Run FontWeight="DemiBold" Foreground="#FFB23131">region</Run> of tile, hold down ALT.
+                                提示：点击图块即可选中它。<LineBreak/>
+                                按住 ALT 可选择一个图块<Run FontWeight="DemiBold" Foreground="#FFB23131">区域</Run>。
                             </TextBlock>
                             <Viewbox Grid.Row="4" Grid.Column="2" Margin="3" Stretch="Uniform" StretchDirection="DownOnly">
                                 <Canvas Width="{Binding Tpag.BoundingWidth, Mode=OneWay}" Height="{Binding Tpag.BoundingHeight, Mode=OneWay}" SnapsToDevicePixels="True" MouseDown="RectangleTile_MouseDown" MouseMove="RectangleTile_MouseMove">
@@ -823,13 +823,13 @@
                                 </Canvas>
                             </Viewbox>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Depth</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">深度</TextBlock>
                             <local:TextBoxDark Grid.Row="5" Grid.Column="2" Margin="3" Text="{Binding TileDepth}"/>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Instance ID</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">实例 ID</TextBlock>
                             <local:TextBoxDark Grid.Row="6" Grid.Column="2" Margin="3" Text="{Binding InstanceID}"/>
 
-                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Scale</TextBlock>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">缩放</TextBlock>
                             <Grid Grid.Row="7" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -839,7 +839,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding ScaleY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">Color</TextBlock>
+                            <TextBlock Grid.Row="8" Grid.Column="0" Margin="3">颜色</TextBlock>
                             <local:ColorPicker Grid.Row="8" Grid.Column="2" Margin="3" Color="{Binding Color}"/>
                         </Grid>
                     </DataTemplate>
@@ -876,19 +876,19 @@
                                 <Style TargetType="local:UndertaleStringReference" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Layer name</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">图层名称</TextBlock>
                             <local:UndertaleStringReference Grid.Row="0" Grid.Column="2" Margin="3" ObjectReference="{Binding LayerName}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Layer id</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">图层 ID</TextBlock>
                             <local:TextBoxDark Grid.Row="1" Grid.Column="2" Margin="3" Text="{Binding LayerId}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Layer type</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">图层类型</TextBlock>
                             <TextBlock Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding LayerType}" FontWeight="Bold"/>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Depth</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">深度</TextBlock>
                             <local:TextBoxDark Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding LayerDepth}"/>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">Offset</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">偏移</TextBlock>
                             <Grid Grid.Row="4" Grid.Column="2" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -898,17 +898,17 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding YOffset}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">Speed</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">速度</TextBlock>
                             <Grid Grid.Row="5" Grid.Column="2" Visibility="{Binding LayerType, Mode=OneTime, Converter={StaticResource LayerTypeConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding HSpeed}" ToolTip="Horizontal"/>
-                                <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding VSpeed}" ToolTip="Vertical"/>
+                                <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding HSpeed}" ToolTip="水平"/>
+                                <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding VSpeed}" ToolTip="垂直"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Visible</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">可见</TextBlock>
                             <CheckBox Grid.Row="6" Grid.Column="2" Margin="3" IsChecked="{Binding IsVisible}"/>
 
                             <Separator Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3"/>
@@ -917,13 +917,13 @@
                                 <ContentControl.Content>
                                     <Binding Path="Data" Mode="OneTime">
                                         <Binding.TargetNullValue>
-                                            <TextBlock Margin="3" Text="Empty layer data."/>
+                                            <TextBlock Margin="3" Text="图层数据为空。"/>
                                         </Binding.TargetNullValue>
                                     </Binding>
                                 </ContentControl.Content>
                                 <ContentControl.Resources>
                                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+Layer+LayerInstancesData}">
-                                        <TextBlock Margin="3" Text="Contains GameObject instances, listed in the tree on the left"/>
+                                        <TextBlock Margin="3" Text="包含游戏对象实例，已列于左侧树中"/>
                                     </DataTemplate>
 
                                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+Layer+LayerTilesData}">
@@ -943,31 +943,31 @@
                                                 <Style TargetType="TextBox" BasedOn="{StaticResource Centered}"/>
                                             </Grid.Resources>
 
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Size</TextBlock>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">尺寸</TextBlock>
                                             <Grid Grid.Row="0" Grid.Column="2">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding TilesX}" ToolTip="Horizontal"/>
-                                                <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding TilesY}" ToolTip="Vertical"/>
-                                                <local:ButtonDark Grid.Column="2" Margin="3" Click="AutoSizeTile_Click" ToolTip="Automatically set size to match room size">Auto</local:ButtonDark>
+                                                <local:TextBoxDark Grid.Column="0" Margin="3" Text="{Binding TilesX}" ToolTip="水平"/>
+                                                <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding TilesY}" ToolTip="垂直"/>
+                                                <local:ButtonDark Grid.Column="2" Margin="3" Click="AutoSizeTile_Click" ToolTip="自动设置尺寸以匹配房间尺寸">自动</local:ButtonDark>
                                             </Grid>
 
-                                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Tile set</TextBlock>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">图块集</TextBlock>
                                             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding Background}" ObjectType="{x:Type undertale:UndertaleBackground}" CanRemove="False"/>
 
-                                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Tile data</TextBlock>
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">图块数据</TextBlock>
                                             <Grid Grid.Row="2" Grid.Column="2">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <local:ButtonDark Grid.Column="0" Margin="3" Click="EditTiles_Click">Edit</local:ButtonDark>
-                                                <local:ButtonDark Grid.Column="1" Margin="3" Click="TileDataExport_Click">Export</local:ButtonDark>
-                                                <local:ButtonDark Grid.Column="2" Margin="3" Click="TileDataImport_Click">Import</local:ButtonDark>
+                                                <local:ButtonDark Grid.Column="0" Margin="3" Click="EditTiles_Click">编辑</local:ButtonDark>
+                                                <local:ButtonDark Grid.Column="1" Margin="3" Click="TileDataExport_Click">导出</local:ButtonDark>
+                                                <local:ButtonDark Grid.Column="2" Margin="3" Click="TileDataImport_Click">导入</local:ButtonDark>
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>
@@ -997,35 +997,35 @@
                                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                                             </Grid.Resources>
 
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Visible</TextBlock>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">可见</TextBlock>
                                             <CheckBox Grid.Row="0" Grid.Column="2" Margin="3" IsChecked="{Binding Visible}"/>
 
-                                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Foreground</TextBlock>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">前景</TextBlock>
                                             <CheckBox Grid.Row="1" Grid.Column="2" Margin="3" IsChecked="{Binding Foreground}"/>
 
-                                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Sprite</TextBlock>
+                                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">精灵</TextBlock>
                                             <local:UndertaleObjectReference Grid.Row="2" Grid.Column="2" Margin="3" ObjectReference="{Binding Sprite}" ObjectType="{x:Type undertale:UndertaleSprite}" CanRemove="False"/>
 
-                                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Tiling</TextBlock>
+                                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">平铺</TextBlock>
                                             <Grid Grid.Row="3" Grid.Column="2">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <CheckBox Grid.Column="0" Margin="3" IsChecked="{Binding TiledHorizontally}" ToolTip="Horizontal"/>
-                                                <CheckBox Grid.Column="1" Margin="3" IsChecked="{Binding TiledVertically}" ToolTip="Vertical"/>
+                                                <CheckBox Grid.Column="0" Margin="3" IsChecked="{Binding TiledHorizontally}" ToolTip="水平"/>
+                                                <CheckBox Grid.Column="1" Margin="3" IsChecked="{Binding TiledVertically}" ToolTip="垂直"/>
                                             </Grid>
 
-                                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Stretch</TextBlock>
+                                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">拉伸</TextBlock>
                                             <CheckBox Grid.Row="4" Grid.Column="2" Margin="3" IsChecked="{Binding Stretch}"/>
 
-                                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Color</TextBlock>
+                                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">颜色</TextBlock>
                                             <local:ColorPicker Grid.Row="5" Grid.Column="2" Margin="3" Color="{Binding Color}"/>
 
-                                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">First frame</TextBlock>
+                                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">起始帧</TextBlock>
                                             <local:TextBoxDark Grid.Row="6" Grid.Column="2" Margin="3" Text="{Binding FirstFrame}"/>
 
-                                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Animation speed</TextBlock>
+                                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">动画速度</TextBlock>
                                             <Grid Grid.Row="7" Grid.Column="2" Margin="3">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="2*"/>
@@ -1039,7 +1039,7 @@
                                     </DataTemplate>
 
                                     <DataTemplate DataType="{x:Type undertale:UndertaleRoom+Layer+LayerAssetsData}">
-                                        <TextBlock Margin="3" Text="Contains legacy tiles and sprites, listed in the tree on the left"/>
+                                        <TextBlock Margin="3" Text="包含旧式图块与精灵，已列于左侧树中"/>
                                     </DataTemplate>
                                 </ContentControl.Resources>
                             </ContentControl>
@@ -1072,13 +1072,13 @@
                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
                             <local:UndertaleStringReference Grid.Row="0" Grid.Column="2" Margin="3" ObjectReference="{Binding Name}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Definition</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">定义</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding Sprite}" ObjectType="{x:Type undertale:UndertaleSprite}" CanRemove="False"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Position</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">位置</TextBlock>
                             <Grid Grid.Row="2" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1088,7 +1088,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Y}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Scale</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">缩放</TextBlock>
                             <Grid Grid.Row="3" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1098,10 +1098,10 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding ScaleY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Color</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">颜色</TextBlock>
                             <local:ColorPicker Grid.Row="4" Grid.Column="2" Margin="3" Color="{Binding Color}"/>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Animation speed</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">动画速度</TextBlock>
                             <Grid Grid.Row="5" Grid.Column="2" Margin="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
@@ -1112,10 +1112,10 @@
                                 <local:ComboBoxDark Grid.Column="1" ItemsSource="{Binding Source={StaticResource AnimationSpeedType}}" SelectedItem="{Binding AnimationSpeedType}" />
                             </Grid>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">Frame index</TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3">帧索引</TextBlock>
                             <local:TextBoxDark Grid.Row="6" Grid.Column="2" Margin="3" Text="{Binding FrameIndex}"/>
 
-                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">Rotation</TextBlock>
+                            <TextBlock Grid.Row="7" Grid.Column="0" Margin="3">旋转</TextBlock>
                             <local:TextBoxDark Grid.Row="7" Grid.Column="2" Margin="3" Text="{Binding Rotation}"/>
                         </Grid>
                     </DataTemplate>
@@ -1144,13 +1144,13 @@
                                 <Style TargetType="local:ColorPicker" BasedOn="{StaticResource Centered}"/>
                             </Grid.Resources>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
                             <local:UndertaleStringReference Grid.Row="0" Grid.Column="2" Margin="3" ObjectReference="{Binding Name}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Definition</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">定义</TextBlock>
                             <local:UndertaleObjectReference Grid.Row="1" Grid.Column="2" Margin="3" ObjectReference="{Binding ParticleSystem}" ObjectType="{x:Type undertale:UndertaleParticleSystem}" CanRemove="False"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Position</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">位置</TextBlock>
                             <Grid Grid.Row="2" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1160,7 +1160,7 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding Y}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Scale</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">缩放</TextBlock>
                             <Grid Grid.Row="3" Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -1170,13 +1170,13 @@
                                 <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding ScaleY}" ToolTip="Y"/>
                             </Grid>
 
-                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Color</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">颜色</TextBlock>
                             <local:ColorPicker Grid.Row="4" Grid.Column="2" Margin="3" Color="{Binding Color}"/>
 
-                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">Rotation</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Margin="3">旋转</TextBlock>
                             <local:TextBoxDark Grid.Row="5" Grid.Column="2" Margin="3" Text="{Binding Rotation}"/>
 
-                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Text="Instance ID"
+                            <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Text="实例 ID"
                                        Visibility="{Binding Mode=OneTime, Converter={StaticResource IsVersionAtLeastConverter},ConverterParameter=2024.14}"/>
                             <local:TextBoxDark Grid.Row="6" Grid.Column="2" Margin="3" Text="{Binding InstanceID}"
                                                Visibility="{Binding Mode=OneTime, Converter={StaticResource IsVersionAtLeastConverter},ConverterParameter=2024.14}"/>
@@ -1602,6 +1602,6 @@
                 </ItemsControl.Resources>
             </ItemsControl>
         </ScrollViewer>
-        <local:ButtonDark Grid.Column="0" Grid.Row="3" Content="Save as PNG" Click="ExportAsPNG_Click"/>
+        <local:ButtonDark Grid.Column="0" Grid.Row="3" Content="另存为 PNG" Click="ExportAsPNG_Click"/>
     </Grid>
 </local:DataUserControl>

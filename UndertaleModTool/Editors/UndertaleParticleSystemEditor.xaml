@@ -19,10 +19,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">Name</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">名称</TextBlock>
         <local:UndertaleStringReference Grid.Row="0" Grid.Column="1" Margin="3" ObjectReference="{Binding Name}"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">Origin</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3">原点</TextBlock>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -32,11 +32,11 @@
             <local:TextBoxDark Grid.Column="1" Margin="3" Text="{Binding OriginY}"/>
         </Grid>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Draw order</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">绘制顺序</TextBlock>
         <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding DrawOrder}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Emitters</TextBlock>
-        <Expander Grid.Row="3" Grid.Column="1" Margin="3" Header="List" Name="EmitterListExpander" IsExpanded="True">
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">发射器</TextBlock>
+        <Expander Grid.Row="3" Grid.Column="1" Margin="3" Header="列表" Name="EmitterListExpander" IsExpanded="True">
             <local:DataGridDark ItemsSource="{Binding Emitters}" x:Name="EmitterListGrid"
                                 AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" HeadersVisibility="None" SelectionMode="Single" SelectionUnit="FullRow"
                                 ScrollViewer.CanContentScroll="True"
@@ -59,7 +59,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-                                            <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">Double click to add</TextBlock>
+                                            <TextBlock Margin="5" TextAlignment="Center" FontStyle="Italic">双击以添加</TextBlock>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>

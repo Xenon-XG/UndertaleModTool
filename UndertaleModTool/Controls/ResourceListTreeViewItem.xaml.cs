@@ -96,7 +96,7 @@ namespace UndertaleModTool
         {
             if ((sender as FrameworkElement)?.DataContext is not UndertaleResource obj)
             {
-                mainWindow.ShowError("The selected object is not an \"UndertaleResource\".");
+                mainWindow.ShowError("所选对象不是 \"UndertaleResource\"。");
                 return;
             }
 
@@ -108,8 +108,8 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError("An error occured in the object references related window.\n" +
-                               $"Please report this on GitHub.\n\n{ex}");
+                mainWindow.ShowError("对象引用相关窗口中发生错误。\n" +
+                               $"请在 GitHub 上报告此问题。\n\n{ex}");
             }
             finally
             {

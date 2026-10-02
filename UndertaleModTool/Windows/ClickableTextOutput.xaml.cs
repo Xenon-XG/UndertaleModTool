@@ -98,14 +98,14 @@ namespace UndertaleModTool.Windows
 
                     if (failedCount == 1)
                     {
-                        errorStr = "There is 1 code entry that encountered an error while searching:";
+                        errorStr = "有 1 个代码条目在搜索时出错：";
                         errLines.Add(new Run(errorStr) { FontWeight = FontWeights.Bold });
                         errLines.Add(new LineBreak());
                         errLines.Add(new Run(failedList.First()));
                     }
                     else
                     {
-                        errorStr = $"There are {failedCount} code entries that encountered an error while searching:";
+                        errorStr = $"有 {failedCount} 个代码条目在搜索时出错：";
                         errLines.Add(new Run(errorStr) { FontWeight = FontWeights.Bold });
                         errLines.Add(new LineBreak());
 
@@ -131,14 +131,14 @@ namespace UndertaleModTool.Windows
             }
 
             int resCount = resultsDict.Count;
-            Paragraph headerPara = new(new Run($"{ResultsCount} results in {resCount} code entries for \"{Query}\".")) { FontWeight = FontWeights.Bold };
+            Paragraph headerPara = new(new Run($"针对“{Query}”，在 {resCount} 个代码条目中找到 {ResultsCount} 个结果。")) { FontWeight = FontWeights.Bold };
             headerPara.Inlines.Add(new LineBreak());
             doc.Blocks.Add(headerPara);
 
             int totalLineCount = resultsDict.Select(x => x.Value.Count).Sum();
             bool tooManyLines = totalLineCount > 10000;
             if (tooManyLines)
-                mainWindow.ShowWarning($"There are too many code lines to display ({totalLineCount}), so the line numbers aren't clickable.");
+                mainWindow.ShowWarning($"要显示的代码行过多（{totalLineCount} 行），因此行号不可点击。");
 
             foreach (KeyValuePair<string, List<(int lineNum, string codeLine)>> result in resultsDict)
             {
@@ -146,9 +146,9 @@ namespace UndertaleModTool.Windows
                 Paragraph resPara = new();
 
                 Underline resHeader = new();
-                resHeader.Inlines.Add(new Run("Results in "));
+                resHeader.Inlines.Add(new Run("位于 "));
                 resHeader.Inlines.Add(new Hyperlink(new Run(result.Key)));
-                resHeader.Inlines.Add(new Run(":"));
+                resHeader.Inlines.Add(new Run(" 中的结果："));
                 resHeader.Inlines.Add(new LineBreak());
                 resPara.Inlines.Add(resHeader);
 

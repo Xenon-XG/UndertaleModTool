@@ -128,7 +128,7 @@ namespace UndertaleModTool
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             UndertaleRoom room = value as UndertaleRoom;
-            return room is not null ? $"{room.Name.Content}: {room.Width}x{room.Height}" : "null";
+            return room is not null ? $"{room.Name.Content}: {room.Width}x{room.Height}" : "(空)";
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

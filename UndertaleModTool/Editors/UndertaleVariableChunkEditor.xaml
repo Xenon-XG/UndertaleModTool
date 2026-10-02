@@ -21,16 +21,16 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Variables" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="变量" FontWeight="Bold"/>
         <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">Instance/global variable count</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">实例/全局变量数量</TextBlock>
         <local:TextBoxDark Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding InstanceVarCount}"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">Instance/global variable count (again)</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3">实例/全局变量数量（重复项）</TextBlock>
         <local:TextBoxDark Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding InstanceVarCountAgain}"/>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">Max local variable count</TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="3">最大局部变量数量</TextBlock>
         <local:TextBoxDark Grid.Row="4" Grid.Column="1" Margin="3" Text="{Binding MaxLocalVarCount}"/>
     </Grid>
 </local:DataUserControl>

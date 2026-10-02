@@ -67,7 +67,7 @@ namespace UndertaleModTool
         public SearchPanel DisassemblySearchPanel;
         public static (int Line, int Column, double ScrollPos) OverriddenDisasmPos { get; set; }
 
-        public static RoutedUICommand Compile = new RoutedUICommand("Compile code", "Compile", typeof(UndertaleCodeEditor));
+        public static RoutedUICommand Compile = new RoutedUICommand("编译代码", "Compile", typeof(UndertaleCodeEditor));
 
         private static readonly Dictionary<string, UndertaleNamedResource> NamedObjDict = new();
         private static readonly Dictionary<string, UndertaleNamedResource> ScriptsDict = new();
@@ -570,7 +570,7 @@ namespace UndertaleModTool
             if (code.ParentEntry != null)
             {
                 DisassemblyEditor.IsReadOnly = true;
-                text = "; This code entry is a reference to an anonymous function within " + code.ParentEntry.Name.Content + ", view it there.";
+                text = "; 此代码条目是对 " + code.ParentEntry.Name.Content + " 中匿名函数的引用，请前往该处查看。";
                 DisassemblyChanged = false;
             }
             else
@@ -590,7 +590,7 @@ namespace UndertaleModTool
 
                     string exStr = ex.ToString();
                     exStr = String.Join("\n;", exStr.Split('\n'));
-                    text = $";  EXCEPTION!\n;   {exStr}\n";
+                    text = $";  异常！\n;   {exStr}\n";
                 }
             }
 
@@ -645,11 +645,11 @@ namespace UndertaleModTool
                     }
                     catch (ArgumentException)
                     {
-                        mainWindow.ShowError("There is a duplicate key in textdata_en, being " + m.Groups[1].Value + ". This may cause errors in the comment display of text.");
+                        mainWindow.ShowError("textdata_en 中存在重复的键：" + m.Groups[1].Value + "。这可能导致文本注释显示出错。");
                     }
                     catch
                     {
-                        mainWindow.ShowError("Unknown error in textdata_en. This may cause errors in the comment display of text.");
+                        mainWindow.ShowError("textdata_en 中出现未知错误。这可能导致文本注释显示出错。");
                     }
                 }
                 else
@@ -670,11 +670,11 @@ namespace UndertaleModTool
                         }
                         catch (ArgumentException)
                         {
-                            mainWindow.ShowError("There is a duplicate key in textdata_en, being " + m.Groups[1].Value + ". This may cause errors in the comment display of text.");
+                            mainWindow.ShowError("textdata_en 中存在重复的键：" + m.Groups[1].Value + "。这可能导致文本注释显示出错。");
                         }
                         catch
                         {
-                            mainWindow.ShowError("Unknown error in textdata_en. This may cause errors in the comment display of text.");
+                            mainWindow.ShowError("textdata_en 中出现未知错误。这可能导致文本注释显示出错。");
                         }
                     }
                 }
@@ -693,7 +693,7 @@ namespace UndertaleModTool
             catch (Exception e)
             {
                 gettextJSON = new Dictionary<string, string>();
-                return "Failed to parse language file: " + e.Message;
+                return "解析语言文件失败：" + e.Message;
             }
             return null;
         }
@@ -731,7 +731,7 @@ namespace UndertaleModTool
 
             if (code.ParentEntry != null)
             {
-                DecompiledEditor.Text = "// This code entry is a reference to an anonymous function within " + code.ParentEntry.Name.Content + ", view it there.";
+                DecompiledEditor.Text = "// 此代码条目是对 " + code.ParentEntry.Name.Content + " 中匿名函数的引用，请前往该处查看。";
                 DecompiledChanged = false;
                 CurrentDecompiled = code;
                 existingDialog?.TryClose();
@@ -742,11 +742,11 @@ namespace UndertaleModTool
                 if (existingDialog != null)
                 {
                     dialog = existingDialog;
-                    dialog.Message = "Decompiling, please wait... This can take a while on complex scripts.";
+                    dialog.Message = "正在反编译，请稍候……对于复杂的脚本，这可能需要一些时间。";
                 }
                 else
                 {
-                    dialog = new LoaderDialog("Decompiling", "Decompiling, please wait... This can take a while on complex scripts.");
+                    dialog = new LoaderDialog("正在反编译", "正在反编译，请稍候……对于复杂的脚本，这可能需要一些时间。");
                     dialog.Owner = Window.GetWindow(this);
                     try
                     {
@@ -846,7 +846,7 @@ namespace UndertaleModTool
                                     {
                                         Match match = matches[i];
                                         if (!currDict.TryGetValue(match.Groups[1].Value, out string text))
-                                            text = "<localization fetch error>";
+                                            text = "<本地化文本获取失败>";
 
                                         if (i != matches.Length - 1) // If not the last
                                             decompLinesBuilder.Append($"{text}; ");
@@ -871,7 +871,7 @@ namespace UndertaleModTool
 
                         DecompiledEditor.Document.BeginUpdate();
                         if (e != null)
-                            DecompiledEditor.Document.Text = "/* EXCEPTION!\n   " + e.ToString() + "\n*/";
+                            DecompiledEditor.Document.Text = "/* 异常！\n   " + e.ToString() + "\n*/";
                         else if (decompiled != null)
                         {
                             DecompiledEditor.Document.Text = decompiled;
@@ -982,7 +982,7 @@ namespace UndertaleModTool
             }
 
             // Create compiling dialog
-            LoaderDialog dialog = new("Compiling", "Compiling, please wait...")
+            LoaderDialog dialog = new("正在编译", "正在编译，请稍候……")
             {
                 Owner = Window.GetWindow(this)
             };
@@ -1023,14 +1023,14 @@ namespace UndertaleModTool
             if (rootException is not null)
             {
                 dialog.TryClose();
-                mainWindow.ShowError(Truncate(rootException, 512), "Compiler error");
+                mainWindow.ShowError(Truncate(rootException, 512), "编译器错误");
                 return;
             }
 
             if (!compileResult.Successful)
             {
                 dialog.TryClose();
-                mainWindow.ShowError(Truncate(compileResult.PrintAllErrors(false), 512), "Compiler error");
+                mainWindow.ShowError(Truncate(compileResult.PrintAllErrors(false), 512), "编译器错误");
                 return;
             }
 
@@ -1108,7 +1108,7 @@ namespace UndertaleModTool
             }
             catch (Exception ex)
             {
-                mainWindow.ShowError(ex.ToString(), "Assembler error");
+                mainWindow.ShowError(ex.ToString(), "汇编器错误");
                 return;
             }
 
@@ -1127,10 +1127,10 @@ namespace UndertaleModTool
             if (mainWindow.Project is ProjectContext project && project.TryGetCodeSource(code, out _))
             {
                 // The user really shouldn't be editing disassembly - warn them about this in detail
-                mainWindow.ShowWarning("Editing disassembly while in an open project (even through scripts) can cause " +
-                                       "desyncs with source code in the project.\n\n" +
-                                       "The source code will not change unless you directly modify it, " +
-                                       "or if you remove the code asset from the project entirely.");
+                mainWindow.ShowWarning("在打开项目的情况下编辑反汇编（即使是通过脚本）可能导致" +
+                                       "与项目中的源代码不同步。\n\n" +
+                                       "除非你直接修改源代码，或将该代码资源从项目中完全移除，" +
+                                       "否则源代码不会发生变化。");
             }
 
             if (!DisassemblyEditor.IsReadOnly)
@@ -1293,7 +1293,7 @@ namespace UndertaleModTool
                         if (id > 0x00050000)
                         {
                             MenuItemDark item = new();
-                            item.Header = "0x" + id.ToString("X6") + " (color)";
+                            item.Header = "0x" + id.ToString("X6") + "（颜色）";
                             item.Click += (sender2, ev2) =>
                             {
                                 if (!((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift))
@@ -1310,7 +1310,7 @@ namespace UndertaleModTool
                         if (myKey != null)
                         {
                             MenuItemDark item = new();
-                            item.Header = myKey.Replace("_", "__") + " (constant)";
+                            item.Header = myKey.Replace("_", "__") + "（常量）";
                             item.Click += (sender2, ev2) =>
                             {
                                 if (!((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift))
@@ -1322,7 +1322,7 @@ namespace UndertaleModTool
                             };
                             contextMenu.Items.Add(item);
                         }
-                        contextMenu.Items.Add(new MenuItemDark() { Header = id + " (number)", IsEnabled = false });
+                        contextMenu.Items.Add(new MenuItemDark() { Header = id + "（数字）", IsEnabled = false });
 
                         contextMenu.IsOpen = true;
                     }
@@ -1358,7 +1358,7 @@ namespace UndertaleModTool
 
                 var menuItem = new MenuItemDark()
                 {
-                    Header = "Open in new tab"
+                    Header = "在新标签页中打开"
                 };
                 menuItem.Click += (sender, _) =>
                 {
